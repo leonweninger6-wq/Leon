@@ -1,0 +1,1777 @@
+<title>Lernpfad 1. Mathe-SA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: ein Karopapier-Heft. Links die Kapitel-Leiste (am Handy eine Chip-Zeile oben),
+   rechts ein weißes Blatt mit der Lernspalte (~70 Zeichen), Formelkästen wie im Buch,
+   Rotstift-Hinweise für typische Fehler und aufklappbare Lösungen. */
+:root{
+  --paper:#f5f7fb; --grid:#e2e8f1; --sheet:#ffffff; --ink:#18233a; --muted:#56657d; --line:#d3dbe6;
+  --blue:#2443c4; --blue-soft:#e9eefd; --red:#c62828; --red-soft:#fdeeed;
+  --green:#16794a; --green-soft:#e5f3ea; --amber:#9a5b00; --amber-soft:#fcf1dd;
+  --code-bg:#eef2f8;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-math:"STIX Two Text","Cambria Math","Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --f-hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0d1320; --grid:#172036; --sheet:#131b2b; --ink:#e3e9f4; --muted:#98a7c0; --line:#283550;
+    --blue:#8aa5ff; --blue-soft:#1a2547; --red:#ff7b73; --red-soft:#381c22;
+    --green:#5fd394; --green-soft:#132d25; --amber:#f0b45a; --amber-soft:#30261a;
+    --code-bg:#1a2438; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0d1320; --grid:#172036; --sheet:#131b2b; --ink:#e3e9f4; --muted:#98a7c0; --line:#283550;
+  --blue:#8aa5ff; --blue-soft:#1a2547; --red:#ff7b73; --red-soft:#381c22;
+  --green:#5fd394; --green-soft:#132d25; --amber:#f0b45a; --amber-soft:#30261a;
+  --code-bg:#1a2438; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink); font-family:var(--f-body); font-size:16.5px; line-height:1.6;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.app{
+  display:grid; grid-template-columns:250px minmax(0,1fr); gap:28px;
+  max-width:1220px; margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:24px 64px;
+}
+/* ---------- Navigation ---------- */
+.side{position:sticky; top:calc(env(safe-area-inset-top,0px) + 16px); align-self:start; max-height:calc(100vh - 32px); overflow:auto; padding-bottom:16px}
+.brand{font-family:var(--f-display); font-weight:800; font-size:1.25rem; line-height:1.15; letter-spacing:-.01em; margin:0 0 4px}
+.brand-sub{font-size:.82rem; color:var(--muted); margin:0 0 18px}
+.navgroup{margin:0 0 14px}
+.navgroup h4{font-size:.7rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); margin:0 0 4px; font-weight:600}
+.navbtn{
+  display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+  font:inherit; font-size:.93rem; color:var(--ink); background:transparent; border:1px solid transparent;
+  border-radius:6px; padding:6px 8px; cursor:pointer; line-height:1.3;
+}
+.navbtn:hover{background:var(--sheet); border-color:var(--line)}
+.navbtn[aria-current="page"]{background:var(--sheet); border-color:var(--blue); color:var(--blue); font-weight:600}
+.navbtn .tag{font-family:var(--f-mono); font-size:.68rem; color:var(--muted); min-width:3.1em}
+.navbtn .done{margin-left:auto; color:var(--green); font-weight:700; visibility:hidden}
+.navbtn.is-done .done{visibility:visible}
+.navbtn:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+/* ---------- Blatt ---------- */
+.sheet{background:var(--sheet); border:1px solid var(--line); border-radius:4px; padding:clamp(18px,3.5vw,44px); min-width:0;
+  box-shadow:0 1px 0 var(--line), 0 12px 30px -22px rgba(20,30,60,.35)}
+.view{max-width:46rem}
+.view[hidden]{display:none!important}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; line-height:1.15; letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4vw,2.6rem); font-weight:800; margin:0 0 .3em}
+h2{font-size:1.5rem; font-weight:800; margin:2.2em 0 .5em; padding-top:.6em; border-top:1px solid var(--line)}
+h3{font-size:1.15rem; font-weight:600; margin:1.6em 0 .4em}
+.view>h2:first-of-type{margin-top:1.4em}
+.eyebrow{font-family:var(--f-mono); font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); margin:0 0 .4em}
+.lead{font-size:1.08rem; color:var(--muted); margin:0 0 1.2em}
+p{margin:.6em 0}
+ul,ol{padding-left:1.3em; margin:.5em 0}
+li{margin:.25em 0}
+a{color:var(--blue)}
+strong{font-weight:600}
+hr{border:0; border-top:1px dashed var(--line); margin:1.6em 0}
+/* ---------- Mathe-Satz ---------- */
+.m{font-family:var(--f-math); font-size:1.08em; white-space:nowrap}
+.mw{font-family:var(--f-math); font-size:1.08em}
+.fb{font-family:var(--f-math); font-size:1.18rem; text-align:center; margin:.9em 0; padding:.55em .8em; overflow-x:auto; line-height:1.9}
+.fr{display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; margin:0 .12em}
+.fr>span{padding:0 .25em; line-height:1.25; white-space:nowrap}
+.fr>span:first-child{border-bottom:.07em solid currentColor}
+.lim{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; line-height:1.05; margin-right:.15em}
+.lim>span{font-size:.62em; white-space:nowrap}
+.ov{text-decoration:overline}
+/* ---------- Kästen ---------- */
+.box{border-radius:4px; padding:12px 16px; margin:1.1em 0; border:1px solid var(--line); background:var(--sheet); min-width:0}
+.box>.lbl{display:inline-block; font-family:var(--f-mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; font-weight:500; padding:2px 7px; border-radius:3px; margin-bottom:6px}
+.box>:last-child{margin-bottom:0}
+.def{background:var(--blue-soft); border-color:transparent}
+.def>.lbl{background:var(--blue); color:var(--sheet)}
+.satz{background:var(--green-soft); border-color:transparent}
+.satz>.lbl{background:var(--green); color:var(--sheet)}
+.merke{background:var(--amber-soft); border-color:transparent}
+.merke>.lbl{background:var(--amber); color:var(--sheet)}
+.achtung{border:1.5px solid var(--red); background:var(--red-soft)}
+.achtung>.lbl{background:var(--red); color:var(--sheet)}
+.ti{background:var(--code-bg); border-color:transparent}
+.ti>.lbl{background:var(--ink); color:var(--sheet)}
+.pen{font-family:var(--f-hand); color:var(--red); font-size:1.35em; line-height:1.1}
+/* Beispiele */
+.bsp{border:1px solid var(--line); border-radius:4px; padding:14px 16px; margin:1.2em 0}
+.bsp>h4{margin:0 0 .4em; font-family:var(--f-display); font-size:1.02rem; font-weight:600}
+.bsp>h4 .src{font-family:var(--f-mono); font-weight:400; font-size:.72rem; color:var(--muted); margin-left:6px}
+.steps{counter-reset:s; list-style:none; padding:0}
+.steps>li{counter-increment:s; position:relative; padding-left:2.1em; margin:.55em 0}
+.steps>li::before{content:counter(s); position:absolute; left:0; top:.1em; width:1.5em; height:1.5em; border-radius:50%; border:1.5px solid var(--blue); color:var(--blue); font-size:.78rem; font-weight:600; display:grid; place-items:center}
+code,.cas{font-family:var(--f-mono); font-size:.88em; background:var(--code-bg); padding:1px 5px; border-radius:3px; white-space:nowrap}
+pre.cas{display:block; white-space:pre; overflow-x:auto; padding:10px 12px; margin:.7em 0; line-height:1.55; font-size:.85rem}
+.cas .r{color:var(--green)}
+.cas .c{color:var(--muted)}
+/* Lösungen */
+details.sol{margin:.6em 0 1em; border:1px dashed var(--line); border-radius:4px; padding:0 14px}
+details.sol>summary{cursor:pointer; list-style:none; font-weight:600; color:var(--blue); padding:8px 0; font-size:.93rem}
+details.sol>summary::-webkit-details-marker{display:none}
+details.sol>summary::before{content:"▸ "; display:inline-block; transition:transform .15s}
+details.sol[open]>summary::before{transform:rotate(90deg)}
+details.sol[open]{padding-bottom:10px; background:var(--green-soft); border-style:solid; border-color:transparent}
+.task{margin:1.3em 0 .2em}
+.task>.tn{font-family:var(--f-mono); font-size:.8rem; color:var(--blue); font-weight:500; margin-right:6px}
+.pts{font-family:var(--f-mono); font-size:.75rem; color:var(--muted); white-space:nowrap}
+/* Tabellen */
+.tw{overflow-x:auto; margin:1em 0}
+table{border-collapse:collapse; width:100%; font-size:.93rem}
+th,td{border-bottom:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top}
+th{font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); border-bottom:2px solid var(--line)}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+.ok{color:var(--green); font-weight:600}
+.bad{color:var(--red); font-weight:600}
+/* Start */
+.hero{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px; align-items:end; margin-bottom:1.4em}
+.count{text-align:right}
+.count .n{font-family:var(--f-display); font-weight:800; font-size:3.4rem; line-height:1; color:var(--blue); font-variant-numeric:tabular-nums}
+.count .u{font-size:.85rem; color:var(--muted)}
+.facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:1em 0}
+.fact{border:1px solid var(--line); border-radius:4px; padding:10px 12px}
+.fact b{display:block; font-family:var(--f-display); font-size:1.15rem}
+.fact span{font-size:.82rem; color:var(--muted)}
+.plan{list-style:none; padding:0; margin:1em 0}
+.plan li{display:grid; grid-template-columns:auto 6.5em minmax(0,1fr); gap:10px; align-items:start; padding:9px 0; border-bottom:1px solid var(--line); margin:0}
+.plan li .d{font-family:var(--f-mono); font-size:.8rem; color:var(--muted); padding-top:2px}
+.plan li.test .d{color:var(--red); font-weight:600}
+.plan li input{margin-top:5px; width:17px; height:17px; accent-color:var(--green)}
+.plan li.checked .w{color:var(--muted); text-decoration:line-through; text-decoration-color:var(--green)}
+.go{font:inherit; font-size:.85rem; background:none; border:0; padding:0; color:var(--blue); cursor:pointer; text-decoration:underline; text-underline-offset:2px}
+/* Abschluss eines Kapitels */
+.finish{margin-top:2.6em; padding-top:1.2em; border-top:2px solid var(--line); display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+.finish label{display:flex; gap:8px; align-items:center; font-weight:600; cursor:pointer}
+.finish input{width:18px; height:18px; accent-color:var(--green)}
+.btn{font:inherit; font-size:.92rem; font-weight:600; border:1.5px solid var(--blue); color:var(--blue); background:var(--sheet); padding:7px 14px; border-radius:6px; cursor:pointer}
+.btn:hover{background:var(--blue-soft)}
+.btn.primary{background:var(--blue); color:var(--sheet)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45; cursor:default}
+/* Grafiken */
+figure{margin:1.2em 0}
+figure canvas{display:block; width:100%; border:1px solid var(--line); border-radius:4px; background:var(--sheet); touch-action:pan-y}
+figcaption{font-size:.83rem; color:var(--muted); margin-top:6px}
+.ctrl{display:grid; grid-template-columns:auto minmax(0,1fr) 4.5em; gap:6px 12px; align-items:center; margin:.8em 0; font-size:.9rem}
+.ctrl input[type=range]{width:100%; accent-color:var(--blue)}
+.ctrl output{font-family:var(--f-mono); font-variant-numeric:tabular-nums; text-align:right}
+.readout{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:8px; margin:.6em 0}
+.readout div{border:1px solid var(--line); border-radius:4px; padding:7px 10px; font-size:.86rem}
+.readout b{display:block; font-family:var(--f-math); font-size:1.12rem; font-weight:600; font-variant-numeric:tabular-nums}
+.seg{display:flex; flex-wrap:wrap; gap:6px; margin:.6em 0}
+.seg button{font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--sheet); color:var(--ink); border-radius:999px; padding:4px 12px; cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:var(--blue); color:var(--blue); background:var(--blue-soft); font-weight:600}
+/* Quiz */
+.q{border:1px solid var(--line); border-radius:4px; padding:14px 16px; margin:1em 0}
+.q .qh{display:flex; justify-content:space-between; gap:10px; font-family:var(--f-mono); font-size:.74rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em}
+.q .qt{margin:.4em 0 .7em}
+.q label.opt{display:flex; gap:10px; align-items:flex-start; padding:7px 9px; border:1px solid var(--line); border-radius:4px; margin:5px 0; cursor:pointer}
+.q label.opt input{margin-top:5px; accent-color:var(--blue)}
+.q label.opt.right{border-color:var(--green); background:var(--green-soft)}
+.q label.opt.wrong{border-color:var(--red); background:var(--red-soft)}
+.q .fb-out{margin-top:.6em; font-size:.92rem}
+.q .fb-out[hidden]{display:none}
+.score{font-family:var(--f-display); font-size:1.3rem; font-weight:800}
+/* Lernkarten */
+.deck{border:1px solid var(--line); border-radius:6px; padding:16px; margin:1em 0}
+.card{min-height:170px; display:grid; align-content:center; padding:18px; border-radius:4px; background:var(--blue-soft); text-align:center; cursor:pointer; user-select:none}
+.card.back{background:var(--green-soft); text-align:left}
+.card .side-lbl{font-family:var(--f-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:6px; text-align:center}
+.card .front-q{font-family:var(--f-display); font-size:1.2rem; font-weight:600}
+.deckbar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin-top:12px}
+.deckbar .info{font-family:var(--f-mono); font-size:.8rem; color:var(--muted)}
+/* Prüfungsbogen */
+.exam-meta{display:flex; flex-wrap:wrap; gap:8px 18px; font-family:var(--f-mono); font-size:.8rem; color:var(--muted); margin:.4em 0 1em}
+.grade{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:1em 0}
+.grade input{width:5em; font:inherit; padding:5px 8px; border:1px solid var(--line); border-radius:4px; background:var(--sheet); color:var(--ink)}
+.grade output{font-weight:600}
+.kicker{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr); gap:14px; padding-block:12px 48px}
+  .side{position:sticky; top:env(safe-area-inset-top,0px); max-height:none; overflow:visible; z-index:5; background:var(--paper); padding:10px 0 8px; border-bottom:1px solid var(--line); margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px))); padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .brand{font-size:1.05rem; margin:0}
+  .brand-sub{display:none}
+  .navwrap{display:flex; gap:6px; overflow-x:auto; padding:8px 0 2px; scrollbar-width:thin}
+  .navgroup{display:contents}
+  .navgroup h4{display:none}
+  .navbtn{width:auto; white-space:nowrap; border-color:var(--line); background:var(--sheet); border-radius:999px; padding:5px 11px; font-size:.85rem}
+  .navbtn .tag{display:none}
+  .navbtn .done{visibility:visible; display:none}
+  .navbtn.is-done .done{display:inline}
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .count{text-align:left}
+  .plan li{grid-template-columns:auto minmax(0,1fr)}
+  .plan li .d{grid-column:2}
+  .plan li .w{grid-column:2}
+  body{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="app">
+<aside class="side" aria-label="Kapitel">
+  <p class="brand">Lernpfad<br>1. Mathe-SA</p>
+  <p class="brand-sub">7. Klasse · Do, 05.11.2026</p>
+  <div class="navwrap" id="nav">
+    <div class="navgroup"><h4>Überblick</h4>
+      <button class="navbtn" data-go="start"><span class="tag">00</span>Start &amp; Lernplan<span class="done">✓</span></button>
+    </div>
+    <div class="navgroup"><h4>Stoff</h4>
+      <button class="navbtn" data-go="gleichungen"><span class="tag">Kap 1</span>Gleichungen &amp; Polynome<span class="done">✓</span></button>
+      <button class="navbtn" data-go="aenderung"><span class="tag">Kap 2</span>Änderungsraten &amp; Limes<span class="done">✓</span></button>
+      <button class="navbtn" data-go="ableitung"><span class="tag">Kap 2</span>Ableiten &amp; Tangenten<span class="done">✓</span></button>
+      <button class="navbtn" data-go="kurven"><span class="tag">Kap 3</span>Kurven untersuchen<span class="done">✓</span></button>
+      <button class="navbtn" data-go="aufsuchen"><span class="tag">Kap 3.6</span>Funktionen aufsuchen<span class="done">✓</span></button>
+    </div>
+    <div class="navgroup"><h4>Werkzeuge</h4>
+      <button class="navbtn" data-go="beweise"><span class="tag">Satz</span>Sätze, Beweise, Karten<span class="done">✓</span></button>
+      <button class="navbtn" data-go="technik"><span class="tag">CAS</span>TI-Nspire Spickzettel<span class="done">✓</span></button>
+      <button class="navbtn" data-go="fehler"><span class="tag">!</span>Fehler, die Punkte kosten<span class="done">✓</span></button>
+    </div>
+    <div class="navgroup"><h4>Trainieren</h4>
+      <button class="navbtn" data-go="quiz"><span class="tag">Typ 1</span>Ankreuz-Trainer<span class="done">✓</span></button>
+      <button class="navbtn" data-go="altsa"><span class="tag">2025</span>Schularbeit 2025<span class="done">✓</span></button>
+      <button class="navbtn" data-go="probe"><span class="tag">24 P</span>Probeschularbeit<span class="done">✓</span></button>
+    </div>
+  </div>
+</aside>
+
+<main class="sheet" id="main">
+
+<!-- ===================================================== START -->
+<section class="view" data-view="start">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">1. Mathematik-Schularbeit · 7. Klasse</p>
+      <h1>Von null auf Schularbeit in 11 Tagen</h1>
+      <p class="lead">Alles, was am <strong>Donnerstag, 5. November 2026</strong> drankommt: Gleichungen, Differentialrechnung und Kurvenuntersuchung. Mit Erklärungen, Rezepten, TI-Nspire-Befehlen und über 80 Aufgaben mit Lösungen.</p>
+    </div>
+    <div class="count" aria-live="polite"><div class="n" id="days">11</div><div class="u" id="daysLbl">Tage bis zur Schularbeit</div></div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>~100 min</b><span>Bearbeitungszeit (wie 2025)</span></div>
+    <div class="fact"><b>24 Punkte</b><span>13 Typ-1 + 3 Typ-2-Aufgaben</span></div>
+    <div class="fact"><b>12 P = Genügend</b><span>21 P = Sehr gut</span></div>
+    <div class="fact"><b>Laptop + CAS</b><span>TI-Nspire, Formelsammlung erlaubt</span></div>
+  </div>
+
+  <h2>So benutzt du diese Seite</h2>
+  <ol>
+    <li><strong>Folge dem Lernplan unten.</strong> Jeder Tag hat eine klare Aufgabe. Hake ab, was du geschafft hast (wird in diesem Browser gespeichert).</li>
+    <li><strong>Lies ein Kapitel, rechne dann sofort die Aufgaben am Ende.</strong> Deck die Lösung erst auf, wenn du eine eigene Antwort hast. Falsch ist okay, nicht probiert ist schlecht.</li>
+    <li><strong>Rote Kästen</strong> <span class="pen">= Rotstift.</span> Das sind Fehler, die bei dir in den Mitschriften oder bei der Schularbeit 2025 Punkte gekostet haben.</li>
+    <li><strong>Am Ende zwei echte Generalproben:</strong> die Schularbeit 2025 und eine neue Probeschularbeit, jeweils 100 Minuten mit Uhr.</li>
+  </ol>
+
+  <h2>Was laut Stoffumfang kommt</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Kapitel</th><th>Buch</th><th>Kernkompetenzen</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong> Gleichungen &amp; Polynomfunktionen</td><td>S. 6–17</td><td>Polynom/Gleichung vom Grad n; höchstens n Lösungen bzw. Nullstellen; lösen mit binomischen Formeln, Herausheben, Substitution (und Linearfaktoren)</td></tr>
+      <tr><td><strong>2</strong> Grundbegriffe der Differentialrechnung</td><td>S. 18–45</td><td>Differenzen- und Differentialquotient kennen und deuten; <strong>f′ mit dem Limes berechnen</strong> (für a·x² und a·x); Leibniz-Schreibweise; Ableitungsregeln; Tangentengleichung; höhere Ableitungen</td></tr>
+      <tr><td><strong>3</strong> Untersuchen von Polynomfunktionen</td><td>S. 46–60, 62–65</td><td>Monotonie, lokale Extrema, Krümmung, Wende- und Sattelstellen (mit CAS); Polynomfunktionen aus Bedingungen aufsuchen</td></tr>
+    </tbody>
+  </table></div>
+  <div class="merke"><span class="lbl">Merke</span><p>Laut Zettel sind auch <strong>alle Definitionen, Sätze und Beweise</strong> aus dem Unterricht Stoff. Und: „Die Aufgaben der Schul- und Hausübungen sollten Ausgangspunkt deiner Vorbereitung sein.“ Genau diese Aufgaben (2.02, 2.06, 2.12, 2.14, 2.24, 2.51, 2.55, 3.11, 3.14, 3.25, 3.50, 3.53, 3.58, 3.67, 3.74, 3.75 …) sind hier eingebaut. Seite 61 ist <em>nicht</em> Stoff.</p></div>
+
+  <h2>Dein 11-Tage-Plan</h2>
+  <p>Ungefähr 60–90 Minuten pro Tag. Wenn du einen Tag verlierst, schieb nicht alles nach hinten. Lass lieber bei „Sätze &amp; Beweise“ etwas weg als bei den Generalproben.</p>
+  <ul class="plan" id="plan">
+    <li><input type="checkbox" id="p1" aria-label="Tag 1 erledigt"><span class="d">So 25.10.</span><span class="w"><strong>Kapitel 1, Teil A:</strong> Polynome, quadratische Gleichungen, Produkt-Null-Satz, binomische Formeln, Herausheben, Substitution. Übungen 1–7. <button class="go" data-go="gleichungen">Kap. 1 öffnen</button></span></li>
+    <li><input type="checkbox" id="p2" aria-label="Tag 2 erledigt"><span class="d">Mo 26.10.</span><span class="w"><strong>Kapitel 1, Teil B:</strong> Linearfaktoren, Horner, „höchstens n Lösungen“. Rest der Übungen. Danach <strong>TI-Nspire einrichten</strong> (Winkel auf Grad!). <button class="go" data-go="technik">Spickzettel</button></span></li>
+    <li><input type="checkbox" id="p3" aria-label="Tag 3 erledigt"><span class="d">Di 27.10.</span><span class="w"><strong>Differenzenquotient:</strong> mittlere Änderungsrate, Sekante, Deuten mit Einheiten. <button class="go" data-go="aenderung">Kap. 2 öffnen</button></span></li>
+    <li><input type="checkbox" id="p4" aria-label="Tag 4 erledigt"><span class="d">Mi 28.10.</span><span class="w"><strong>Differentialquotient &amp; Limes:</strong> f′(x) von a·x² und a·x mit allen Zwischenschritten, bis du es ohne Vorlage kannst. Leibniz-Schreibweise.</span></li>
+    <li><input type="checkbox" id="p5" aria-label="Tag 5 erledigt"><span class="d">Do 29.10.</span><span class="w"><strong>Ableitungsregeln, Tangente, Neigungswinkel, höhere Ableitungen, s–v–a.</strong> <button class="go" data-go="ableitung">Öffnen</button></span></li>
+    <li><input type="checkbox" id="p6" aria-label="Tag 6 erledigt"><span class="d">Fr 30.10.</span><span class="w"><strong>Monotonie &amp; Extrema</strong> (Kap. 3.1–3.3), Randextrema. Den Graph-Explorer benutzen. <button class="go" data-go="kurven">Kap. 3 öffnen</button></span></li>
+    <li><input type="checkbox" id="p7" aria-label="Tag 7 erledigt"><span class="d">Sa 31.10.</span><span class="w"><strong>Krümmung, Wende- und Sattelpunkte, Symmetrie, Verhalten für x → ±∞</strong>, komplette Kurvendiskussion mit CAS.</span></li>
+    <li><input type="checkbox" id="p8" aria-label="Tag 8 erledigt"><span class="d">So 01.11.</span><span class="w"><strong>Polynomfunktionen aufsuchen:</strong> Übersetzungstabelle lernen, alle Aufgaben am TI-Nspire rechnen. <button class="go" data-go="aufsuchen">Öffnen</button></span></li>
+    <li><input type="checkbox" id="p9" aria-label="Tag 9 erledigt"><span class="d">Mo 02.11.</span><span class="w"><strong>Sätze &amp; Beweise</strong> mit den Lernkarten, Fehlerliste durchgehen, Ankreuz-Trainer. <button class="go" data-go="beweise">Sätze</button> <button class="go" data-go="quiz">Trainer</button></span></li>
+    <li><input type="checkbox" id="p10" aria-label="Tag 10 erledigt"><span class="d">Di 03.11.</span><span class="w"><strong>Generalprobe 1:</strong> Schularbeit 2025 selbst rechnen (100 min, Uhr stellen), dann mit den Lösungen vergleichen. <button class="go" data-go="altsa">Öffnen</button></span></li>
+    <li><input type="checkbox" id="p11" aria-label="Tag 11 erledigt"><span class="d">Mi 04.11.</span><span class="w"><strong>Generalprobe 2:</strong> Probeschularbeit (100 min). Danach nur noch Fehler nacharbeiten, Lernkarten, früh schlafen. Laptop laden, TI-Nspire starten und testen. <button class="go" data-go="probe">Öffnen</button></span></li>
+    <li class="test"><span></span><span class="d">Do 05.11.</span><span class="w"><strong>Schularbeit.</strong> Mitnehmen: Bleistift, Füllfeder/Kugelschreiber, Geodreieck, Laptop (geladen) mit CAS, Formelsammlung.</span></li>
+  </ul>
+
+  <h2>Taktik in der Schularbeit</h2>
+  <ul>
+    <li><strong>Erst alle Typ-1-Aufgaben</strong> (je 1 Punkt, kurz). Wenn eine hängt: markieren, weiter, später zurück.</li>
+    <li><strong>„Berechne“ und „Weise rechnerisch nach“ heißt: Rechenweg hinschreiben.</strong> Eine nackte Zahl aus dem CAS reicht oft nicht. Schreib die Gleichung auf, die du löst, z. B. <span class="m">f′(x) = 0</span>, und das Ergebnis.</li>
+    <li><strong>„Interpretiere“ heißt: ein ganzer Satz mit Kontext, Zeitpunkt/Intervall und Einheit.</strong></li>
+    <li><strong>Kreuzaufgaben „2 aus 5“:</strong> Du bekommst den Punkt nur, wenn <em>genau</em> die zwei richtigen angekreuzt sind.</li>
+    <li>Übrige Zeit: Ergebnisse mit dem CAS-Graphen kontrollieren.</li>
+  </ul>
+  <div class="finish"><label><input type="checkbox" data-done="start"> Gelesen</label><button class="btn primary" data-go="gleichungen">Weiter zu Kapitel 1 →</button></div>
+</section>
+
+<!-- ===================================================== KAPITEL 1 -->
+<section class="view" data-view="gleichungen" hidden>
+  <p class="eyebrow">Kapitel 1 · Buch S. 6–17 · AG 1.2, FA 4.4</p>
+  <h1>Gleichungen &amp; Polynomfunktionen</h1>
+  <p class="lead">Hier lernst du, Gleichungen höheren Grades <em>ohne</em> Technologie zu lösen. Das brauchst du später ständig, z. B. bei <span class="m">f′(x) = 0</span>.</p>
+
+  <h2>1. Grundbegriffe</h2>
+  <div class="box def"><span class="lbl">Definition</span>
+    <p>(1) Ein Ausdruck der Form <span class="mw">a<sub>n</sub>x<sup>n</sup> + a<sub>n−1</sub>x<sup>n−1</sup> + … + a<sub>1</sub>x + a<sub>0</sub></span> mit <span class="m">n ∈ ℕ</span>, <span class="m">a<sub>n</sub>, …, a<sub>0</sub> ∈ ℝ</span> und <strong><span class="m">a<sub>n</sub> ≠ 0</span></strong> heißt <strong>Polynom vom Grad n</strong>.</p>
+    <p>(2) Eine Gleichung <span class="mw">a<sub>n</sub>x<sup>n</sup> + … + a<sub>1</sub>x + a<sub>0</sub> = 0</span> (mit <span class="m">a<sub>n</sub> ≠ 0</span>) heißt <strong>(algebraische) Gleichung vom Grad n</strong>.</p>
+    <p>(3) Eine Stelle <span class="m">x<sub>0</sub></span> heißt <strong>Nullstelle</strong> von f, wenn <span class="m">f(x<sub>0</sub>) = 0</span> ist.</p>
+  </div>
+  <div class="achtung"><span class="lbl">Rotstift</span><p>In deiner Mitschrift steht bei der Definition <span class="m">a<sub>n</sub> = 0</span>. Richtig ist <strong><span class="m">a<sub>n</sub> ≠ 0</span></strong>. Sonst würde der höchste Term wegfallen und der Grad wäre gar nicht n.</p></div>
+  <p><strong>Der Grad</strong> ist die höchste Hochzahl. <span class="m">f(x) = 3x<sup>4</sup> − 2x + 7</span> hat Grad 4, Leitkoeffizient <span class="m">a<sub>4</sub> = 3</span>, konstantes Glied <span class="m">a<sub>0</sub> = 7</span>.</p>
+
+  <h2>2. Quadratische Gleichungen (Wiederholung)</h2>
+  <div class="box merke"><span class="lbl">Lösungsformeln</span>
+    <p class="fb">x² + px + q = 0 &nbsp;⇔&nbsp; x = −<span class="fr"><span>p</span><span>2</span></span> ± √( (<span class="fr"><span>p</span><span>2</span></span>)² − q )</p>
+    <p class="fb">ax² + bx + c = 0 &nbsp;⇔&nbsp; x = <span class="fr"><span>−b ± √(b² − 4ac)</span><span>2a</span></span></p>
+    <p>Der Ausdruck unter der Wurzel heißt <strong>Diskriminante</strong> D. <strong>D &gt; 0</strong>: zwei Lösungen, <strong>D = 0</strong>: genau eine Lösung, <strong>D &lt; 0</strong>: keine reelle Lösung. Beide Formeln stehen auch in der Formelsammlung.</p>
+  </div>
+  <div class="box satz"><span class="lbl">Produkt-Null-Satz</span><p>Ein Produkt ist genau dann null, wenn <strong>mindestens ein Faktor null</strong> ist: <span class="m">A · B = 0 ⇔ A = 0 ∨ B = 0</span>.</p></div>
+  <p>Das ist der wichtigste Trick des Kapitels: <strong>Bring alles auf eine Seite, mach daraus ein Produkt, setz jeden Faktor null.</strong> Die nächsten drei Methoden sind nur verschiedene Wege, ein Produkt zu erzeugen.</p>
+
+  <h2>3. Methode A: Binomische Formeln</h2>
+  <div class="fb">(A + B)² = A² + 2AB + B² &nbsp;&nbsp; (A − B)² = A² − 2AB + B² &nbsp;&nbsp; (A + B)(A − B) = A² − B²</div>
+  <div class="bsp"><h4>Beispiel <span class="src">wie 1.04</span></h4>
+    <ul>
+      <li><span class="m">x² − 6x + 9 = 0</span> → <span class="m">(x − 3)² = 0</span> → <span class="m">L = {3}</span></li>
+      <li><span class="m">x<sup>4</sup> − 81 = 0</span> → <span class="m">(x² + 9)(x² − 9) = 0</span> → <span class="m">x² = −9</span> (keine reelle Lösung) oder <span class="m">x² = 9</span> → <span class="m">L = {−3, 3}</span></li>
+    </ul>
+  </div>
+  <div class="achtung"><span class="lbl">Rotstift</span><p>In einer Mitschrift steht <span class="m">x² − 2x − 1 = (x − 1)(x − 1)</span> und auf einer anderen <span class="m">x² − 2x + 1 = (x − 2)(x + 1)</span>. Beides stimmt nicht. Richtig ist <span class="m">x² − 2x <strong>+</strong> 1 = (x − 1)²</span>. Kontrolle: Ausmultiplizieren! <span class="m">(x − 1)² = x² − 2x + 1</span>.</p></div>
+
+  <h2>4. Methode B: Herausheben</h2>
+  <p>Wenn <strong>kein konstantes Glied</strong> da ist, steckt in jedem Term ein x. Heb die kleinste x-Potenz heraus.</p>
+  <div class="bsp"><h4>Beispiel <span class="src">1.06 a</span></h4>
+    <ol class="steps">
+      <li><span class="m">x³ − 4x² − 5x = 0</span></li>
+      <li>x herausheben: <span class="m">x · (x² − 4x − 5) = 0</span></li>
+      <li>Produkt-Null-Satz: <span class="m">x = 0</span> oder <span class="m">x² − 4x − 5 = 0</span></li>
+      <li>Kleine Lösungsformel: <span class="m">x = 2 ± √(4 + 5) = 2 ± 3</span> → <span class="m">x = 5</span> oder <span class="m">x = −1</span></li>
+      <li><span class="m">L = {−1, 0, 5}</span></li>
+    </ol>
+  </div>
+  <div class="achtung"><span class="lbl">Rotstift · Lieblingsfehler 1.07</span><p><strong>Nie durch x (oder durch eine Klammer mit x) dividieren!</strong> Wer <span class="m">x³ − 4x² − 5x = 0</span> durch x dividiert, verliert die Lösung <span class="m">x = 0</span>. Genauso bei <span class="m">x²(x − 4) = 9(x − 4)</span>: nicht durch <span class="m">(x − 4)</span> kürzen, sondern <span class="m">(x − 4)</span> herausheben: <span class="m">(x − 4)(x² − 9) = 0</span> → <span class="m">L = {−3, 3, 4}</span>.</p></div>
+
+  <h2>5. Methode C: Substitution</h2>
+  <p>Bei Gleichungen, in denen nur <span class="m">x<sup>4</sup></span> und <span class="m">x²</span> (oder <span class="m">x<sup>6</sup></span> und <span class="m">x³</span>) vorkommen, ersetzt du die kleinere Potenz durch u. Eine Gleichung <span class="m">ax<sup>4</sup> + bx² + c = 0</span> heißt <strong>biquadratisch</strong>.</p>
+  <div class="bsp"><h4>Beispiel <span class="src">1.12</span></h4>
+    <ol class="steps">
+      <li><span class="m">x<sup>4</sup> − x² − 2 = 0</span>. Setze <span class="m">u = x²</span>, also <span class="m">x<sup>4</sup> = u²</span>.</li>
+      <li><span class="m">u² − u − 2 = 0</span> → <span class="m">u = 2</span> oder <span class="m">u = −1</span></li>
+      <li><strong>Rücksubstitution:</strong> <span class="m">x² = 2</span> → <span class="m">x = ±√2</span>; <span class="m">x² = −1</span> → keine reelle Lösung.</li>
+      <li><span class="m">L = {−√2, √2}</span></li>
+    </ol>
+    <p>Bei <span class="m">x<sup>6</sup> − 9x³ + 8 = 0</span> setzt du <span class="m">u = x³</span>: <span class="m">u² − 9u + 8 = 0</span> → <span class="m">u = 1</span> oder <span class="m">u = 8</span> → <span class="m">x³ = 1</span> → <span class="m">x = 1</span>; <span class="m">x³ = 8</span> → <span class="m">x = 2</span>. Achtung: <span class="m">x³ = −8</span> hätte die Lösung <span class="m">x = −2</span> (dritte Wurzel geht auch aus negativen Zahlen), <span class="m">x² = −8</span> hätte keine.</p>
+  </div>
+  <div class="merke"><span class="lbl">Merke</span><p>Die Rücksubstitution nie vergessen! Gefragt ist x, nicht u. Bei <span class="m">u = x²</span> gibt jedes positive u <strong>zwei</strong> Lösungen (±), jedes negative u <strong>keine</strong>.</p></div>
+
+  <h2>6. Linearfaktoren abspalten (Horner, Polynomdivision)</h2>
+  <div class="box satz"><span class="lbl">Satz (Regel von Horner)</span><p>Für alle <span class="m">a, b ∈ ℝ</span> und <span class="m">n ∈ ℕ*</span> gilt:</p>
+    <p class="fb">a<sup>n</sup> − b<sup>n</sup> = (a − b) · (a<sup>n−1</sup> + a<sup>n−2</sup>·b + … + a·b<sup>n−2</sup> + b<sup>n−1</sup>)</p>
+    <p>Für n = 2 ist das die 3. binomische Formel, für n = 3: <span class="m">a³ − b³ = (a − b)(a² + ab + b²)</span>.</p>
+  </div>
+  <div class="box satz"><span class="lbl">Satz (Abspalten eines Linearfaktors)</span><p>Ist f ein Polynom vom Grad n und <span class="m">x<sub>0</sub></span> eine Lösung von <span class="m">f(x) = 0</span>, dann gilt für alle <span class="m">x ∈ ℝ</span>: <span class="m">f(x) = (x − x<sub>0</sub>) · g(x)</span>, wobei g ein Polynom vom Grad <span class="m">n − 1</span> ist. Den Faktor <span class="m">(x − x<sub>0</sub>)</span> nennt man <strong>Linearfaktor</strong>.</p></div>
+  <p><strong>So gehst du vor, wenn nichts anderes hilft:</strong> Rate eine Lösung (probier 1, −1, 2, −2, … das sind Teiler des konstanten Glieds), dividiere durch <span class="m">(x − x<sub>0</sub>)</span> und löse die übrig gebliebene quadratische Gleichung.</p>
+  <div class="bsp"><h4>Beispiel <span class="src">aus deiner Mitschrift</span></h4>
+    <ol class="steps">
+      <li><span class="m">x³ − 2x² − 9x + 18 = 0</span>. Probieren: <span class="m">2³ − 2·4 − 18 + 18 = 0</span> ✓, also <span class="m">x<sub>0</sub> = 2</span>.</li>
+      <li>Polynomdivision: <span class="m">(x³ − 2x² − 9x + 18) : (x − 2) = x² − 9</span></li>
+      <li><span class="m">(x − 2)(x² − 9) = 0</span> → <span class="m">x² = 9</span> → <span class="m">x = ±3</span></li>
+      <li><span class="m">L = {−3, 2, 3}</span></li>
+    </ol>
+    <p>(Hier geht's sogar schneller mit Herausheben in Gruppen: <span class="m">x²(x − 2) − 9(x − 2) = (x − 2)(x² − 9)</span>.)</p>
+  </div>
+  <details class="sol"><summary>Wie geht Polynomdivision nochmal? (Beispiel 1.18)</summary>
+    <p><span class="m">(x³ + 2x² − 13x + 10) : (x − 1)</span></p>
+    <pre class="cas">  x³ + 2x² − 13x + 10 : (x − 1) = x² + 3x − 10
+−(x³ −  x²)              ← x² · (x − 1)
+       3x² − 13x
+     −(3x² −  3x)        ← 3x · (x − 1)
+            −10x + 10
+          −(−10x + 10)   ← −10 · (x − 1)
+                   0     ← Rest 0: passt!</pre>
+    <p>Dann <span class="m">x² + 3x − 10 = 0</span> → <span class="m">x = 2</span> oder <span class="m">x = −5</span>. <span class="m">L = {1, 2, −5}</span>.</p>
+  </details>
+  <p><strong>Umgekehrt:</strong> Kennst du alle Nullstellen, kannst du das Polynom als Produkt schreiben (Linearfaktordarstellung): Nullstellen 2, −3, 5, 0 → <span class="m">f(x) = a · (x − 2)(x + 3)(x − 5) · x</span>. Den Faktor a bestimmt ein weiterer Punkt.</p>
+
+  <h2>7. Wie viele Lösungen gibt es?</h2>
+  <div class="box satz"><span class="lbl">Satz</span><p>Eine algebraische Gleichung vom Grad n hat in ℝ <strong>höchstens n Lösungen</strong>. Eine Polynomfunktion vom Grad n hat <strong>höchstens n Nullstellen</strong>.</p></div>
+  <p><strong>Warum?</strong> Jede Lösung <span class="m">x<sub>1</sub></span> spaltet einen Linearfaktor ab, und der Rest hat einen Grad weniger. Nach n Lösungen bleibt <span class="m">a<sub>n</sub>(x − x<sub>1</sub>)(x − x<sub>2</sub>)…(x − x<sub>n</sub>)</span> übrig. Eine weitere Lösung müsste einen dieser Faktoren null machen, ist also schon dabei.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Grad n</th><th>Nullstellen</th><th>Extremstellen</th><th>Wendestellen</th></tr></thead>
+    <tbody>
+      <tr><td>allgemein</td><td>höchstens n</td><td>höchstens n − 1</td><td>höchstens n − 2</td></tr>
+      <tr><td>n ungerade (3, 5, …)</td><td><strong>mindestens 1</strong></td><td>gerade Anzahl (0, 2, …)</td><td>mindestens 1</td></tr>
+      <tr><td>n gerade (2, 4, …)</td><td>0 bis n</td><td><strong>mindestens 1</strong></td><td>—</td></tr>
+      <tr><td>Grad 3</td><td>1, 2 oder 3</td><td>0 oder 2</td><td><strong>genau 1</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p class="mw">Warum hat Grad 3 mindestens eine Nullstelle? Für <span class="m">x → +∞</span> und <span class="m">x → −∞</span> geht der Graph in verschiedene Richtungen (einmal +∞, einmal −∞). Dazwischen muss er die x-Achse schneiden.</p>
+  <div class="bsp"><h4>Typ-1-Klassiker <span class="src">SA 2025, Bsp. 8</span></h4>
+    <p>„Eine algebraische Gleichung vom Grad <u>&nbsp;n&nbsp;</u> besitzt in ℝ <u>&nbsp;höchstens&nbsp;</u> n Lösungen.“ Nicht „genau“: <span class="m">x² + 1 = 0</span> hat Grad 2, aber keine Lösung.</p>
+  </div>
+
+  <h2>Entscheidungsbaum: Welche Methode?</h2>
+  <ol>
+    <li>Fehlt das konstante Glied? → <strong>Herausheben</strong>.</li>
+    <li>Nur zwei Potenzen, eine doppelt so groß wie die andere (x⁴ &amp; x², x⁶ &amp; x³)? → <strong>Substitution</strong>.</li>
+    <li>Sieht es aus wie <span class="m">A² ± 2AB + B²</span> oder <span class="m">A² − B²</span>? → <strong>binomische Formel</strong>.</li>
+    <li>Kommt dieselbe Klammer auf beiden Seiten vor? → alles auf eine Seite, <strong>Klammer herausheben</strong>.</li>
+    <li>Sonst: <strong>Lösung raten</strong> und <strong>Linearfaktor abspalten</strong>.</li>
+    <li>Kontrolle mit dem TI-Nspire: <code>solve(x^3-2x^2-9x+18=0,x)</code> oder <code>factor(x^3-2x^2-9x+18)</code>.</li>
+  </ol>
+
+  <h2>Übungen Kapitel 1</h2>
+  <p>Ohne Technologie lösen, dann mit dem CAS kontrollieren.</p>
+  <p class="task"><span class="tn">1.1</span><span class="m">x<sup>4</sup> − 13x² + 36 = 0</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Substitution <span class="m">u = x²</span>: <span class="m">u² − 13u + 36 = 0</span> → <span class="m">u = 4</span> oder <span class="m">u = 9</span>. Rücksubstitution: <span class="m">x² = 4</span> → ±2, <span class="m">x² = 9</span> → ±3. <strong>L = {−3, −2, 2, 3}</strong>.</p></details>
+  <p class="task"><span class="tn">1.2</span><span class="m">x³ − 6x² + 9x = 0</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">x(x² − 6x + 9) = x(x − 3)² = 0</span> → <strong>L = {0, 3}</strong>. (3 ist eine „doppelte“ Lösung, zählt in der Lösungsmenge aber nur einmal.)</p></details>
+  <p class="task"><span class="tn">1.3</span><span class="m">x<sup>4</sup> − 16 = 0</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">(x² − 4)(x² + 4) = 0</span>. <span class="m">x² = 4</span> → ±2, <span class="m">x² = −4</span> → keine. <strong>L = {−2, 2}</strong>.</p></details>
+  <p class="task"><span class="tn">1.4</span><span class="m">x<sup>6</sup> + 7x³ − 8 = 0</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">u = x³</span>: <span class="m">u² + 7u − 8 = 0</span> → <span class="m">u = 1</span> oder <span class="m">u = −8</span>. <span class="m">x³ = 1</span> → 1, <span class="m">x³ = −8</span> → −2. <strong>L = {−2, 1}</strong>.</p></details>
+  <p class="task"><span class="tn">1.5</span><span class="m">x²(x − 4) = 9(x − 4)</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">x²(x − 4) − 9(x − 4) = 0</span> → <span class="m">(x − 4)(x² − 9) = 0</span> → <strong>L = {−3, 3, 4}</strong>. Wer durch (x − 4) dividiert, verliert die 4!</p></details>
+  <p class="task"><span class="tn">1.6</span><span class="m">2x<sup>4</sup> − 3x² − 2 = 0</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">2u² − 3u − 2 = 0</span> → <span class="m">u = <span class="fr"><span>3 ± 5</span><span>4</span></span></span> → <span class="m">u = 2</span> oder <span class="m">u = −½</span>. Nur <span class="m">x² = 2</span> geht: <strong>L = {−√2, √2}</strong>.</p></details>
+  <p class="task"><span class="tn">1.7</span><span class="m">x<sup>4</sup> + 8x² + 12 = 0</span> (aus 1.13 e)</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">u² + 8u + 12 = 0</span> → <span class="m">u = −2</span> oder <span class="m">u = −6</span>. Beide negativ, <span class="m">x² = negativ</span> hat keine reelle Lösung. <strong>L = { }</strong> (leere Menge).</p></details>
+  <p class="task"><span class="tn">1.8</span>Zeige, dass 1 eine Lösung von <span class="m">x³ − 7x + 6 = 0</span> ist, und ermittle alle Lösungen.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">1 − 7 + 6 = 0</span> ✓. <span class="m">(x³ − 7x + 6) : (x − 1) = x² + x − 6</span>. <span class="m">x² + x − 6 = 0</span> → <span class="m">x = 2</span> oder <span class="m">x = −3</span>. <strong>L = {−3, 1, 2}</strong>, also <span class="m">x³ − 7x + 6 = (x − 1)(x − 2)(x + 3)</span>.</p></details>
+  <p class="task"><span class="tn">1.9</span>Ein Polynom vom Grad 4 hat die Nullstellen −1, 0, 2, 3 und es gilt <span class="m">f(1) = 8</span>. Gib f an.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(x) = a · x(x + 1)(x − 2)(x − 3)</span>. <span class="m">f(1) = a · 1 · 2 · (−1) · (−2) = 4a = 8</span> → <span class="m">a = 2</span>. <strong>f(x) = 2x(x + 1)(x − 2)(x − 3)</strong>.</p></details>
+  <p class="task"><span class="tn">1.10</span>Gib Werte für a, b an, so dass <span class="m">2x<sup>4</sup> + ax² + b = 0</span> vier verschiedene reelle Lösungen hat. (1.16)</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Wir brauchen für u zwei <strong>verschiedene positive</strong> Lösungen, z. B. u = 1 und u = 4. Dann ist <span class="m">2(x² − 1)(x² − 4) = 2x<sup>4</sup> − 10x² + 8</span>. Also z. B. <strong>a = −10, b = 8</strong> mit den Lösungen ±1, ±2.</p></details>
+  <p class="task"><span class="tn">1.11</span>Wie viele reelle Lösungen kann eine Gleichung vom Grad 5 haben? Kreuze alles Mögliche an: 0, 1, 3, 5, 6.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Aus der Liste: <strong>1, 3 und 5</strong>. (Wenn Lösungen mehrfach vorkommen, gehen auch 2 oder 4: <span class="m">x<sup>4</sup>(x − 1) = 0</span> hat nur die Lösungen 0 und 1.)<strong>0 geht nicht</strong>, weil der Grad ungerade ist. <strong>6 geht nicht</strong>, weil höchstens 5.</p></details>
+
+  <div class="finish"><label><input type="checkbox" data-done="gleichungen"> Kapitel 1 sitzt</label><button class="btn primary" data-go="aenderung">Weiter: Änderungsraten →</button></div>
+</section>
+
+<!-- ===================================================== KAPITEL 2a -->
+<section class="view" data-view="aenderung" hidden>
+  <p class="eyebrow">Kapitel 2.1–2.4, 2.6 · Buch S. 18–39 · AN 1.2, 1.3</p>
+  <h1>Änderungsraten &amp; Limes</h1>
+  <p class="lead">Die Grundidee der ganzen Differentialrechnung: Wie schnell ändert sich etwas? Zuerst im Mittel über ein Intervall (Differenzenquotient), dann in einem einzigen Moment (Differentialquotient).</p>
+
+  <h2>1. Absolute Änderung und Differenzenquotient</h2>
+  <p><strong>Absolute Änderung</strong> von f in <span class="m">[a; b]</span>: <span class="m">f(b) − f(a)</span>. Das sagt, <em>um wie viel</em> sich etwas geändert hat.</p>
+  <div class="box def"><span class="lbl">Definition</span>
+    <p>Sei <span class="m">f: A → ℝ</span> eine reelle Funktion, <span class="m">a, b ∈ A</span>, <span class="m">a ≠ b</span>. Die Zahl</p>
+    <p class="fb"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span></p>
+    <p>heißt <strong>Differenzenquotient</strong> oder <strong>mittlere Änderungsrate</strong> von f in <span class="m">[a; b]</span>.</p>
+  </div>
+  <p><strong>Geometrisch</strong> ist das die <strong>Steigung der Sekante</strong>, also der Geraden durch <span class="m">(a | f(a))</span> und <span class="m">(b | f(b))</span>. Im Steigungsdreieck: hinauf durch hinüber.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Vorzeichen</th><th>Bedeutung</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m">&gt; 0</span></td><td>f <strong>steigt im Mittel</strong> in [a; b] (f(b) &gt; f(a))</td></tr>
+      <tr><td><span class="m">= 0</span></td><td>f ist <strong>im Mittel gleich geblieben</strong> (f(b) = f(a)); die Sekante ist waagrecht</td></tr>
+      <tr><td><span class="m">&lt; 0</span></td><td>f <strong>fällt im Mittel</strong> in [a; b] (f(b) &lt; f(a))</td></tr>
+    </tbody>
+  </table></div>
+  <div class="achtung"><span class="lbl">Rotstift · SA 2025, Bsp. 2</span><p>„Im Mittel fallend“ heißt <strong>nicht</strong>, dass f überall fällt! Aus <span class="m"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span> &lt; 0</span> folgt nur: Sekante hat negative Steigung, mittlere Änderungsrate ist negativ, f(b) &lt; f(a). Über die Tangenten (momentane Änderungsrate) an einzelnen Stellen weißt du <strong>nichts</strong>. Dazwischen kann f auch kurz steigen.</p></div>
+  <div class="box satz"><span class="lbl">Satz (mit Beweis)</span>
+    <p>Der Differenzenquotient einer linearen Funktion <span class="m">f(x) = k·x + d</span> ist in jedem Intervall gleich der Steigung k.</p>
+    <p><strong>Beweis:</strong> <span class="mw"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span> = <span class="fr"><span>(kb + d) − (ka + d)</span><span>b − a</span></span> = <span class="fr"><span>kb − ka</span><span>b − a</span></span> = <span class="fr"><span>k(b − a)</span><span>b − a</span></span> = k</span> ∎</p>
+  </div>
+
+  <div class="bsp"><h4>Beispiel <span class="src">2.02 a · 14.9.</span></h4>
+    <p><span class="m">f(x) = 3x²</span>, Intervall <span class="m">[1; 5]</span>: <span class="mw"><span class="fr"><span>f(5) − f(1)</span><span>5 − 1</span></span> = <span class="fr"><span>75 − 3</span><span>4</span></span> = <span class="fr"><span>72</span><span>4</span></span> = 18</span>.</p>
+  </div>
+  <div class="bsp"><h4>Beispiel im Kontext <span class="src">2.51 · 25.9.</span></h4>
+    <p>Energie <span class="m">E(t) = 5000·t²</span> (in Joule, t in Sekunden).</p>
+    <ul>
+      <li><strong>Absolute Zunahme</strong> in [0; 5]: <span class="m">E(5) − E(0) = 125 000 J</span>; in [5; 10]: <span class="m">500 000 − 125 000 = 375 000 J</span>.</li>
+      <li><strong>Mittlere Zunahme</strong> in [0; 5]: <span class="m">125 000 / 5 = 25 000 J/s</span>; in [5; 10]: <span class="m">375 000 / 5 = 75 000 J/s</span>.</li>
+    </ul>
+    <p>Beachte die <strong>Einheit</strong>: Einheit von E durch Einheit von t, also J/s.</p>
+  </div>
+
+  <h3>Mittlere Geschwindigkeit</h3>
+  <div class="box def"><span class="lbl">Definition</span><p>Bewegt sich ein Körper nach der Zeit-Ort-Funktion <span class="m">s: t ↦ s(t)</span>, dann ist die <strong>mittlere Geschwindigkeit</strong> im Zeitintervall <span class="m">[t<sub>1</sub>; t<sub>2</sub>]</span>:</p>
+    <p class="fb"><span class="ov">v</span>(t<sub>1</sub>; t<sub>2</sub>) = <span class="fr"><span>s(t<sub>2</sub>) − s(t<sub>1</sub>)</span><span>t<sub>2</sub> − t<sub>1</sub></span></span></p>
+    <p>Die <strong>Geschwindigkeit zum Zeitpunkt t</strong> (Momentangeschwindigkeit) ist der Grenzwert <span class="m">v(t) = <span class="lim">lim<span>z→t</span></span> <span class="ov">v</span>(t; z)</span>.</p>
+  </div>
+
+  <h2>2. Vom Differenzen- zum Differentialquotienten</h2>
+  <p>Lass das Intervall immer kleiner werden: z rückt immer näher an x heran. Die Sekante dreht sich dabei und wird zur <strong>Tangente</strong>. Probier es aus:</p>
+  <figure>
+    <canvas id="secCanvas" data-ratio="0.62" aria-label="Graph von f(x)=x² mit Sekante und Tangente"></canvas>
+    <div class="ctrl">
+      <label for="secX">Stelle x</label><input type="range" id="secX" min="-2" max="2" step="0.1" value="1"><output id="secXo">1.0</output>
+      <label for="secH">Abstand h = z − x</label><input type="range" id="secH" min="0" max="1000" step="1" value="1000"><output id="secHo">2.00</output>
+    </div>
+    <div class="readout">
+      <div>Differenzenquotient<b id="secDQ">–</b></div>
+      <div>Differentialquotient f′(x) = 2x<b id="secDiff">–</b></div>
+    </div>
+    <figcaption>f(x) = x². Blau: Sekante durch x und z = x + h. Rot gestrichelt: Tangente an der Stelle x. Zieh h gegen 0: Der Differenzenquotient 2x + h nähert sich f′(x) = 2x.</figcaption>
+  </figure>
+  <div class="box def"><span class="lbl">Definition</span>
+    <p>Der Grenzwert</p>
+    <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span> = <span class="lim">lim<span>h→0</span></span> <span class="fr"><span>f(x + h) − f(x)</span><span>h</span></span></p>
+    <p>heißt <strong>Differentialquotient</strong> von f an der Stelle x (auch: <strong>momentane Änderungsrate</strong>, <strong>Ableitung</strong> an der Stelle x).</p>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Term</th><th>Name</th><th>Deutung</th><th>Geometrisch</th></tr></thead>
+    <tbody>
+      <tr><td class="m"><span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span></td><td>Differenzenquotient von f in [x; z]</td><td>mittlere Änderungsrate</td><td>Steigung der <strong>Sekante</strong></td></tr>
+      <tr><td class="m"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span></td><td>Differentialquotient von f an der Stelle x</td><td>(momentane) Änderungsrate</td><td>Steigung der <strong>Tangente</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="box def"><span class="lbl">Definition (Tangente)</span><p>(1) Die Gerade durch den Punkt <span class="m">(x | f(x))</span> mit der Steigung <span class="m">f′(x)</span> heißt <strong>Tangente</strong> von f an der Stelle x. (2) Die Steigung f′(x) der Tangente heißt auch <strong>Steigung der Funktion</strong> f an der Stelle x.</p></div>
+
+  <h3>Schreibweisen (alles dasselbe!)</h3>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>„normal“</th><th>mit h</th><th>Leibniz</th></tr></thead>
+    <tbody>
+      <tr><td>Differenzenquotient</td><td class="m"><span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span></td><td class="m"><span class="fr"><span>f(x + h) − f(x)</span><span>h</span></span></td><td class="m"><span class="fr"><span>Δy</span><span>Δx</span></span> bzw. <span class="fr"><span>Δf</span><span>Δx</span></span></td></tr>
+      <tr><td>Differentialquotient</td><td class="m"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span></td><td class="m"><span class="lim">lim<span>h→0</span></span> <span class="fr"><span>f(x + h) − f(x)</span><span>h</span></span></td><td class="m"><span class="fr"><span>dy</span><span>dx</span></span> = <span class="lim">lim<span>Δx→0</span></span> <span class="fr"><span>Δy</span><span>Δx</span></span> = <span class="fr"><span>df</span><span>dx</span></span> = f′(x)</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Leibniz liest man so:</strong> <span class="m"><span class="fr"><span>dV</span><span>dt</span></span></span> = „Ableitung von V nach t“. Oben steht, <em>was</em> sich ändert, unten, <em>wonach</em> abgeleitet wird. Δ (Delta) heißt „Differenz“, also eine endliche Änderung; d heißt „unendlich kleine Änderung“, also der Grenzwert.</p>
+  <div class="achtung"><span class="lbl">Rotstift · SA 2025, Bsp. 13</span><p>Bei „Kreuze den Term an, der die momentane Änderungsrate an der Stelle x₀ angibt“ ist <strong>nur</strong> <span class="m"><span class="lim">lim<span>h→0</span></span> <span class="fr"><span>f(x₀ + h) − f(x₀)</span><span>h</span></span></span> richtig. Fallen: <strong>+</strong> statt − im Zähler, <span class="m">z → 0</span> statt <span class="m">z → x₀</span>, <span class="m">Δx/Δy</span> (verkehrt herum), Grenzwert mit falscher Variable.</p></div>
+
+  <h2>3. Den Limes von Hand berechnen</h2>
+  <p>Das <strong>muss</strong> sitzen: Laut Stoffumfang für <span class="m">f(x) = a·x²</span> und <span class="m">f(x) = a·x</span>. Bei der SA 2025 gab es für <span class="m">h′(x) = 5,8x</span> <strong>0 Punkte</strong>, weil die Zwischenschritte fehlten. Das Ergebnis allein zählt nicht!</p>
+  <div class="merke"><span class="lbl">Das Rezept (z-Form)</span>
+    <ol>
+      <li>Differenzenquotient hinschreiben: <span class="m"><span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span></span></li>
+      <li>f(z) und f(x) einsetzen.</li>
+      <li>Im Zähler <strong>(z − x) herausheben</strong>. Fast immer mit der 3. binomischen Formel <span class="m">z² − x² = (z − x)(z + x)</span>.</li>
+      <li><strong>(z − x) kürzen.</strong> Das ist erlaubt, weil z ≠ x ist (z kommt x nur beliebig nahe).</li>
+      <li>Jetzt erst <strong>z = x einsetzen</strong> (Limes bilden).</li>
+    </ol>
+  </div>
+  <div class="bsp"><h4>Vorzeigelösung: f(x) = a·x² <span class="src">genau so hinschreiben</span></h4>
+    <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a·z² − a·x²</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a·(z² − x²)</span><span>z − x</span></span><br>= <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a·(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> a·(z + x) = a·(x + x) = <strong>2a·x</strong></p>
+    <p>Beispiel SA 2025: <span class="m">h(x) = 2,9x²</span> → <span class="m">h′(x) = 2 · 2,9 · x = 5,8x</span>, aber eben <em>mit</em> dieser Kette.</p>
+  </div>
+  <div class="bsp"><h4>Dieselbe Rechnung in der h-Form</h4>
+    <p class="fb">f′(x) = <span class="lim">lim<span>h→0</span></span> <span class="fr"><span>a(x + h)² − ax²</span><span>h</span></span> = <span class="lim">lim<span>h→0</span></span> <span class="fr"><span>a(x² + 2xh + h²) − ax²</span><span>h</span></span> = <span class="lim">lim<span>h→0</span></span> <span class="fr"><span>a(2xh + h²)</span><span>h</span></span><br>= <span class="lim">lim<span>h→0</span></span> <span class="fr"><span>a·h·(2x + h)</span><span>h</span></span> = <span class="lim">lim<span>h→0</span></span> a(2x + h) = <strong>2a·x</strong></p>
+  </div>
+  <div class="bsp"><h4>f(x) = a·x (und der Sonderfall f(x) = c)</h4>
+    <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a·z − a·x</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a·(z − x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> a = <strong>a</strong></p>
+    <p class="fb">f(x) = c: &nbsp; f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>c − c</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 0 = <strong>0</strong></p>
+  </div>
+  <div class="bsp"><h4>Schwerer: mit Klammer <span class="src">2.14 · 17.9.</span></h4>
+    <p>Wasser im Behälter: <span class="m">V(t) = (10 − t)²</span> (Liter, t in s, 0 ≤ t ≤ 10).</p>
+    <ol class="steps">
+      <li>Mittlere Änderungsrate in [0; 10]: <span class="m"><span class="fr"><span>V(10) − V(0)</span><span>10 − 0</span></span> = <span class="fr"><span>0 − 100</span><span>10</span></span> = −10 L/s</span>. Im Mittel fließen 10 Liter pro Sekunde ab.</li>
+      <li><span class="mw"><span class="fr"><span>V(z) − V(t)</span><span>z − t</span></span> = <span class="fr"><span>(10 − z)² − (10 − t)²</span><span>z − t</span></span> = <span class="fr"><span>100 − 20z + z² − 100 + 20t − t²</span><span>z − t</span></span></span></li>
+      <li><span class="mw">= <span class="fr"><span>(z² − t²) − 20(z − t)</span><span>z − t</span></span> = <span class="fr"><span>(z − t)(z + t) − 20(z − t)</span><span>z − t</span></span> = <span class="fr"><span>(z − t)·[(z + t) − 20]</span><span>z − t</span></span> = z + t − 20</span></li>
+      <li><span class="mw">V′(t) = <span class="lim">lim<span>z→t</span></span>(z + t − 20) = 2t − 20</span></li>
+      <li><span class="m">V′(2) = −16 L/s</span>, <span class="m">V′(8) = −4 L/s</span>. Am Anfang fließt das Wasser schneller ab.</li>
+    </ol>
+  </div>
+  <div class="achtung"><span class="lbl">Rotstift · 2.12</span><p>Klammern setzen! <span class="m">5·(z² − t²)/(z − t) = 5·(z + t)</span>, nicht „5·z + t“. Sonst kommt beim Limes <span class="m">5x + x</span> statt <span class="m">10x</span> heraus.</p></div>
+
+  <h2>4. Änderungsraten deuten</h2>
+  <p>„Interpretiere im Kontext“ heißt: Schreib einen Satz, der sagt, <strong>was</strong> sich ändert, <strong>wann</strong> bzw. in welchem Intervall, <strong>wie stark</strong>, mit <strong>Einheit</strong> und Richtung (zu- oder abnehmen).</p>
+  <div class="tw"><table>
+    <thead><tr><th>Gegeben</th><th>Mustersatz</th></tr></thead>
+    <tbody>
+      <tr><td class="m"><span class="fr"><span>V(5) − V(0)</span><span>5</span></span> = −20</td><td>„In den ersten 5 Minuten nimmt das Wasservolumen <strong>im Mittel um 20 Liter pro Minute ab</strong>.“</td></tr>
+      <tr><td class="m">V′(3) = −24</td><td>„<strong>Zum Zeitpunkt t = 3 min</strong> nimmt das Volumen <strong>momentan</strong> mit einer Rate von 24 L/min ab.“</td></tr>
+      <tr><td class="m">K(100) − K(80) = 300</td><td>„Erhöht man die Produktion von 80 auf 100 Stück, steigen die Kosten <strong>um 300 €</strong>.“ (absolute Änderung, Einheit von K)</td></tr>
+      <tr><td class="m">B(2014) − B(2010) = −0,28</td><td>„Der Benzinpreis war 2014 um 0,28 € pro Liter niedriger als 2010.“</td></tr>
+    </tbody>
+  </table></div>
+  <div class="merke"><span class="lbl">Einheiten-Regel</span><p>Differenzen- und Differentialquotient haben die Einheit <strong>(Einheit von f) / (Einheit von x)</strong>: m/s, L/min, J/s, €/Stück, °C/h. Die absolute Änderung hat nur die Einheit von f.</p></div>
+
+  <h2>Übungen</h2>
+  <p class="task"><span class="tn">2.1</span>Berechne den Differenzenquotienten von <span class="m">f(x) = x² − 4x</span> in [1; 4] und deute ihn geometrisch.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(4) = 0</span>, <span class="m">f(1) = −3</span>. <span class="m">(0 − (−3))/(4 − 1) = 1</span>. Die Sekante durch (1 | −3) und (4 | 0) hat die Steigung 1.</p></details>
+  <p class="task"><span class="tn">2.2</span><span class="m">f(x) = 4 − x²</span>, Intervall [3; 5] (Hausübung 2.06 a).</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m"><span class="fr"><span>(4 − 25) − (4 − 9)</span><span>2</span></span> = <span class="fr"><span>−21 + 5</span><span>2</span></span> = −8</span>. f fällt in [3; 5] im Mittel um 8 Einheiten pro x-Einheit.</p></details>
+  <p class="task"><span class="tn">2.3</span>Berechne schrittweise mit dem Limes: <span class="m">f(x) = 3x²</span>. Dann in der h-Form.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p class="fb"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>3z² − 3x²</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>3(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 3(z + x) = 6x</p>
+  <p class="fb"><span class="lim">lim<span>h→0</span></span> <span class="fr"><span>3(x+h)² − 3x²</span><span>h</span></span> = <span class="lim">lim<span>h→0</span></span> <span class="fr"><span>6xh + 3h²</span><span>h</span></span> = <span class="lim">lim<span>h→0</span></span> (6x + 3h) = 6x</p></details>
+  <p class="task"><span class="tn">2.4</span>Mit dem Limes: <span class="m">g(x) = −2x²</span> und <span class="m">k(x) = 7x</span>.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p class="fb"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>−2z² + 2x²</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>−2(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> −2(z + x) = −4x</p><p class="fb"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>7z − 7x</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>7(z − x)</span><span>z − x</span></span> = 7</p></details>
+  <p class="task"><span class="tn">2.5</span>Ein Stein fällt: <span class="m">s(t) = 5t²</span> (m, s). Berechne die mittlere Geschwindigkeit in [0; 2] und die Momentangeschwindigkeit bei t = 1 und t = 3 (2.12).</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">(s(2) − s(0))/2 = 20/2 = 10 m/s</span>. <span class="m">v(t) = <span class="lim">lim<span>z→t</span></span> <span class="fr"><span>5z² − 5t²</span><span>z − t</span></span> = <span class="lim">lim<span>z→t</span></span> 5(z + t) = 10t</span>. <span class="m">v(1) = 10 m/s</span>, <span class="m">v(3) = 30 m/s</span>.</p></details>
+  <p class="task"><span class="tn">2.6</span>Wasser in einem Tank: <span class="m">V(t) = 200 − 4t²</span> (Liter, t in Minuten). Berechne und deute <span class="m">(V(5) − V(0))/5</span> sowie <span class="m">V′(3)</span>.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">V(5) = 100</span> → <span class="m">(100 − 200)/5 = −20</span>: In den ersten 5 Minuten nimmt das Volumen im Mittel um 20 L pro Minute ab. <span class="m">V′(t) = −8t</span>, <span class="m">V′(3) = −24</span>: Nach genau 3 Minuten fließt das Wasser momentan mit 24 L/min ab.</p></details>
+  <p class="task"><span class="tn">2.7</span>Die mittlere Änderungsrate des Benzinpreises von 2010 bis 2014 beträgt −0,07 (€/Jahr). Was folgt daraus? (SA 2025, Bsp. 1)</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">B(2014) − B(2010) = −0,07 · 4 = −0,28</span>. Also war Benzin 2014 <strong>billiger</strong> als 2010, und zwar um 0,28 €/L. <em>Nicht</em> folgt: „um 7 % billiger“ (das wäre eine relative Änderung) oder dass der Preis jedes Jahr gefallen ist.</p></details>
+
+  <div class="finish"><label><input type="checkbox" data-done="aenderung"> Ich kann den Limes ohne Vorlage</label><button class="btn primary" data-go="ableitung">Weiter: Ableiten &amp; Tangenten →</button></div>
+</section>
+
+<!-- ===================================================== KAPITEL 2b -->
+<section class="view" data-view="ableitung" hidden>
+  <p class="eyebrow">Kapitel 2.4–2.7 · Buch S. 27–45 · AN 1.3, 2.1</p>
+  <h1>Ableiten, Tangenten &amp; Bewegung</h1>
+  <p class="lead">Den Limes musst du für die Schularbeit beherrschen, aber im Alltag nimmt dir das niemand ab: Mit vier Regeln leitest du jedes Polynom in Sekunden ab.</p>
+
+  <h2>1. Die Ableitungsfunktion</h2>
+  <div class="box def"><span class="lbl">Definition</span><p>Die Funktion <span class="m">f′: x ↦ f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span></span> heißt <strong>Ableitungsfunktion</strong> (oder kurz Ableitung) von f. Sie ordnet jeder Stelle die Steigung von f an dieser Stelle zu.</p></div>
+
+  <h2>2. Die vier Ableitungsregeln</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Regel</th><th>Formel</th><th>Beispiel</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Konstante</strong></td><td class="m">f(x) = c ⇒ f′(x) = 0</td><td class="m">f(x) = 7 ⇒ f′(x) = 0</td></tr>
+      <tr><td><strong>Potenzregel</strong></td><td class="m">f(x) = x<sup>n</sup> ⇒ f′(x) = n·x<sup>n−1</sup></td><td class="m">x<sup>4</sup> ⇒ 4x³ &nbsp; x ⇒ 1</td></tr>
+      <tr><td><strong>Faktorregel</strong></td><td class="m">f(x) = c·g(x) ⇒ f′(x) = c·g′(x)</td><td class="m">5x<sup>4</sup> ⇒ 5·4x³ = 20x³</td></tr>
+      <tr><td><strong>Summenregel</strong></td><td class="m">f(x) = g(x) + h(x) ⇒ f′(x) = g′(x) + h′(x)</td><td class="m">x³ + x² + 1 ⇒ 3x² + 2x</td></tr>
+    </tbody>
+  </table></div>
+  <div class="merke"><span class="lbl">Im Kopf</span><p><strong>„Hochzahl nach vorne multiplizieren, Hochzahl um 1 verkleinern, Konstanten fallen weg.“</strong></p>
+  <p class="fb">f(x) = 7x<sup>4</sup> + 3x² + 5x + 10 &nbsp;⇒&nbsp; f′(x) = 28x³ + 6x + 5</p>
+  <p>Die Potenzregel gilt auch für negative Hochzahlen: <span class="m">f(x) = <span class="fr"><span>1</span><span>x²</span></span> = x<sup>−2</sup> ⇒ f′(x) = −2x<sup>−3</sup></span>.</p></div>
+  <div class="achtung"><span class="lbl">Rotstift · Mitschrift 24.9.</span><p>Die Faktorregel heißt <span class="m">f′(x) = <strong>c · g′(x)</strong></span>. Der konstante Faktor bleibt einfach stehen.</p></div>
+  <div class="bsp"><h4>Wert der Ableitung an einer Stelle</h4><p><span class="m">f(x) = x<sup>4</sup></span>, gesucht <span class="m">f′(3)</span>: erst ableiten <span class="m">f′(x) = 4x³</span>, dann einsetzen <span class="m">f′(3) = 4 · 27 = 108</span>. <strong>Nie umgekehrt</strong> (erst einsetzen, dann ableiten gibt immer 0).</p></div>
+
+  <h3>Andere Variablennamen &amp; Leibniz</h3>
+  <p>Die Variable muss nicht x heißen. In <span class="m"><span class="fr"><span>dE</span><span>dv</span></span></span> wird nach <strong>v</strong> abgeleitet. Alle anderen Buchstaben (m₀, c, C, R, …) sind dann <strong>Konstanten</strong> und werden wie Zahlen behandelt.</p>
+  <div class="bsp"><h4>SA 2025, Bsp. 5</h4><p><span class="m">E = m₀·c² + <span class="fr"><span>m₀·v²</span><span>2</span></span></span>. Gesucht <span class="m"><span class="fr"><span>dE</span><span>dv</span></span></span>: <span class="m">m₀c²</span> ist konstant (enthält kein v) → fällt weg. <span class="m"><span class="fr"><span>m₀</span><span>2</span></span>·v² → <span class="fr"><span>m₀</span><span>2</span></span>·2v = m₀·v</span>. Also <strong><span class="m"><span class="fr"><span>dE</span><span>dv</span></span> = m₀·v</span></strong>.</p></div>
+  <div class="bsp"><h4>2.55 · 25.9.</h4><p>Strömung in einem Rohr: <span class="m">V = C·(R² − r²)</span>. Änderungsrate bezüglich r: <span class="m"><span class="fr"><span>dV</span><span>dr</span></span> = C·(0 − 2r) = −2Cr</span>. Die Geschwindigkeit nimmt nach außen hin ab, und zwar umso stärker, je größer r ist.</p></div>
+
+  <h2>3. Tangente &amp; Steigungswinkel</h2>
+  <div class="box satz"><span class="lbl">Satz</span><p>Ist k die Steigung und α der Steigungswinkel der Tangente an der Stelle x, so gilt:</p><p class="fb">f′(x) = k = tan(α)</p></div>
+  <div class="merke"><span class="lbl">Rezept: Tangentengleichung an der Stelle p</span>
+    <ol>
+      <li>Punkt: <span class="m">T = (p | f(p))</span></li>
+      <li>Steigung: <span class="m">k = f′(p)</span></li>
+      <li>In <span class="m">y = k·x + d</span> einsetzen: <span class="m">f(p) = k·p + d</span> → d ausrechnen</li>
+      <li>Antwort: <span class="m">t: y = k·x + d</span></li>
+    </ol>
+    <p>Kurzformel (geht auch): <span class="m">t: y = f′(p)·(x − p) + f(p)</span>. TI-Nspire: <code>tangentLine(f(x),x,p)</code>.</p>
+  </div>
+  <div class="bsp"><h4>Beispiel <span class="src">Mitschrift</span></h4>
+    <p><span class="m">f(x) = x² − 2x + 10</span>, Tangente an der Stelle x = 2.</p>
+    <ol class="steps">
+      <li><span class="m">f(2) = 4 − 4 + 10 = 10</span> → <span class="m">T = (2 | 10)</span></li>
+      <li><span class="m">f′(x) = 2x − 2</span> → <span class="m">k = f′(2) = 2</span></li>
+      <li><span class="m">10 = 2 · 2 + d</span> → <span class="m">d = 6</span></li>
+      <li><strong><span class="m">t: y = 2x + 6</span></strong></li>
+    </ol>
+    <figure><canvas data-fig="tangent" data-ratio="0.55" aria-label="Parabel mit Tangente im Punkt (2|10)"></canvas><figcaption>Die Tangente berührt den Graphen in T = (2 | 10) und hat dort dieselbe Steigung wie f.</figcaption></figure>
+  </div>
+  <h3>Steigungs- bzw. Neigungswinkel ausrechnen</h3>
+  <p><span class="m">α = tan<sup>−1</sup>(k)</span>. Der Rechner (im Modus <strong>Grad</strong>!) liefert für negatives k einen negativen Winkel. Ist ein Winkel in <span class="m">[0°; 180°]</span> verlangt (so wie bei der SA 2025), rechnest du <strong>+180°</strong>:</p>
+  <div class="tw"><table>
+    <thead><tr><th>k</th><th>tan⁻¹(k)</th><th>Winkel in [0°; 180°]</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="num">45°</td><td class="num">45°</td></tr>
+      <tr><td class="num">0</td><td class="num">0°</td><td class="num">0° (waagrecht)</td></tr>
+      <tr><td class="num">−1,5</td><td class="num">−56,31°</td><td class="num">123,69°</td></tr>
+      <tr><td class="num">−3</td><td class="num">−71,57°</td><td class="num">108,43°</td></tr>
+      <tr><td class="num">−0,6</td><td class="num">−30,96°</td><td class="num">149,04°</td></tr>
+    </tbody>
+  </table></div>
+  <p>Fragt die Aufgabe nur „unter welchem Winkel fällt die Straße?“, ist der spitze Winkel 30,96° gemeint. Lies genau, welcher Bereich verlangt ist.</p>
+  <p><strong>Umgekehrt</strong> (oft bei „Polynom aufsuchen“): Steigungswinkel 135° gegeben → <span class="m">f′(p) = tan(135°) = −1</span>; 45° → 1.</p>
+  <h3>Typische Tangenten-Fragen</h3>
+  <ul>
+    <li><strong>Wo ist die Tangente waagrecht?</strong> → <span class="m">f′(x) = 0</span> lösen.</li>
+    <li><strong>Wo ist die Tangente parallel zu g: y = 9x + 1?</strong> → parallel heißt gleiche Steigung → <span class="m">f′(x) = 9</span> lösen (SA 2025, Bsp. 6).</li>
+    <li><strong>Hat f an der Stelle p die Steigung −2?</strong> → prüfen, ob <span class="m">f′(p) = −2</span>.</li>
+    <li><strong>Gerade in allgemeiner Form gegeben</strong>, z. B. <span class="m">x + y + 4 = 0</span> → nach y umformen: <span class="m">y = −x − 4</span>, Steigung −1 (3.53).</li>
+  </ul>
+
+  <h2>4. Höhere Ableitungen</h2>
+  <div class="box def"><span class="lbl">Definition</span><p>Man nennt <span class="m">f′</span> die <strong>erste Ableitung</strong>, <span class="m">f″ = (f′)′</span> die <strong>zweite Ableitung</strong>, <span class="m">f‴ = (f″)′</span> die <strong>dritte Ableitung</strong> von f usw.</p></div>
+  <div class="bsp"><h4>2.75 b · 1.10.</h4><p class="fb">f(x) = ½x² + x³ &nbsp;→&nbsp; f′(x) = x + 3x² &nbsp;→&nbsp; f″(x) = 1 + 6x &nbsp;→&nbsp; f‴(x) = 6 &nbsp;→&nbsp; f<sup>(4)</sup>(x) = 0</p><p>Jedes Ableiten senkt den Grad um 1. Bei Grad n ist die n-te Ableitung eine Konstante und die (n+1)-te ist 0.</p></div>
+
+  <h2>5. Ort, Geschwindigkeit, Beschleunigung</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Größe</th><th>Formel</th><th>Einheit</th><th>bedeutet</th></tr></thead>
+    <tbody>
+      <tr><td>Ort / Weg <span class="m">s(t)</span></td><td>—</td><td>m</td><td>wo der Körper ist</td></tr>
+      <tr><td>Geschwindigkeit <span class="m">v(t)</span></td><td class="m">v = s′</td><td>m/s</td><td>wie schnell sich der Ort ändert</td></tr>
+      <tr><td>Beschleunigung <span class="m">a(t)</span></td><td class="m">a = v′ = s″</td><td>m/s²</td><td>wie schnell sich die Geschwindigkeit ändert</td></tr>
+    </tbody>
+  </table></div>
+  <div class="achtung"><span class="lbl">Rotstift · SA 2025, Bsp. 16 b</span><p><span class="m">h″(2,11) = −9,83</span> bedeutet <strong>nicht</strong> „er braucht 2,11 s“. Richtig: „<strong>Zum Zeitpunkt t = 2,11 s</strong> beträgt die <strong>Beschleunigung</strong> des Springers <strong>−9,83 m/s²</strong>.“ Also nimmt seine Geschwindigkeit nach unten in diesem Moment pro Sekunde um etwa 9,83 m/s zu (fast freier Fall).</p></div>
+  <h3>Den Graphen von v aus dem Graphen von s skizzieren</h3>
+  <p>Dafür gab es bei der SA 2025 0 Punkte. So geht's: Du liest die <strong>Steigung</strong> von s ab und trägst sie als <strong>Höhe</strong> bei v ein.</p>
+  <ul>
+    <li>s steigt → v &gt; 0 (über der t-Achse). s fällt → v &lt; 0.</li>
+    <li><strong>Hoch- oder Tiefpunkt von s → Nullstelle von v.</strong></li>
+    <li>Wo s am steilsten ist (Wendepunkt) → v hat dort ein Extremum.</li>
+    <li>s ist eine Parabel (Grad 2) → v ist eine Gerade (Grad 1). Allgemein: <strong>f′ hat einen Grad weniger.</strong></li>
+  </ul>
+  <figure><canvas data-fig="sv" data-ratio="0.62" aria-label="Oben Zeit-Ort-Funktion s mit Hochpunkt bei t=3, unten fallende Gerade v mit Nullstelle bei t=3"></canvas>
+  <figcaption>Wie SA 2025, Bsp. 3: s hat bei t = 3 den Hochpunkt, also ist v(3) = 0. Davor steigt s (v positiv), danach fällt s (v negativ). Weil s eine Parabel ist, ist v eine fallende Gerade.</figcaption></figure>
+
+  <h2>Übungen</h2>
+  <p class="task"><span class="tn">2.8</span>Leite ab: a) <span class="m">4x³ − 2x² + x − 9</span> &nbsp; b) <span class="m">−<span class="fr"><span>1</span><span>3</span></span>x<sup>6</sup> + 5x</span> &nbsp; c) <span class="m"><span class="fr"><span>x<sup>4</sup></span><span>8</span></span> − <span class="fr"><span>3x²</span><span>2</span></span></span> &nbsp; d) <span class="m">(x + 2)²</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>a) <span class="m">12x² − 4x + 1</span> &nbsp; b) <span class="m">−2x<sup>5</sup> + 5</span> &nbsp; c) <span class="m"><span class="fr"><span>x³</span><span>2</span></span> − 3x</span> &nbsp; d) erst ausmultiplizieren: <span class="m">x² + 4x + 4</span> → <span class="m">2x + 4</span></p></details>
+  <p class="task"><span class="tn">2.9</span>Kinetische Energie <span class="m">E = <span class="fr"><span>m·v²</span><span>2</span></span></span>; Kugelvolumen <span class="m">V = <span class="fr"><span>4</span><span>3</span></span>πr³</span>. Berechne <span class="m"><span class="fr"><span>dE</span><span>dv</span></span></span> und <span class="m"><span class="fr"><span>dV</span><span>dr</span></span></span>.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m"><span class="fr"><span>dE</span><span>dv</span></span> = m·v</span>, <span class="m"><span class="fr"><span>dV</span><span>dr</span></span> = 4πr²</span> (das ist übrigens die Kugeloberfläche).</p></details>
+  <p class="task"><span class="tn">2.10</span>Ermittle die Gleichung der Tangente an <span class="m">f(x) = x³ − 2x</span> an der Stelle 1 und ihren Steigungswinkel.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(1) = −1</span>, <span class="m">f′(x) = 3x² − 2</span>, <span class="m">k = f′(1) = 1</span>. <span class="m">−1 = 1 · 1 + d</span> → <span class="m">d = −2</span>. <strong><span class="m">t: y = x − 2</span></strong>, Winkel <span class="m">tan<sup>−1</sup>(1) = 45°</span>.</p></details>
+  <p class="task"><span class="tn">2.11</span>Berechne den Neigungswinkel <span class="m">φ ∈ [0°; 180°]</span> der Tangente an <span class="m">f(x) = −½x² + 2x</span> an der Stelle 4.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f′(x) = −x + 2</span>, <span class="m">f′(4) = −2</span>. <span class="m">tan<sup>−1</sup>(−2) ≈ −63,43°</span> → <span class="m">φ ≈ 180° − 63,43° = 116,57°</span>.</p></details>
+  <p class="task"><span class="tn">2.12</span>An welchen Stellen ist die Tangente an <span class="m">f(x) = x³ − 9x</span> parallel zur Geraden <span class="m">y = 3x − 1</span>?</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f′(x) = 3x² − 9 = 3</span> → <span class="m">x² = 4</span> → <strong>x = −2 und x = 2</strong>.</p></details>
+  <p class="task"><span class="tn">2.13</span>Ein Körper bewegt sich nach <span class="m">s(t) = 2t³ − 3t² + 5</span> (m, s). Berechne v(2) und a(2). Wann steht er still?</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">v(t) = 6t² − 6t</span>, <span class="m">a(t) = 12t − 6</span>. <span class="m">v(2) = 12 m/s</span>, <span class="m">a(2) = 18 m/s²</span>. Stillstand: <span class="m">v(t) = 6t(t − 1) = 0</span> → <strong>t = 0 und t = 1 s</strong>.</p></details>
+  <p class="task"><span class="tn">2.14</span>Für die Kosten K (in €) bei x produzierten Stück gilt <span class="m">K′(100) = 3,5</span>. Interpretiere.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>„Bei einer Produktion von 100 Stück steigen die Kosten momentan um 3,50 € pro zusätzlichem Stück.“ (Ungefähr: Das 101. Stück kostet etwa 3,50 € zusätzlich.)</p></details>
+  <p class="task"><span class="tn">2.15</span>Bestimme f′, f″, f‴ von <span class="m">f(x) = 2x<sup>4</sup> − x³ + 5x</span>. Wie viele Ableitungen braucht es, bis 0 herauskommt?</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f′ = 8x³ − 3x² + 5</span>, <span class="m">f″ = 24x² − 6x</span>, <span class="m">f‴ = 48x − 6</span>, <span class="m">f<sup>(4)</sup> = 48</span>, <span class="m">f<sup>(5)</sup> = 0</span>. Bei Grad 4 ist die 5. Ableitung null.</p></details>
+
+  <div class="finish"><label><input type="checkbox" data-done="ableitung"> Ableiten &amp; Tangenten sitzen</label><button class="btn primary" data-go="kurven">Weiter: Kurven untersuchen →</button></div>
+</section>
+
+<!-- ===================================================== KAPITEL 3 -->
+<section class="view" data-view="kurven" hidden>
+  <p class="eyebrow">Kapitel 3.1–3.5 · Buch S. 46–60 · FA 4.4, AN 3.1, 3.3</p>
+  <h1>Polynomfunktionen untersuchen</h1>
+  <p class="lead">Die Ableitungen verraten alles über den Graphen. <strong>f′ sagt, ob f steigt oder fällt. f″ sagt, wie f gekrümmt ist.</strong> Das ist der ganze Trick dieses Kapitels.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>Du suchst …</th><th>Bedingung</th><th>Prüfen mit</th></tr></thead>
+    <tbody>
+      <tr><td>Nullstellen</td><td class="m">f(x) = 0</td><td>—</td></tr>
+      <tr><td>Extremstellen (Hoch-/Tiefpunkt)</td><td class="m">f′(x) = 0</td><td class="m">f″(x) &lt; 0 → Max, f″(x) &gt; 0 → Min</td></tr>
+      <tr><td>Wendestellen</td><td class="m">f″(x) = 0</td><td class="m">f‴(x) ≠ 0</td></tr>
+      <tr><td>Sattel-/Terrassenstellen</td><td class="m">f′(x) = 0 und f″(x) = 0</td><td class="m">f‴(x) ≠ 0</td></tr>
+      <tr><td>Monotoniebereiche</td><td>Vorzeichen von f′</td><td>Testwerte zwischen den Extremstellen</td></tr>
+      <tr><td>Krümmungsbereiche</td><td>Vorzeichen von f″</td><td>Testwerte links/rechts der Wendestellen</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>1. Monotonie</h2>
+  <div class="box def"><span class="lbl">Definition</span><p>f heißt in einem Intervall I <strong>streng monoton steigend</strong>, wenn für alle <span class="m">x<sub>1</sub>, x<sub>2</sub> ∈ I</span> gilt: <span class="m">x<sub>1</sub> &lt; x<sub>2</sub> ⇒ f(x<sub>1</sub>) &lt; f(x<sub>2</sub>)</span>. Analog <strong>streng monoton fallend</strong>: <span class="m">x<sub>1</sub> &lt; x<sub>2</sub> ⇒ f(x<sub>1</sub>) &gt; f(x<sub>2</sub>)</span>. (Mit ≤ bzw. ≥ heißt es nur „monoton steigend/fallend“.)</p></div>
+  <div class="box satz"><span class="lbl">Monotoniesatz</span><p>Ist f eine Polynomfunktion und I ein Intervall, dann gilt:</p>
+    <p>(1) <span class="m">f′(x) &gt; 0</span> für alle inneren Stellen x von I ⇒ f ist in I <strong>streng monoton steigend</strong>.<br>
+    (2) <span class="m">f′(x) &lt; 0</span> für alle inneren Stellen x von I ⇒ f ist in I <strong>streng monoton fallend</strong>.</p></div>
+  <p>Umgekehrt gilt das nicht ganz: <span class="m">f(x) = x³</span> ist überall streng monoton steigend, obwohl <span class="m">f′(0) = 0</span>.</p>
+
+  <h2>2. Extremstellen</h2>
+  <div class="box def"><span class="lbl">Definition</span><p>p heißt <strong>lokale Maximumstelle</strong> von f, wenn es ein Intervall um p gibt, in dem <span class="m">f(x) ≤ f(p)</span> für alle x gilt. Der Punkt <span class="m">H = (p | f(p))</span> heißt <strong>Hochpunkt</strong>. Analog: lokale Minimumstelle, <strong>Tiefpunkt</strong> T. Gilt die Ungleichung im ganzen Definitionsbereich, ist es eine <strong>globale</strong> Extremstelle.</p></div>
+  <div class="box satz"><span class="lbl">Notwendige Bedingung</span><p>Ist p eine lokale Extremstelle (innere Stelle) der Polynomfunktion f, dann gilt <span class="m">f′(p) = 0</span>. Die Tangente ist dort waagrecht.</p></div>
+  <p>„Notwendig“ heißt: Ohne <span class="m">f′(p) = 0</span> geht es nicht. Aber es reicht nicht! Die Lösungen von <span class="m">f′(x) = 0</span> sind nur <strong>Kandidaten</strong>. Es könnte auch eine Terrassenstelle sein (wie <span class="m">x³</span> bei 0).</p>
+  <div class="box satz"><span class="lbl">Hinreichend · Variante A: Vorzeichenwechsel</span><p>Ändert f′ bei p das Vorzeichen (f ändert sein Monotonieverhalten), dann ist p eine lokale Extremstelle:</p>
+    <ul><li>f′ wechselt von + nach − (erst steigend, dann fallend) → <strong>Maximum</strong></li><li>f′ wechselt von − nach + → <strong>Minimum</strong></li><li>kein Vorzeichenwechsel → <strong>keine</strong> Extremstelle (Terrassenstelle)</li></ul></div>
+  <div class="box satz"><span class="lbl">Hinreichend · Variante B: zweite Ableitung</span><p>(1) <span class="m">f′(p) = 0 ∧ f″(p) &lt; 0</span> ⇒ p ist lokale <strong>Maximum</strong>stelle (Graph rechtsgekrümmt, ∩)<br>(2) <span class="m">f′(p) = 0 ∧ f″(p) &gt; 0</span> ⇒ p ist lokale <strong>Minimum</strong>stelle (Graph linksgekrümmt, ∪)</p></div>
+  <div class="achtung"><span class="lbl">Rotstift · Mitschrift 12.10.</span><p>Bei (2) steht in deiner Mitschrift „<span class="m">f″(p) ≥ 0</span>“. Richtig ist <strong>&gt; 0</strong>, streng! Ist <span class="m">f″(p) = 0</span>, sagt der Test <strong>gar nichts</strong>. Dann musst du mit dem Vorzeichenwechsel von f′ (Variante A) prüfen. Beispiel: <span class="m">f(x) = x<sup>4</sup></span> hat bei 0 ein Minimum, <span class="m">f(x) = x³</span> hat bei 0 eine Terrassenstelle, aber beide Male ist <span class="m">f″(0) = 0</span>.</p></div>
+  <div class="merke"><span class="lbl">Eselsbrücke</span><p><strong>f″ negativ → Hochpunkt</strong> (traurig ∩), <strong>f″ positiv → Tiefpunkt</strong> (fröhlich ∪). Das Vorzeichen ist „verkehrt“ zu dem, was man erwarten würde.</p></div>
+  <div class="bsp"><h4>Beispiel komplett <span class="src">3.11 a · 5.10.</span></h4>
+    <p><span class="m">f(x) = 2x³ − 3x² − 12x + 1</span>. Gesucht: Monotoniebereiche, Extremstellen, Hoch- und Tiefpunkte.</p>
+    <ol class="steps">
+      <li><span class="m">f′(x) = 6x² − 6x − 12</span></li>
+      <li><span class="m">f′(x) = 0</span> → <span class="m">x² − x − 2 = 0</span> → <strong>x = −1, x = 2</strong> (Kandidaten)</li>
+      <li>Testwerte: <span class="m">f′(−2) = 24 &gt; 0</span>, <span class="m">f′(0) = −12 &lt; 0</span>, <span class="m">f′(3) = 24 &gt; 0</span></li>
+      <li>Bei −1 wechselt f′ von + nach − → Maximum. Bei 2 von − nach + → Minimum.</li>
+      <li><span class="m">H = (−1 | f(−1)) = (−1 | 8)</span>, <span class="m">T = (2 | f(2)) = (2 | −19)</span></li>
+      <li>Monotonie: streng monoton <strong>steigend in (−∞; −1]</strong>, <strong>fallend in [−1; 2]</strong>, <strong>steigend in [2; ∞)</strong></li>
+    </ol>
+  </div>
+  <div class="merke"><span class="lbl">Schreibweise Monotoniebereiche</span><p>Wie im Buch: Die Extremstellen gehören zu beiden Bereichen dazu, also eckige Klammern <span class="m">[−1; 2]</span>. Bei ±∞ immer runde Klammer: <span class="m">(−∞; −1]</span>.</p></div>
+
+  <h3>Extremstellen in abgeschlossenen Intervallen (Randextrema)</h3>
+  <p>Ist f nur auf <span class="m">[a; b]</span> definiert, können die größten/kleinsten Werte auch <strong>am Rand</strong> liegen, wo <span class="m">f′ ≠ 0</span> sein kann. Darum: <strong>Funktionswerte an allen Kandidaten UND an beiden Rändern vergleichen.</strong></p>
+  <div class="bsp"><h4>Beispiel</h4><p><span class="m">f(x) = x³ − 3x</span> auf <span class="m">[−2; 3]</span>. <span class="m">f′(x) = 3x² − 3 = 0</span> → <span class="m">x = ±1</span>. Werte: <span class="m">f(−2) = −2</span>, <span class="m">f(−1) = 2</span>, <span class="m">f(1) = −2</span>, <span class="m">f(3) = 18</span>. Globales Maximum <strong>18 am Rand x = 3</strong> (nicht beim lokalen Hochpunkt!), globales Minimum −2 bei x = −2 und x = 1.</p></div>
+  <div class="achtung"><span class="lbl">Rotstift · SA 2025, Bsp. 16 a</span><p>„Zu welchem Zeitpunkt ist der Springer an der <strong>tiefsten Stelle</strong>?“ ist eine Extremwertfrage: <span class="m">h′(t) = 0</span> lösen! Die Lösung von <span class="m">h(t) = 0</span> wäre der Zeitpunkt, an dem er am Boden aufschlägt. Das ist eine ganz andere Frage.</p></div>
+
+  <h2>3. Krümmung</h2>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>linksgekrümmt (Linkskurve) ∪</th><th>rechtsgekrümmt (Rechtskurve) ∩</th></tr></thead>
+    <tbody>
+      <tr><td>Bedingung</td><td class="m">f″(x) &gt; 0</td><td class="m">f″(x) &lt; 0</td></tr>
+      <tr><td>f′ ist …</td><td>streng monoton steigend</td><td>streng monoton fallend</td></tr>
+      <tr><td>Tangenten liegen …</td><td>unter dem Graphen</td><td>über dem Graphen</td></tr>
+      <tr><td>Bild</td><td>Fahrrad fährt von links nach rechts und lenkt <strong>nach links</strong></td><td>lenkt <strong>nach rechts</strong></td></tr>
+      <tr><td>Extremum dort</td><td>Tiefpunkt</td><td>Hochpunkt</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box satz"><span class="lbl">Krümmungssatz</span><p>(1) <span class="m">f″(x) &gt; 0</span> für alle inneren Stellen von I ⇒ f ist in I <strong>linksgekrümmt</strong>.<br>(2) <span class="m">f″(x) &lt; 0</span> für alle inneren Stellen von I ⇒ f ist in I <strong>rechtsgekrümmt</strong>.</p></div>
+  <figure><canvas data-fig="curv" data-ratio="0.5" aria-label="Graph von x³−3x, links rechtsgekrümmt, rechts linksgekrümmt, Wendepunkt im Ursprung"></canvas><figcaption><span class="m">f(x) = x³ − 3x</span>: links von 0 rechtsgekrümmt (Tangente liegt über dem Graphen), rechts von 0 linksgekrümmt (Tangente liegt darunter). Bei 0 wechselt die Krümmung: Wendepunkt.</figcaption></figure>
+
+  <h2>4. Wendestellen &amp; Sattelstellen</h2>
+  <div class="box def"><span class="lbl">Definition</span><p>Eine Stelle p heißt <strong>Wendestelle</strong> von f, wenn sich an der Stelle p das <strong>Krümmungsverhalten</strong> von f ändert. <span class="m">W = (p | f(p))</span> heißt <strong>Wendepunkt</strong>, die Tangente in p heißt <strong>Wendetangente</strong>.</p></div>
+  <div class="box satz"><span class="lbl">Satz</span><p class="fb">f″(p) = 0 ∧ f‴(p) ≠ 0 &nbsp;⇒&nbsp; p ist Wendestelle von f</p><p>(<span class="m">f″(p) = 0</span> allein ist nur notwendig.) Außerdem: <strong>Eine Wendestelle von f ist eine lokale Extremstelle von f′.</strong> Dort ist f also am <strong>steilsten</strong> (stärkste Steigung oder stärkstes Gefälle).</p></div>
+  <div class="box def"><span class="lbl">Sattelpunkt (Terrassenpunkt)</span><p>Ein Wendepunkt mit <strong>waagrechter</strong> Tangente: <span class="m">f′(p) = 0 ∧ f″(p) = 0 ∧ f‴(p) ≠ 0</span>. Der Graph macht dort eine „Stufe“, steigt (oder fällt) aber vorher und nachher weiter.</p></div>
+  <div class="achtung"><span class="lbl">Rotstift · SA 2025, Bsp. 15 a</span><p>„Weise rechnerisch nach, dass 2 die einzige Wendestelle ist“: <span class="m">f″(x) = 0</span> lösen allein bringt nur einen halben Punkt. <strong>Immer dazuschreiben: <span class="m">f‴(2) = <span class="fr"><span>2</span><span>3</span></span> ≠ 0</span>.</strong> Und begründen, warum die zweite Lösung x = 6 nicht zählt (nicht im offenen Intervall (0; 6)).</p></div>
+  <p><strong>Kontext-Signalwörter für Wendestellen:</strong> „stärkstes Gefälle“, „größte Steigung“, „am schnellsten wachsen“, „größte Geschwindigkeit“ (wenn s gegeben ist), „ab wann wächst es langsamer“.</p>
+
+  <h2>5. Graph-Explorer: f, f′ und f″ nebeneinander</h2>
+  <p>Fahr mit dem Regler (oder Finger/Maus) über die Graphen. Achte darauf: <strong>Wo f′ die x-Achse schneidet, hat f einen Hoch- oder Tiefpunkt. Wo f″ die x-Achse schneidet, hat f einen Wendepunkt</strong>, und f′ hat dort sein Extremum.</p>
+  <div class="seg" id="trioSel" role="group" aria-label="Funktion wählen">
+    <button type="button" data-fn="0" aria-pressed="true">x³ − 3x² − 9x + 5</button>
+    <button type="button" data-fn="1" aria-pressed="false">x⁴ − 4x³</button>
+    <button type="button" data-fn="2" aria-pressed="false">5x³ + 15x² + 5</button>
+  </div>
+  <figure>
+    <canvas id="trio" data-ratio="1.05" aria-label="Drei übereinanderliegende Graphen: f, f′ und f″"></canvas>
+    <div class="ctrl"><label for="trioX">Stelle x</label><input type="range" id="trioX" min="0" max="1000" value="300"><output id="trioXo">0</output></div>
+    <div class="readout">
+      <div>f(x)<b id="trioF">–</b></div>
+      <div>f′(x) → Monotonie<b id="trioF1">–</b></div>
+      <div>f″(x) → Krümmung<b id="trioF2">–</b></div>
+    </div>
+    <figcaption>Punkte: blau = Stellen mit f′ = 0 (Extrem- oder Sattelpunkt), rot = Wendepunkte (f″ = 0). Bei x⁴ − 4x³ ist 0 ein Sattelpunkt: f′ berührt dort die Achse nur, ohne Vorzeichenwechsel.</figcaption>
+  </figure>
+
+  <h2>6. Symmetrie, Verhalten im Unendlichen, typische Formen</h2>
+  <div class="box def"><span class="lbl">Definition</span><p>Eine reelle Funktion <span class="m">f: A → ℝ</span> heißt<br>• <strong>gerade</strong>, wenn für alle <span class="m">x ∈ A</span> gilt: <span class="m">f(−x) = f(x)</span>. Der Graph ist <strong>symmetrisch zur y-Achse</strong>.<br>• <strong>ungerade</strong>, wenn für alle <span class="m">x ∈ A</span> gilt: <span class="m">f(−x) = −f(x)</span>. Der Graph ist <strong>symmetrisch zum Ursprung</strong> (punktsymmetrisch).</p></div>
+  <div class="box satz"><span class="lbl">Für Polynome</span><p>Eine Polynomfunktion ist <strong>gerade</strong>, wenn nur <strong>gerade Hochzahlen</strong> vorkommen (die Koeffizienten der ungeraden Potenzen sind 0), z. B. <span class="m">3x<sup>4</sup> + 2x² − 5</span> (die Konstante zählt als <span class="m">x<sup>0</sup></span>, also gerade). Sie ist <strong>ungerade</strong>, wenn nur <strong>ungerade Hochzahlen</strong> vorkommen, z. B. <span class="m">3x³ + 2x</span> (keine Konstante!). <span class="m">x³ + x²</span> ist weder noch.</p></div>
+  <h3>Verhalten für x → ±∞</h3>
+  <p>Für große |x| bestimmt nur der Term mit der höchsten Hochzahl <span class="m">a<sub>n</sub>x<sup>n</sup></span>, wohin der Graph geht:</p>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>x → −∞</th><th>x → +∞</th><th>Form</th></tr></thead>
+    <tbody>
+      <tr><td>n gerade, <span class="m">a<sub>n</sub> &gt; 0</span></td><td>+∞</td><td>+∞</td><td>beide Enden oben (wie x²)</td></tr>
+      <tr><td>n gerade, <span class="m">a<sub>n</sub> &lt; 0</span></td><td>−∞</td><td>−∞</td><td>beide Enden unten (wie −x²)</td></tr>
+      <tr><td>n ungerade, <span class="m">a<sub>n</sub> &gt; 0</span></td><td>−∞</td><td>+∞</td><td>von links unten nach rechts oben (wie x³)</td></tr>
+      <tr><td>n ungerade, <span class="m">a<sub>n</sub> &lt; 0</span></td><td>+∞</td><td>−∞</td><td>von links oben nach rechts unten</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Typische Graphen:</strong> Grad 2 → Parabel, genau ein Extrempunkt, keine Wendestelle. Grad 3 → „S-Form“ mit 0 oder 2 Extremstellen und <strong>genau einer Wendestelle</strong>, die genau in der Mitte zwischen den Extremstellen liegt. Grad 4 → „W“- oder „M“-Form mit 1 oder 3 Extremstellen und 0 oder 2 Wendestellen.</p>
+
+  <h2>7. Kurvendiskussion mit dem TI-Nspire: Musterlösung</h2>
+  <div class="bsp"><h4>f(x) = 5x³ + 15x² + 5 <span class="src">SÜ 15.10.</span></h4>
+<pre class="cas">f(x):=5*x^3+15*x^2+5            <span class="r">Fertig</span>
+f1(x):=d/dx(f(x))                <span class="r">Fertig</span>   <span class="c">(Vorlage d/dx aus dem Mathe-Menü)</span>
+f2(x):=d/dx(f1(x))               <span class="r">Fertig</span>
+f3(x):=d/dx(f2(x))               <span class="r">Fertig</span>
+solve(f1(x)=0,x)                 <span class="r">x=−2 or x=0</span>
+f2(−2)                           <span class="r">−30</span>   <span class="c">&lt; 0 → Maximum</span>
+f2(0)                            <span class="r">30</span>    <span class="c">&gt; 0 → Minimum</span>
+f(−2)                            <span class="r">25</span>
+f(0)                             <span class="r">5</span>
+solve(f2(x)=0,x)                 <span class="r">x=−1</span>
+f3(−1)                           <span class="r">30</span>    <span class="c">≠ 0 → Wendestelle</span>
+f(−1)                            <span class="r">15</span></pre>
+    <p><strong>So schreibst du es in die Schularbeit:</strong></p>
+    <ul>
+      <li><span class="m">f′(x) = 15x² + 30x</span>, <span class="m">f″(x) = 30x + 30</span>, <span class="m">f‴(x) = 30</span></li>
+      <li><span class="m">f′(x) = 0 ⇒ x = −2 ∨ x = 0</span>. <span class="m">f″(−2) = −30 &lt; 0</span> ⇒ <strong>H(−2 | 25)</strong>; <span class="m">f″(0) = 30 &gt; 0</span> ⇒ <strong>T(0 | 5)</strong></li>
+      <li>Monotonie: streng monoton steigend in <span class="m">(−∞; −2]</span>, fallend in <span class="m">[−2; 0]</span>, steigend in <span class="m">[0; ∞)</span></li>
+      <li><span class="m">f″(x) = 0 ⇒ x = −1</span>, <span class="m">f‴(−1) = 30 ≠ 0</span> ⇒ <strong>W(−1 | 15)</strong></li>
+      <li>Krümmung: rechtsgekrümmt in <span class="m">(−∞; −1]</span>, linksgekrümmt in <span class="m">[−1; ∞)</span> (Test: <span class="m">f″(−2) &lt; 0</span>, <span class="m">f″(0) &gt; 0</span>)</li>
+      <li>Wendetangente: <span class="m">k = f′(−1) = −15</span>, <span class="m">15 = −15·(−1) + d ⇒ d = 0</span> ⇒ <span class="m">y = −15x</span></li>
+    </ul>
+  </div>
+  <div class="bsp"><h4>Terrassenpunkt erkennen: f(x) = 3x⁴ − 8x³ + 16 <span class="src">3.14 d (in deiner Mitschrift leer)</span></h4>
+    <ol class="steps">
+      <li><span class="m">f′(x) = 12x³ − 24x² = 12x²(x − 2)</span> → <span class="m">x = 0</span> oder <span class="m">x = 2</span></li>
+      <li><span class="m">f″(x) = 36x² − 48x</span>. <span class="m">f″(2) = 48 &gt; 0</span> ⇒ <strong>T(2 | 0)</strong>. <span class="m">f″(0) = 0</span> ⇒ Test sagt nichts!</li>
+      <li>Vorzeichen von f′ um 0: <span class="m">f′(−1) = −36 &lt; 0</span>, <span class="m">f′(1) = −12 &lt; 0</span> → <strong>kein Vorzeichenwechsel</strong> → bei 0 ist keine Extremstelle, sondern eine Terrassenstelle: <strong>(0 | 16)</strong>. Zusätzlich <span class="m">f‴(0) = −48 ≠ 0</span> ✓.</li>
+      <li>Monotonie: streng monoton fallend in <span class="m">(−∞; 2]</span>, steigend in <span class="m">[2; ∞)</span>. (Die Terrassenstelle unterbricht das Fallen nicht.)</li>
+      <li>Wendestellen: <span class="m">f″(x) = 12x(3x − 4) = 0</span> → <span class="m">x = 0</span> und <span class="m">x = <span class="fr"><span>4</span><span>3</span></span></span>, <span class="m">f(<span class="fr"><span>4</span><span>3</span></span>) = <span class="fr"><span>176</span><span>27</span></span> ≈ 6,52</span></li>
+    </ol>
+  </div>
+
+  <h2>8. Schließen ohne Funktionsterm</h2>
+  <p>Bei Typ-2-Aufgaben kommt oft nur eine Beschreibung. Dann musst du mit den Sätzen <em>argumentieren</em>.</p>
+  <div class="bsp"><h4>SA 2025, Bsp. 14 „Geburtstag“ (2 von 3 Punkten verloren)</h4>
+    <p>f hat Grad 3, genau zwei Extremstellen <span class="m">x<sub>1</sub> = 0</span> und <span class="m">x<sub>2</sub> = 38</span>, und <span class="m">f″(38) = 38</span>.</p>
+    <p><strong>a) Monotoniebereiche:</strong> <span class="m">f″(38) = 38 &gt; 0</span> ⇒ 38 ist Minimumstelle. Bei Grad 3 wechseln sich Max und Min ab, also ist 0 die Maximumstelle. ⇒ streng monoton <strong>steigend in (−∞; 0]</strong>, <strong>fallend in [0; 38]</strong>, <strong>steigend in [38; ∞)</strong>.</p>
+    <p><strong>b) Krümmung (f″(19) = 0):</strong> f″ hat Grad 1 (Gerade), wechselt bei 19 das Vorzeichen. Weil <span class="m">f″(38) &gt; 0</span>: <strong>rechtsgekrümmt in (−∞; 19]</strong>, <strong>linksgekrümmt in [19; ∞)</strong>. (19 liegt genau in der Mitte von 0 und 38, wie immer bei Grad 3.)</p>
+    <p><strong>c)</strong> <span class="m">f(0) = <span class="fr"><span>27550</span><span>3</span></span></span>, Differenzenquotient in [0; 38] ist <span class="m">−<span class="fr"><span>722</span><span>3</span></span></span>: <span class="m"><span class="fr"><span>f(38) − f(0)</span><span>38</span></span> = −<span class="fr"><span>722</span><span>3</span></span> ⇒ f(38) = <span class="fr"><span>27550</span><span>3</span></span> − 38·<span class="fr"><span>722</span><span>3</span></span> = <span class="fr"><span>114</span><span>3</span></span> = <strong>38</strong></span>.</p>
+  </div>
+
+  <h2>Übungen</h2>
+  <p class="task"><span class="tn">3.1</span><span class="m">f(x) = x³ − 3x² − 9x + 5</span>: Extrempunkte, Monotonie, Wendepunkt, Krümmung, Wendetangente.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f′(x) = 3x² − 6x − 9 = 3(x + 1)(x − 3)</span> → −1, 3. <span class="m">f″(x) = 6x − 6</span>: <span class="m">f″(−1) = −12 &lt; 0</span> ⇒ <strong>H(−1 | 10)</strong>; <span class="m">f″(3) = 12 &gt; 0</span> ⇒ <strong>T(3 | −22)</strong>. Steigend in (−∞; −1], fallend in [−1; 3], steigend in [3; ∞). <span class="m">f″(x) = 0</span> ⇒ x = 1, <span class="m">f‴ = 6 ≠ 0</span> ⇒ <strong>W(1 | −6)</strong>; rechtsgekrümmt in (−∞; 1], linksgekrümmt in [1; ∞). <span class="m">f′(1) = −12</span>: <span class="m">−6 = −12 + d</span> ⇒ <strong>y = −12x + 6</strong>.</p></details>
+  <p class="task"><span class="tn">3.2</span><span class="m">f(x) = x<sup>4</sup> − 4x³</span>: Extremstellen, Terrassenstellen, Wendepunkte, Krümmungsbereiche.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f′ = 4x³ − 12x² = 4x²(x − 3)</span> → 0, 3. Bei 0 kein Vorzeichenwechsel (f′(−1) &lt; 0, f′(1) &lt; 0) ⇒ <strong>Sattelpunkt S(0 | 0)</strong>. Bei 3: <span class="m">f″(3) = 36 &gt; 0</span> ⇒ <strong>T(3 | −27)</strong>. <span class="m">f″ = 12x² − 24x = 12x(x − 2)</span> → <strong>W₁(0 | 0)</strong> (= Sattelpunkt), <strong>W₂(2 | −16)</strong>, <span class="m">f‴(0) = −24 ≠ 0</span>, <span class="m">f‴(2) = 24 ≠ 0</span>. Krümmung: links in (−∞; 0], rechts in [0; 2], links in [2; ∞).</p></details>
+  <p class="task"><span class="tn">3.3</span>Gerade, ungerade oder weder? a) <span class="m">x<sup>4</sup> − 3x² + 1</span> &nbsp; b) <span class="m">2x³ − x</span> &nbsp; c) <span class="m">x³ + 1</span> &nbsp; d) <span class="m">−x<sup>6</sup> + x²</span></p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>a) gerade, b) ungerade, c) weder (die Konstante 1 ist eine „gerade“ Potenz), d) gerade.</p></details>
+  <p class="task"><span class="tn">3.4</span>Grad 3, Extremstellen −2 und 4, <span class="m">f″(4) = 5</span>. Gib Monotonie- und Krümmungsbereiche an.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f″(4) &gt; 0</span> ⇒ Minimum bei 4, Maximum bei −2. Steigend (−∞; −2], fallend [−2; 4], steigend [4; ∞). Wendestelle in der Mitte: 1. Rechtsgekrümmt (−∞; 1], linksgekrümmt [1; ∞).</p></details>
+  <p class="task"><span class="tn">3.5</span>f hat Grad 2 und bei x = 5 ein lokales Minimum. Welche Aussagen stimmen? <span class="m">f(6) &lt; f(5)</span> · <span class="m">f(4) &gt; f(5)</span> · <span class="m">f′(5) ≠ 0</span> · <span class="m">f″(5) = 0</span> · <span class="m">f′(4) &lt; 0</span> (SA 2025, Bsp. 4)</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Richtig: <strong>f(4) &gt; f(5)</strong> (5 ist die tiefste Stelle) und <strong>f′(4) &lt; 0</strong> (links vom Tiefpunkt fällt die Parabel). Falsch: f(6) &lt; f(5); f′(5) ≠ 0 (es ist f′(5) = 0); f″(5) = 0 (bei einer nach oben offenen Parabel ist f″ überall positiv).</p></details>
+  <p class="task"><span class="tn">3.6</span>Wie verhält sich <span class="m">f(x) = −2x³ + 5x² − 1</span> für x → ∞ und x → −∞?</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Grad ungerade, <span class="m">a₃ = −2 &lt; 0</span>: <strong>x → ∞: f(x) → −∞</strong>; <strong>x → −∞: f(x) → +∞</strong>.</p></details>
+  <p class="task"><span class="tn">3.7</span>Die Rutsche <span class="m">f(x) = −<span class="fr"><span>1</span><span>72</span></span>(x<sup>4</sup> − 16x³ + 72x² − 720)</span>, 0 ≤ x ≤ 6. An welcher Stelle hat sie ihr stärkstes Gefälle? Wie groß ist es?</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Stärkstes Gefälle = Wendestelle. <span class="m">f″(x) = −<span class="fr"><span>1</span><span>6</span></span>(x − 2)(x − 6) = 0</span> → x = 2 (6 liegt nicht im Inneren). <span class="m">f‴(2) = <span class="fr"><span>2</span><span>3</span></span> ≠ 0</span>. Gefälle: <span class="m">f′(2) = −<span class="fr"><span>16</span><span>9</span></span> ≈ −1,78</span>, also 178 % bzw. ein Winkel von etwa 60,6° nach unten.</p></details>
+
+  <div class="finish"><label><input type="checkbox" data-done="kurven"> Kurvenuntersuchung sitzt</label><button class="btn primary" data-go="aufsuchen">Weiter: Funktionen aufsuchen →</button></div>
+</section>
+
+<!-- ===================================================== AUFSUCHEN -->
+<section class="view" data-view="aufsuchen" hidden>
+  <p class="eyebrow">Kapitel 3.6 · Buch S. 62–65</p>
+  <h1>Polynomfunktionen aufsuchen</h1>
+  <p class="lead">Umgekehrte Aufgabe: Du kennst Eigenschaften des Graphen und suchst den Funktionsterm. Das ist fast immer: <strong>Text in Gleichungen übersetzen, dann löst das CAS.</strong></p>
+
+  <h2>1. Das Prinzip in 4 Schritten</h2>
+  <ol class="steps">
+    <li><strong>Ansatz</strong> mit unbekannten Koeffizienten aufschreiben. Grad n hat <strong>n + 1 Unbekannte</strong>.</li>
+    <li><strong>Jede Information in eine Gleichung übersetzen</strong> (Tabelle unten). Du brauchst so viele Gleichungen wie Unbekannte.</li>
+    <li><strong>Gleichungssystem lösen</strong> (TI-Nspire: <code>solve(… and …,{a,b,c,d})</code>).</li>
+    <li><strong>Funktion hinschreiben</strong> und zur Kontrolle eine Bedingung nachrechnen oder den Graphen ansehen.</li>
+  </ol>
+  <div class="tw"><table>
+    <thead><tr><th>Grad</th><th>Ansatz</th><th>Unbekannte</th></tr></thead>
+    <tbody>
+      <tr><td>2</td><td class="m">f(x) = ax² + bx + c</td><td>3</td></tr>
+      <tr><td>3</td><td class="m">f(x) = ax³ + bx² + cx + d</td><td>4</td></tr>
+      <tr><td>4</td><td class="m">f(x) = ax<sup>4</sup> + bx³ + cx² + dx + e</td><td>5</td></tr>
+      <tr><td>4, symmetrisch zur y-Achse</td><td class="m">f(x) = ax<sup>4</sup> + cx² + e</td><td>3</td></tr>
+      <tr><td>3, symmetrisch zum Ursprung</td><td class="m">f(x) = ax³ + cx</td><td>2</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>2. Die Übersetzungstabelle (auswendig lernen!)</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Im Text steht …</th><th>Gleichung(en)</th></tr></thead>
+    <tbody>
+      <tr><td>Graph geht durch <span class="m">P(2 | 5)</span> / „P liegt auf f“</td><td class="m">f(2) = 5</td></tr>
+      <tr><td>geht durch den Ursprung</td><td class="m">f(0) = 0</td></tr>
+      <tr><td>schneidet die y-Achse bei 3</td><td class="m">f(0) = 3</td></tr>
+      <tr><td>Nullstelle bei 4</td><td class="m">f(4) = 0</td></tr>
+      <tr><td><strong>Extrempunkt</strong> / Hochpunkt / Tiefpunkt <span class="m">H(1 | 4)</span></td><td class="m">f(1) = 4 <strong>und</strong> f′(1) = 0</td></tr>
+      <tr><td>Extremstelle bei 1 (nur die Stelle)</td><td class="m">f′(1) = 0</td></tr>
+      <tr><td>berührt die x-Achse bei 2</td><td class="m">f(2) = 0 und f′(2) = 0</td></tr>
+      <tr><td><strong>Wendepunkt</strong> <span class="m">W(1 | 1)</span></td><td class="m">f(1) = 1 <strong>und</strong> f″(1) = 0</td></tr>
+      <tr><td><strong>Sattel-/Terrassenpunkt</strong> <span class="m">S(1 | 2)</span></td><td class="m">f(1) = 2, f′(1) = 0, f″(1) = 0</td></tr>
+      <tr><td>Steigung (Tangentensteigung) −3 an der Stelle 0</td><td class="m">f′(0) = −3</td></tr>
+      <tr><td>Steigungswinkel 135° an der Stelle 0</td><td class="m">f′(0) = tan(135°) = −1</td></tr>
+      <tr><td>Tangente in <span class="m">P(−1 | −3)</span> ist <span class="m">x + y + 4 = 0</span></td><td class="m">f(−1) = −3 und f′(−1) = −1</td></tr>
+      <tr><td>Wendetangente in W(2 | 0) hat die Gleichung <span class="m">y = −3x + 6</span></td><td class="m">f(2) = 0, f′(2) = −3, f″(2) = 0</td></tr>
+      <tr><td>symmetrisch zur y-Achse / zum Ursprung</td><td>nur gerade / nur ungerade Potenzen im Ansatz</td></tr>
+    </tbody>
+  </table></div>
+  <div class="merke"><span class="lbl">Merke</span><p>Ein <strong>Punkt</strong> gibt immer <span class="m">f(…) = …</span>. Das Wort <strong>Extrem-/Hoch-/Tiefpunkt</strong> gibt <em>zusätzlich</em> <span class="m">f′ = 0</span>, <strong>Wendepunkt</strong> gibt <em>zusätzlich</em> <span class="m">f″ = 0</span>. Ein Hochpunkt allein liefert also schon zwei Gleichungen!</p></div>
+
+  <h2>3. So tippst du es in den TI-Nspire</h2>
+<pre class="cas">delVar a,b,c,d                           <span class="c">alte Werte löschen</span>
+f(x):=a*x^3+b*x^2+c*x+d                  <span class="r">Fertig</span>
+f1(x):=d/dx(f(x))                        <span class="r">Fertig</span>
+f2(x):=d/dx(f1(x))                       <span class="r">Fertig</span>
+solve(f(0)=3 and f1(0)=0 and f2(1)=0 and f(1)=1,{a,b,c,d})
+                                         <span class="r">a=1 and b=−3 and c=0 and d=3</span></pre>
+  <div class="achtung"><span class="lbl">Rotstift · deine Mitschriften</span>
+    <ul>
+      <li>In deinen Notizen steht oft <code>solve(… , a)</code>. Bei mehreren Unbekannten <strong>alle</strong> in geschwungene Klammern: <code>{a,b,c,d}</code>. Sonst löst der Rechner nur nach a und gibt einen Term mit b, c, d zurück.</li>
+      <li><strong>Mal-Zeichen</strong> zwischen Buchstaben: <code>a*x^2</code>, nicht <code>ax^2</code> (das wäre eine Variable namens „ax“).</li>
+      <li>Wenn a, b, c schon einmal einen Wert bekommen haben: <code>delVar a,b,c,d</code>. Sonst rechnet der TI mit den alten Zahlen.</li>
+      <li>Winkel: <code>tan(135)</code> funktioniert nur im <strong>Grad</strong>-Modus richtig.</li>
+    </ul>
+  </div>
+
+  <h2>4. Musterbeispiele aus dem Unterricht</h2>
+  <div class="bsp"><h4>3.53 · Tangente gegeben</h4>
+    <p><span class="m">f(x) = ax² + bx + 1</span>. Die Tangente im Punkt <span class="m">P(−1 | −3)</span> hat die Gleichung <span class="m">x + y + 4 = 0</span>.</p>
+    <ol class="steps"><li>Tangente umformen: <span class="m">y = −x − 4</span> → Steigung −1.</li><li>I: <span class="m">f(−1) = −3</span> → <span class="m">a − b + 1 = −3</span>; II: <span class="m">f′(−1) = −1</span> → <span class="m">−2a + b = −1</span></li><li><code>solve(f(-1)=-3 and f1(-1)=-1,{a,b})</code> → <strong>a = 5, b = 9</strong></li><li><span class="m">f(x) = 5x² + 9x + 1</span></li></ol>
+  </div>
+  <div class="bsp"><h4>3.50 · Tiefpunkt und Steigung</h4>
+    <p>f hat Grad 2, Tiefpunkt <span class="m">T(2 | −2)</span>, Steigung bei 0 ist −3.</p>
+    <p>I <span class="m">f′(2) = 0</span>, II <span class="m">f(2) = −2</span>, III <span class="m">f′(0) = −3</span> → <span class="m">a = <span class="fr"><span>3</span><span>4</span></span>, b = −3, c = 1</span> → <strong><span class="m">f(x) = <span class="fr"><span>3</span><span>4</span></span>x² − 3x + 1</span></strong></p>
+  </div>
+  <div class="bsp"><h4>Hochpunkt + Wendepunkt (Grad 3)</h4>
+    <p><span class="m">H(0 | 3)</span> → <span class="m">f(0) = 3, f′(0) = 0</span>. <span class="m">W(1 | 1)</span> → <span class="m">f(1) = 1, f″(1) = 0</span>. Lösung: <span class="m">a = 1, b = −3, c = 0, d = 3</span> → <strong><span class="m">f(x) = x³ − 3x² + 3</span></strong>. Kontrolle: <span class="m">f′(x) = 3x² − 6x = 0</span> → x = 0 oder x = 2 ✓.</p>
+  </div>
+  <div class="bsp"><h4>3.58 · Winkel als Bedingung</h4>
+    <p>Grad 3, geht durch den Ursprung mit Steigungswinkel 135°, außerdem <span class="m">f(1) = 5</span> und <span class="m">f′(1) = 14</span>.</p>
+    <p><span class="m">f(0) = 0</span>, <span class="m">f′(0) = tan 135° = −1</span>, <span class="m">f(1) = 5</span>, <span class="m">f′(1) = 14</span> → <span class="m">a = 3, b = 3, c = −1, d = 0</span> → <strong><span class="m">f(x) = 3x³ + 3x² − x</span></strong></p>
+  </div>
+  <div class="bsp"><h4>3.67 · Symmetrie nutzen</h4>
+    <p>Grad 4, symmetrisch zur y-Achse, <span class="m">f(0) = 2</span>, Tiefpunkt bei (1 | 0).</p>
+    <p>Ansatz <span class="m">ax<sup>4</sup> + cx² + e</span> (nur 3 Unbekannte). <span class="m">f(0) = 2, f(1) = 0, f′(1) = 0</span> → <span class="m">a = 2, c = −4, e = 2</span> → <strong><span class="m">f(x) = 2x<sup>4</sup> − 4x² + 2</span></strong>. Ohne Symmetrie-Ansatz bräuchtest du 5 Gleichungen (wie in deiner Mitschrift mit f(−1) und f′(−1) zusätzlich); das Ergebnis ist dasselbe.</p>
+  </div>
+  <div class="bsp"><h4>3.74 · Im Kontext (Seil/Brücke)</h4>
+    <p>Parabel durch A(0 | 0) und B(40 | 8), in B Steigungswinkel 45°.</p>
+    <p><span class="m">f(0) = 0, f(40) = 8, f′(40) = tan 45° = 1</span> → <span class="m">a = <span class="fr"><span>1</span><span>50</span></span>, b = −<span class="fr"><span>3</span><span>5</span></span>, c = 0</span>. Winkel in A: <span class="m">f′(0) = −0,6</span> → <span class="m">tan<sup>−1</sup>(−0,6) ≈ −30,96°</span>, also 30,96° gegen die Waagrechte bzw. 149,04° als Neigungswinkel in [0°; 180°]. Tiefster Punkt: <span class="m">f′(x) = 0</span> → x = 15, <span class="m">f(15) = −4,5</span>. Die Steigung der Strecke AB ist 8/40 = 0,2; die Tangente ist bei <span class="m">f′(x) = 0,2</span> → x = 20 parallel zu AB, dort ist der Durchhang am größten: <span class="m">f(20) = −4</span>, also 4 + 4 = 8 m unter der Strecke AB.</p>
+  </div>
+
+  <h2>Übungen</h2>
+  <p class="task"><span class="tn">A.1</span>Eine Parabel schneidet die y-Achse bei 3 und hat den Tiefpunkt T(2 | −1).</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(0) = 3, f(2) = −1, f′(2) = 0</span> → <span class="m">a = 1, b = −4, c = 3</span> → <strong>f(x) = x² − 4x + 3</strong>.</p></details>
+  <p class="task"><span class="tn">A.2</span>Grad 3 mit Sattelpunkt S(1 | 2), geht durch (0 | 1).</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(1) = 2, f′(1) = 0, f″(1) = 0, f(0) = 1</span> → <span class="m">a = 1, b = −3, c = 3, d = 1</span> → <strong>f(x) = x³ − 3x² + 3x + 1</strong> (= (x − 1)³ + 2).</p></details>
+  <p class="task"><span class="tn">A.3</span>Grad 3, punktsymmetrisch zum Ursprung, Hochpunkt H(1 | 2).</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p>Ansatz <span class="m">ax³ + cx</span>: <span class="m">f(1) = a + c = 2</span>, <span class="m">f′(1) = 3a + c = 0</span> → <span class="m">a = −1, c = 3</span> → <strong>f(x) = −x³ + 3x</strong>.</p></details>
+  <p class="task"><span class="tn">A.4</span>Grad 4, symmetrisch zur y-Achse, Wendepunkt W(1 | 0), schneidet die y-Achse bei 5.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(0) = 5, f(1) = 0, f″(1) = 0</span> → <span class="m">a = 1, c = −6, e = 5</span> → <strong>f(x) = x<sup>4</sup> − 6x² + 5</strong>.</p></details>
+  <p class="task"><span class="tn">A.5</span>Grad 3, geht durch (0 | 4), Wendepunkt W(2 | 0) mit Wendetangente <span class="m">y = −3x + 6</span>.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(0) = 4, f(2) = 0, f′(2) = −3, f″(2) = 0</span> → <span class="m">a = <span class="fr"><span>1</span><span>4</span></span>, b = −<span class="fr"><span>3</span><span>2</span></span>, c = 0, d = 4</span> → <strong>f(x) = ¼x³ − 1,5x² + 4</strong>.</p></details>
+  <p class="task"><span class="tn">A.6</span>Grad 3: geht durch den Ursprung, Tiefpunkt T(2 | −4), Wendestelle bei 1.</p>
+  <details class="sol"><summary>Lösung anzeigen</summary><p><span class="m">f(0) = 0, f(2) = −4, f′(2) = 0, f″(1) = 0</span> → <strong>f(x) = x³ − 3x²</strong>.</p></details>
+
+  <div class="finish"><label><input type="checkbox" data-done="aufsuchen"> Aufsuchen sitzt</label><button class="btn primary" data-go="beweise">Weiter: Sätze &amp; Beweise →</button></div>
+</section>
+
+<!-- ===================================================== BEWEISE -->
+<section class="view" data-view="beweise" hidden>
+  <p class="eyebrow">Definitionen · Sätze · Beweise</p>
+  <h1>Sätze &amp; Beweise</h1>
+  <p class="lead">Laut Stoffumfang können Definitionen, Sätze und Beweise aus dem Unterricht gefragt werden. Lern zuerst mit den Karten die Aussagen, dann schreib die Beweise unten zweimal selbst ab, ohne hinzusehen.</p>
+
+  <h2>Lernkarten</h2>
+  <div class="deck" id="deck">
+    <div class="card" id="card" role="button" tabindex="0" aria-live="polite"></div>
+    <div class="deckbar">
+      <span class="info" id="deckInfo">Karte 1</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" id="deckFlip" type="button">Umdrehen</button>
+        <button class="btn" id="deckAgain" type="button">Nochmal</button>
+        <button class="btn primary" id="deckKnown" type="button">Kann ich ✓</button>
+      </div>
+    </div>
+    <div class="deckbar"><span class="info" id="deckStat"></span><button class="go" id="deckReset" type="button">Stapel neu mischen</button></div>
+  </div>
+
+  <h2>Die Beweise zum Aufschreiben</h2>
+  <h3>B1 · Differenzenquotient einer linearen Funktion ist k</h3>
+  <p class="fb"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span> = <span class="fr"><span>(kb + d) − (ka + d)</span><span>b − a</span></span> = <span class="fr"><span>k(b − a)</span><span>b − a</span></span> = k &nbsp;∎</p>
+
+  <h3>B2 · Konstante: f(x) = c ⇒ f′(x) = 0</h3>
+  <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>f(z) − f(x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>c − c</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 0 = 0 &nbsp;∎</p>
+
+  <h3>B3 · f(x) = x ⇒ f′(x) = 1 (allgemeiner: a·x ⇒ a)</h3>
+  <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>z − x</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 1 = 1 &nbsp;&nbsp;&nbsp; <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>az − ax</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a(z − x)</span><span>z − x</span></span> = a &nbsp;∎</p>
+
+  <h3>B4 · f(x) = a·x² ⇒ f′(x) = 2a·x</h3>
+  <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>az² − ax²</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>a(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> a(z + x) = a(x + x) = 2ax &nbsp;∎</p>
+
+  <h3>B5 · Potenzregel: f(x) = xⁿ ⇒ f′(x) = n·xⁿ⁻¹</h3>
+  <p>Mit der Regel von Horner (a = z, b = x):</p>
+  <p class="fb">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>z<sup>n</sup> − x<sup>n</sup></span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>(z − x)(z<sup>n−1</sup> + z<sup>n−2</sup>x + … + x<sup>n−1</sup>)</span><span>z − x</span></span><br>= <span class="lim">lim<span>z→x</span></span> (z<sup>n−1</sup> + z<sup>n−2</sup>x + … + x<sup>n−1</sup>) = x<sup>n−1</sup> + x<sup>n−1</sup> + … + x<sup>n−1</sup> = n · x<sup>n−1</sup> &nbsp;∎</p>
+  <p>In der Klammer stehen n Summanden; jeder wird für z = x zu <span class="m">x<sup>n−1</sup></span>.</p>
+
+  <h3>B6 · Faktor- und Summenregel</h3>
+  <p class="fb"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>c·g(z) − c·g(x)</span><span>z − x</span></span> = c · <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>g(z) − g(x)</span><span>z − x</span></span> = c · g′(x)</p>
+  <p class="fb"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>[g(z) + h(z)] − [g(x) + h(x)]</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>g(z) − g(x)</span><span>z − x</span></span> + <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>h(z) − h(x)</span><span>z − x</span></span> = g′(x) + h′(x) &nbsp;∎</p>
+
+  <h3>B7 · Regel von Horner</h3>
+  <p class="fb">(a − b)(a<sup>n−1</sup> + a<sup>n−2</sup>b + … + ab<sup>n−2</sup> + b<sup>n−1</sup>)<br>= a<sup>n</sup> + a<sup>n−1</sup>b + … + a²b<sup>n−2</sup> + ab<sup>n−1</sup> − a<sup>n−1</sup>b − a<sup>n−2</sup>b² − … − ab<sup>n−1</sup> − b<sup>n</sup> = a<sup>n</sup> − b<sup>n</sup> &nbsp;∎</p>
+  <p>Beim Ausmultiplizieren heben sich alle mittleren Terme paarweise weg; nur der erste und der letzte bleiben.</p>
+
+  <h3>B8 · Abspalten eines Linearfaktors: f(x) = (x − x₀)·g(x)</h3>
+  <p>Sei <span class="m">f(x) = a<sub>n</sub>x<sup>n</sup> + … + a<sub>1</sub>x + a<sub>0</sub></span> und <span class="m">f(x<sub>0</sub>) = 0</span>. Dann</p>
+  <p class="fb">f(x) = f(x) − f(x<sub>0</sub>) = a<sub>n</sub>(x<sup>n</sup> − x<sub>0</sub><sup>n</sup>) + a<sub>n−1</sub>(x<sup>n−1</sup> − x<sub>0</sub><sup>n−1</sup>) + … + a<sub>1</sub>(x − x<sub>0</sub>)</p>
+  <p>Auf jede Klammer die Regel von Horner anwenden: Jede enthält den Faktor <span class="m">(x − x<sub>0</sub>)</span>. Herausheben ergibt <span class="m">f(x) = (x − x<sub>0</sub>)·(a<sub>n</sub>x<sup>n−1</sup> + …) = (x − x<sub>0</sub>)·g(x)</span>. Wegen <span class="m">a<sub>n</sub> ≠ 0</span> hat g den Grad n − 1. ∎</p>
+
+  <h3>B9 · Eine Gleichung vom Grad n hat höchstens n Lösungen</h3>
+  <p>Hat f die Lösungen <span class="m">x<sub>1</sub>, …, x<sub>k</sub></span>, kann man (B8) nacheinander die Linearfaktoren abspalten. Jedes Mal sinkt der Grad um 1. Nach n Schritten wäre <span class="m">f(x) = a<sub>n</sub>(x − x<sub>1</sub>)…(x − x<sub>n</sub>)</span>. Wäre <span class="m">x*</span> eine weitere Lösung, müsste nach dem Produkt-Null-Satz ein Faktor null sein (<span class="m">a<sub>n</sub> ≠ 0</span>), also <span class="m">x* = x<sub>i</sub></span> für ein i. Also gibt es höchstens n verschiedene Lösungen. ∎</p>
+
+  <h3>B10 · Warum f′(p) = 0 bei einem Extremum (notwendige Bedingung)</h3>
+  <p>Sei p eine lokale Maximumstelle, also <span class="m">f(z) ≤ f(p)</span> für z nahe p. Für <strong>z &gt; p</strong> ist der Zähler <span class="m">f(z) − f(p) ≤ 0</span>, der Nenner positiv, also <span class="m"><span class="fr"><span>f(z) − f(p)</span><span>z − p</span></span> ≤ 0</span>. Für <strong>z &lt; p</strong> ist der Nenner negativ, also der Quotient <span class="m">≥ 0</span>. Der Grenzwert <span class="m">f′(p)</span> muss also gleichzeitig <span class="m">≤ 0</span> und <span class="m">≥ 0</span> sein: <span class="m">f′(p) = 0</span>. ∎</p>
+
+  <h2>Alle Sätze auf einen Blick</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Satz</th><th>Aussage</th></tr></thead>
+    <tbody>
+      <tr><td>Produkt-Null-Satz</td><td class="mw">A·B = 0 ⇔ A = 0 ∨ B = 0</td></tr>
+      <tr><td>Horner</td><td class="mw">a<sup>n</sup> − b<sup>n</sup> = (a − b)(a<sup>n−1</sup> + … + b<sup>n−1</sup>)</td></tr>
+      <tr><td>Linearfaktor</td><td class="mw">f(x₀) = 0 ⇒ f(x) = (x − x₀)·g(x), Grad g = n − 1</td></tr>
+      <tr><td>Anzahl Lösungen</td><td>Gleichung vom Grad n: höchstens n Lösungen; Polynom vom Grad n: höchstens n Nullstellen</td></tr>
+      <tr><td>Differenzenquotient linear</td><td><span class="m">f(x) = kx + d</span> hat in jedem Intervall den Differenzenquotienten k</td></tr>
+      <tr><td>Sekante</td><td>Differenzenquotient in [a; b] = Steigung der Sekante durch (a|f(a)), (b|f(b))</td></tr>
+      <tr><td>Tangente</td><td class="mw">f′(x) = k = tan(α)</td></tr>
+      <tr><td>Ableitungsregeln</td><td class="mw">c′ = 0 · (xⁿ)′ = nxⁿ⁻¹ · (c·g)′ = c·g′ · (g + h)′ = g′ + h′</td></tr>
+      <tr><td>Monotoniesatz</td><td class="mw">f′ &gt; 0 im Inneren von I ⇒ streng monoton steigend in I (f′ &lt; 0 ⇒ fallend)</td></tr>
+      <tr><td>Notwendige Bed.</td><td class="mw">p lokale Extremstelle ⇒ f′(p) = 0</td></tr>
+      <tr><td>Vorzeichenwechsel</td><td>Ändert f bei p das Monotonieverhalten, ist p eine lokale Extremstelle</td></tr>
+      <tr><td>2. Ableitung</td><td class="mw">f′(p) = 0 ∧ f″(p) &lt; 0 ⇒ Max; f′(p) = 0 ∧ f″(p) &gt; 0 ⇒ Min</td></tr>
+      <tr><td>Krümmungssatz</td><td class="mw">f″ &gt; 0 ⇒ linksgekrümmt; f″ &lt; 0 ⇒ rechtsgekrümmt</td></tr>
+      <tr><td>Wendestelle</td><td class="mw">f″(p) = 0 ∧ f‴(p) ≠ 0 ⇒ p ist Wendestelle; Wendestelle von f = lokale Extremstelle von f′</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="finish"><label><input type="checkbox" data-done="beweise"> Sätze &amp; Beweise kann ich</label><button class="btn primary" data-go="technik">Weiter: TI-Nspire →</button></div>
+</section>
+
+<!-- ===================================================== TECHNIK -->
+<section class="view" data-view="technik" hidden>
+  <p class="eyebrow">Technologie · TI-Nspire CAS (Computer-Software)</p>
+  <h1>TI-Nspire Spickzettel</h1>
+  <p class="lead">Alle Befehle für die Schularbeit, in der Schreibweise, die du schon aus dem Unterricht kennst. Daneben die GeoGebra-Befehle, falls du doch einmal GeoGebra brauchst (der Stoffzettel erwähnt ein „GeoGebra-fähiges Endgerät“).</p>
+
+  <h2>Vorher einrichten (einmal, zu Hause!)</h2>
+  <ul>
+    <li><strong>Winkel auf Grad stellen:</strong> Datei → Einstellungen → Dokumenteinstellungen → Winkel: <em>Grad</em>. Test: <code>tan(45)</code> muss <code>1</code> ergeben.</li>
+    <li><strong>Neues Dokument</strong> → Calculator (Rechner) hinzufügen.</li>
+    <li><strong>Strg + Enter</strong> (Mac: ⌘ + Enter) gibt eine Dezimalzahl statt eines Bruchs aus.</li>
+    <li>Zum Testen einmal die Musterlösung aus „Kurven untersuchen“ komplett durchtippen.</li>
+  </ul>
+
+  <h2>Die Befehle</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Wofür</th><th>TI-Nspire</th><th>GeoGebra</th></tr></thead>
+    <tbody>
+      <tr><td>Funktion definieren</td><td><code>f(x):=x^3-2*x</code></td><td><code>f(x):=x^3-2x</code></td></tr>
+      <tr><td>Ableitung definieren</td><td><code>f1(x):=d/dx(f(x))</code> (Vorlage) oder <code>f1(x):=derivative(f(x),x)</code></td><td><code>f'(x)</code></td></tr>
+      <tr><td>2./3. Ableitung</td><td><code>f2(x):=d/dx(f1(x))</code>, <code>f3(x):=d/dx(f2(x))</code></td><td><code>f''(x)</code>, <code>f'''(x)</code></td></tr>
+      <tr><td>Wert berechnen</td><td><code>f1(2)</code></td><td><code>f'(2)</code></td></tr>
+      <tr><td>Gleichung lösen</td><td><code>solve(f1(x)=0,x)</code></td><td><code>Löse(f'(x)=0)</code></td></tr>
+      <tr><td>nur Lösungen in [0; 6]</td><td><code>solve(f2(x)=0,x)|0≤x≤6</code></td><td><code>Löse(f''(x)=0)</code>, dann Lösungen außerhalb streichen</td></tr>
+      <tr><td>numerisch (wenn solve nichts findet)</td><td><code>nSolve(f(x)=233,x,5,15)</code></td><td><code>NLöse(f(x)=233)</code></td></tr>
+      <tr><td>Nullstellen</td><td><code>zeros(f(x),x)</code></td><td><code>Nullstellen(f)</code></td></tr>
+      <tr><td>Faktorisieren / ausmultiplizieren</td><td><code>factor(x^3-7*x+6)</code>, <code>expand((x-1)^2)</code></td><td><code>Faktorisiere(…)</code>, <code>Ausmultiplizieren(…)</code></td></tr>
+      <tr><td>Maximum/Minimum (Stelle)</td><td><code>fMax(f(x),x)</code>, <code>fMin(f(x),x,0,10)</code></td><td><code>Extremum(f)</code>, <code>Extremum(f,0,10)</code></td></tr>
+      <tr><td>Wendepunkte</td><td><code>solve(f2(x)=0,x)</code> + <code>f3(…)</code></td><td><code>Wendepunkt(f)</code></td></tr>
+      <tr><td>Tangente</td><td><code>tangentLine(f(x),x,2)</code></td><td><code>Tangente(2,f)</code></td></tr>
+      <tr><td>Winkel aus Steigung</td><td><code>tan⁻¹(-0.6)</code> (Grad-Modus) bzw. <code>arctan(-0.6)</code></td><td><code>atand(-0.6)</code></td></tr>
+      <tr><td>Steigung aus Winkel</td><td><code>tan(135)</code></td><td><code>tan(135°)</code></td></tr>
+      <tr><td>Gleichungssystem</td><td><code>solve(f(0)=3 and f1(0)=0,{a,b})</code></td><td><code>Löse({f(0)=3, f'(0)=0},{a,b})</code></td></tr>
+      <tr><td>Variablen löschen</td><td><code>delVar a,b,c,d</code></td><td>—</td></tr>
+      <tr><td>Grenzwert (Kontrolle)</td><td><code>limit((f(z)-f(x))/(z-x),z,x)</code></td><td><code>Grenzwert((f(z)-f(x))/(z-x), z, x)</code></td></tr>
+      <tr><td>Werte einsetzen</td><td><code>f(x)|a=5 and b=9</code></td><td><code>Ersetze(…)</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Rezepte</h2>
+  <h3>Gleichung, Extremstellen, Wendestellen</h3>
+<pre class="cas">f(x):=−1/72*(x^4−16*x^3+72*x^2−720)
+f1(x):=d/dx(f(x))
+f2(x):=d/dx(f1(x))
+f3(x):=d/dx(f2(x))
+solve(f2(x)=0,x)          <span class="r">x=2 or x=6</span>
+f3(2)                      <span class="r">2/3</span>      <span class="c">≠ 0 → Wendestelle</span></pre>
+  <h3>Tangente + Neigungswinkel</h3>
+<pre class="cas">f(2)                       <span class="r">68/9</span>       <span class="c">Strg+Enter → 7.5556</span>
+f1(2)                      <span class="r">−16/9</span>      <span class="c">→ −1.7778</span>
+solve(f(2)=f1(2)*2+d,d)    <span class="r">d=100/9</span>
+tangentLine(f(x),x,2)      <span class="r">100/9−16*x/9</span>   <span class="c">Kontrolle</span>
+tan⁻¹(f1(2))               <span class="r">−60.64</span>    <span class="c">+180 → 119.36°</span></pre>
+  <h3>Unbekannter Parameter (SA 2025, Bsp. 15 b)</h3>
+<pre class="cas">h(x):=−10/v^2*x^2+x+4
+h1(x):=d/dx(h(x))
+solve(h1(2.5)=0,v)|v&gt;0     <span class="r">v=7.0711</span>   <span class="c">(= √50 m/s)</span></pre>
+
+  <div class="achtung"><span class="lbl">Die häufigsten TI-Fallen</span>
+    <ul>
+      <li><code>ax</code> ist <em>eine</em> Variable. Immer <code>a*x</code>.</li>
+      <li><code>x(x-2)</code> versteht der TI als Funktion x an der Stelle x−2. Immer <code>x*(x-2)</code>.</li>
+      <li>Minus als Vorzeichen: Am Computer reicht <code>-</code>; der Taschenrechner hat eine eigene (−)-Taste.</li>
+      <li>Bei Systemen: alle Unbekannten in <code>{ }</code>, Gleichungen mit <code>and</code> verbinden.</li>
+      <li>Hat a schon einen Wert (z. B. aus der Aufgabe davor), kommt Unsinn heraus. Dann <code>delVar</code>.</li>
+      <li>Grad-Modus kontrollieren, bevor du Winkel rechnest.</li>
+      <li>Ins Heft immer die <strong>Gleichung</strong> schreiben, die du gelöst hast, nicht nur den Befehl.</li>
+    </ul>
+  </div>
+  <div class="finish"><label><input type="checkbox" data-done="technik"> TI-Nspire ist eingerichtet und getestet</label><button class="btn primary" data-go="fehler">Weiter: Fehlerliste →</button></div>
+</section>
+
+<!-- ===================================================== FEHLER -->
+<section class="view" data-view="fehler" hidden>
+  <p class="eyebrow">Aus deinen Mitschriften und der Schularbeit 2025</p>
+  <h1>Fehler, die Punkte kosten</h1>
+  <p class="lead">Jeder dieser Fehler ist wirklich passiert. Lies die Liste am Abend vor der Schularbeit noch einmal.</p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>Falsch</th><th>Richtig</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>f′(x) = 5,8x ohne Rechnung (0 P)</td><td>Limes-Kette komplett hinschreiben: einsetzen, (z − x) herausheben, kürzen, z = x einsetzen</td></tr>
+      <tr><td class="num">2</td><td>Wendestelle nur mit f″(x) = 0 „nachgewiesen“ (½ P)</td><td>zusätzlich <span class="m">f‴(p) ≠ 0</span> zeigen, und Lösungen außerhalb des Intervalls begründet streichen</td></tr>
+      <tr><td class="num">3</td><td>„tiefste Stelle“ mit h(t) = 0 berechnet (0 P)</td><td>tiefste/höchste Stelle → <span class="m">h′(t) = 0</span>; h(t) = 0 heißt „am Boden“</td></tr>
+      <tr><td class="num">4</td><td>h″ als Zeitdauer gedeutet (0 P)</td><td>h″ = Beschleunigung in m/s² zum Zeitpunkt t</td></tr>
+      <tr><td class="num">5</td><td>Hochpunkt gesucht, aber nicht h′ = 0 angesetzt; Parameter v₀ nicht gelöst (0 P)</td><td>Höchster Punkt bei x = 2,5 ⇒ <span class="m">h′(2,5) = 0</span> nach v₀ lösen</td></tr>
+      <tr><td class="num">6</td><td>„im Mittel fallend“ ⇒ „Tangente überall negativ“ angekreuzt</td><td>Differenzenquotient sagt nur etwas über die Sekante und f(b) − f(a)</td></tr>
+      <tr><td class="num">7</td><td>„genau n Lösungen“</td><td><strong>höchstens</strong> n Lösungen</td></tr>
+      <tr><td class="num">8</td><td>Nur einzelne Werte angegeben, wo „alle c“ gefragt war</td><td>„alle“ verlangt meist ein Intervall, z. B. <span class="m">−4 &lt; c &lt; −1</span></td></tr>
+      <tr><td class="num">9</td><td><span class="m">f′(p) = 0 ∧ f″(p) ≥ 0</span> ⇒ Minimum</td><td><strong>f″(p) &gt; 0</strong>; bei f″(p) = 0 mit dem Vorzeichenwechsel prüfen</td></tr>
+      <tr><td class="num">10</td><td>Definition Polynom mit <span class="m">a<sub>n</sub> = 0</span></td><td><span class="m">a<sub>n</sub> ≠ 0</span></td></tr>
+      <tr><td class="num">11</td><td>Durch x dividieren</td><td>x herausheben, sonst geht x = 0 verloren</td></tr>
+      <tr><td class="num">12</td><td><span class="m">5·(z² − t²)/(z − t) = 5·z + t</span></td><td><span class="m">= 5·(z + t)</span>, Klammern!</td></tr>
+      <tr><td class="num">13</td><td>Winkel −30,96° als Neigungswinkel in [0°; 180°]</td><td>+180° ⇒ 149,04°</td></tr>
+      <tr><td class="num">14</td><td><code>solve(…, a)</code> bei vier Unbekannten</td><td><code>solve(…, {a,b,c,d})</code></td></tr>
+      <tr><td class="num">15</td><td>Interpretation ohne Einheit/Zeitpunkt („die mittlere Änderungsrate ist −31,82 s“)</td><td>„In den ersten 5 s nimmt die Höhe im Mittel um 31,82 m pro Sekunde ab.“</td></tr>
+      <tr><td class="num">16</td><td>f′(3) berechnen, indem man zuerst 3 einsetzt und dann ableitet</td><td>zuerst ableiten, dann einsetzen</td></tr>
+      <tr><td class="num">17</td><td>Bei Substitution die Rücksubstitution vergessen</td><td>gefragt ist x, nicht u</td></tr>
+    </tbody>
+  </table></div>
+  <div class="finish"><label><input type="checkbox" data-done="fehler"> Fehlerliste gelesen</label><button class="btn primary" data-go="quiz">Weiter: Ankreuz-Trainer →</button></div>
+</section>
+
+<!-- ===================================================== QUIZ -->
+<section class="view" data-view="quiz" hidden>
+  <p class="eyebrow">Typ-1-Training · sofortige Rückmeldung</p>
+  <h1>Ankreuz-Trainer</h1>
+  <p class="lead">Wie in der Schularbeit: Bei „2 aus 5“ gibt es den Punkt nur, wenn genau die zwei richtigen angekreuzt sind. Erst kreuzen, dann „Prüfen“.</p>
+  <div class="kicker"><span class="score" id="qScore">0 / 0</span><span class="pts">richtig beantwortet</span><button class="go" id="qReset" type="button">alles zurücksetzen</button></div>
+  <div id="quizBox"></div>
+  <div class="finish"><label><input type="checkbox" data-done="quiz"> Trainer durchgespielt</label><button class="btn primary" data-go="altsa">Weiter: Schularbeit 2025 →</button></div>
+</section>
+
+<!-- ===================================================== SA 2025 -->
+<section class="view" data-view="altsa" hidden>
+  <p class="eyebrow">Generalprobe 1 · echte Schularbeit vom 05.11.2025 (7ABC)</p>
+  <h1>Schularbeit 2025, durchgerechnet</h1>
+  <div class="exam-meta"><span>100 min</span><span>24 Punkte</span><span>Teil 1: Bsp. 1–13 (je 1 P)</span><span>Teil 2: Bsp. 14–16</span></div>
+  <p class="lead">Rechne zuerst selbst mit Uhr (die Angaben hast du als Fotos). Dann vergleiche hier. Bei jeder Aufgabe steht, <strong>woran der Punkt hängt</strong>.</p>
+
+  <h2>Teil 1</h2>
+  <p class="task"><span class="tn">Bsp. 1</span>Benzinpreise: mittlere Änderungsrate 2010–2014 ist −0,07. Kreuze die zwei zutreffenden Aussagen an.</p>
+  <details class="sol"><summary>Lösung</summary><p>✓ „2014 billiger als 2010“ und ✓ „<span class="m">B(2014) − B(2010) = −0,28</span>“ (−0,07 · 4 Jahre). Falsch: „gestiegen“, „um 7 % billiger“ (das wäre relativ), „B(2014) &gt; B(2010)“.</p></details>
+  <p class="task"><span class="tn">Bsp. 2</span><span class="m"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span> &lt; 0</span>. Kreuze die zwei zutreffenden an.</p>
+  <details class="sol"><summary>Lösung</summary><p>✓ „Die mittlere Änderungsrate von f in [a; b] ist negativ.“ ✓ „Die Steigung der Sekante von f in [a; b] ist negativ.“ <span class="bad">Nicht</span>: streng monoton fallend, momentane Änderungsrate an a und b negativ, Tangente überall negativ. Das alles weiß man nicht.</p></details>
+  <p class="task"><span class="tn">Bsp. 3</span>Skizziere zum Graphen der Zeit-Ort-Funktion s (Hochpunkt bei t = 3) die Geschwindigkeitsfunktion v.</p>
+  <details class="sol"><summary>Lösung</summary><p>s ist (ungefähr) eine nach unten offene Parabel mit Hochpunkt bei t = 3. Also ist <strong>v eine fallende Gerade mit Nullstelle bei t = 3</strong>: für t &lt; 3 positiv, für t &gt; 3 negativ. Eine waagrechte Gerade (wie im Original gezeichnet) wäre eine konstante Geschwindigkeit, dann müsste s eine Gerade sein. Siehe Skizze im Kapitel „Ableiten &amp; Tangenten“.</p></details>
+  <p class="task"><span class="tn">Bsp. 4</span>Grad 2, lokales Minimum bei x = 5.</p>
+  <details class="sol"><summary>Lösung</summary><p>✓ <span class="m">f(4) &gt; f(5)</span> ✓ <span class="m">f′(4) &lt; 0</span>.</p></details>
+  <p class="task"><span class="tn">Bsp. 5</span><span class="m">E = m₀c² + <span class="fr"><span>m₀v²</span><span>2</span></span></span>. Berechne <span class="m"><span class="fr"><span>dE</span><span>dv</span></span></span>.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m"><span class="fr"><span>dE</span><span>dv</span></span> = m₀·v</span></p></details>
+  <p class="task"><span class="tn">Bsp. 6</span><span class="m">f(x) = x³ − 3x² + 4</span>, <span class="m">g(x) = 9x + 1</span>. Alle Stellen, an denen die Tangente parallel zu g ist.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">f′(x) = 3x² − 6x = 9</span> ⇒ <span class="m">x² − 2x − 3 = 0</span> ⇒ <strong>x = −1, x = 3</strong>.</p></details>
+  <p class="task"><span class="tn">Bsp. 7</span>Definiere die mittlere Spannung <span class="m"><span class="ov">U</span>(e, f)</span> im Zeitintervall [e; f].</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m"><span class="ov">U</span>(e, f) = <span class="fr"><span>Φ(f) − Φ(e)</span><span>f − e</span></span></span>. Die Buchstaben sind ungewohnt, die Struktur ist ein normaler Differenzenquotient.</p></details>
+  <p class="task"><span class="tn">Bsp. 8</span>„Eine algebraische Gleichung vom Grad ① besitzt in ℝ ② n Lösungen.“</p>
+  <details class="sol"><summary>Lösung</summary><p>① n &nbsp; ② <strong>höchstens</strong></p></details>
+  <p class="task"><span class="tn">Bsp. 9</span><span class="m">h(x) = 2,9x²</span>: Differentialquotient als Grenzwert anschreiben und damit <span class="m">h′(x)</span> berechnen. Alle Zwischenschritte!</p>
+  <details class="sol"><summary>Lösung</summary><p class="fb">h′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>2,9z² − 2,9x²</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>2,9(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 2,9(z + x) = 5,8x</p></details>
+  <p class="task"><span class="tn">Bsp. 10</span>Wähle a, b so, dass der Differenzenquotient in [a; b] positiv ist, die Differentialquotienten an a und b aber negativ.</p>
+  <details class="sol"><summary>Lösung</summary><p>Beide Stellen müssen auf <strong>fallenden</strong> Stücken liegen (f′ &lt; 0), aber f(b) muss <strong>höher</strong> sein als f(a). Also: a ganz unten auf dem linken fallenden Ast, kurz vor dem ersten Tiefpunkt; b auf dem mittleren fallenden Stück zwischen Hochpunkt und zweitem Tiefpunkt, wo der Graph noch höher liegt. Dann steigt die Sekante, obwohl f an beiden Randstellen fällt.</p></details>
+  <p class="task"><span class="tn">Bsp. 11</span>Graph mit Wendepunkten. Ordne zu: <span class="m">f(x) &lt; 0 ∧ f″(x) = 0</span> und <span class="m">f′(x) &gt; 0 ∧ f″(x) &gt; 0</span>.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">f &lt; 0 ∧ f″ = 0</span>: ein Wendepunkt unter der x-Achse → <strong>B (x = −1)</strong>. <span class="m">f′ &gt; 0 ∧ f″ &gt; 0</span>: steigend <em>und</em> linksgekrümmt, also direkt rechts von einem Tiefpunkt → <strong>A (x = −3)</strong> (D war laut Korrektur falsch).</p></details>
+  <p class="task"><span class="tn">Bsp. 12</span>Grad 3 mit markierten Punkten (Hochpunkt H(1 | 4), Tiefpunkt T(3 | 1)). Alle c, für die <span class="m">g(x) = f(x) + c</span> genau drei Nullstellen hat.</p>
+  <details class="sol"><summary>Lösung</summary><p>„+ c“ verschiebt den Graphen nach oben/unten. Drei Nullstellen gibt es genau dann, wenn die x-Achse <strong>zwischen</strong> Tiefpunkt und Hochpunkt liegt: <span class="m">f(3) + c &lt; 0 &lt; f(1) + c</span> ⇒ <span class="m">1 + c &lt; 0</span> und <span class="m">4 + c &gt; 0</span> ⇒ <strong><span class="m">−4 &lt; c &lt; −1</span></strong>. Nur einzelne Werte wie −2, −3 anzugeben, reicht nicht („alle“!). Bei c = −1 oder c = −4 berührt der Graph die Achse nur → zwei Nullstellen.</p></details>
+  <p class="task"><span class="tn">Bsp. 13</span>Term für die momentane Änderungsrate an der Stelle x₀.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m"><span class="lim">lim<span>h→0</span></span> <span class="fr"><span>f(x₀ + h) − f(x₀)</span><span>h</span></span></span></p></details>
+
+  <h2>Teil 2</h2>
+  <h3>Bsp. 14 · Geburtstag <span class="pts">3 P</span></h3>
+  <p>Grad 3, Extremstellen 0 und 38, <span class="m">f″(38) = 38</span>. Komplette Lösung siehe Kapitel „Kurven untersuchen“, Abschnitt 8.</p>
+  <details class="sol"><summary>Lösung kurz</summary><p>a) steigend (−∞; 0], fallend [0; 38], steigend [38; ∞) &nbsp; b) rechtsgekrümmt (−∞; 19], linksgekrümmt [19; ∞) &nbsp; c) <span class="m">f(38) = 38</span></p></details>
+
+  <h3>Bsp. 15 · Eichhörnchen-Parcours <span class="pts">4 P</span></h3>
+  <p>(a) Rutsche <span class="m">f(x) = −<span class="fr"><span>1</span><span>72</span></span>(x<sup>4</sup> − 16x³ + 72x² − 720)</span>, 0 ≤ x ≤ 6.</p>
+  <details class="sol"><summary>a1) Weise nach, dass x = 2 die einzige Wendestelle in (0; 6) ist</summary>
+    <p><span class="m">f″(x) = −<span class="fr"><span>1</span><span>6</span></span>(x² − 8x + 12)</span>. <span class="m">f″(x) = 0 ⇒ x = 2 ∨ x = 6</span>. 6 liegt nicht im offenen Intervall (0; 6). <span class="m">f‴(x) = −<span class="fr"><span>1</span><span>3</span></span>(x − 4)</span>, <span class="m">f‴(2) = <span class="fr"><span>2</span><span>3</span></span> ≠ 0</span> ⇒ 2 ist Wendestelle (und die einzige).</p></details>
+  <details class="sol"><summary>a2) Wendetangente in W(2 | f(2))</summary>
+    <p><span class="m">f(2) = <span class="fr"><span>68</span><span>9</span></span> ≈ 7,56</span>, <span class="m">k = f′(2) = −<span class="fr"><span>16</span><span>9</span></span> ≈ −1,78</span>. <span class="m"><span class="fr"><span>68</span><span>9</span></span> = −<span class="fr"><span>16</span><span>9</span></span>·2 + d ⇒ d = <span class="fr"><span>100</span><span>9</span></span> ≈ 11,11</span>. <strong><span class="m">t: y = −1,78x + 11,11</span></strong> (exakt <span class="m">y = −<span class="fr"><span>16</span><span>9</span></span>x + <span class="fr"><span>100</span><span>9</span></span></span>). Die Parameterform <span class="m">X = (2 | 7,56) + t·(1 | −1,78)</span> wurde auch akzeptiert.</p></details>
+  <p>(b) Flugbahn <span class="m">h(x) = −<span class="fr"><span>10</span><span>v₀²</span></span>x² + x + 4</span>.</p>
+  <details class="sol"><summary>b1) v₀, damit der höchste Punkt bei x = 2,5 liegt</summary>
+    <p>Höchster Punkt ⇒ <span class="m">h′(2,5) = 0</span>. <span class="m">h′(x) = −<span class="fr"><span>20x</span><span>v₀²</span></span> + 1</span> ⇒ <span class="m">−<span class="fr"><span>50</span><span>v₀²</span></span> + 1 = 0</span> ⇒ <span class="m">v₀² = 50</span> ⇒ <strong><span class="m">v₀ = √50 ≈ 7,07 m/s</span></strong>.</p></details>
+  <details class="sol"><summary>b2) Neigungswinkel φ ∈ [0°; 180°] bei x = 3 für v₀ = 6,5</summary>
+    <p><span class="m">h′(3) = −<span class="fr"><span>60</span><span>42,25</span></span> + 1 ≈ −0,4201</span>. <span class="m">tan<sup>−1</sup>(−0,4201) ≈ −22,79°</span> ⇒ <strong><span class="m">φ ≈ 157,21°</span></strong>. (Achtung: Die Steigung kommt aus <span class="m">h′(3)</span>, nicht aus <span class="m">h(3)</span>!)</p></details>
+
+  <h3>Bsp. 16 · Bungee-Jumping <span class="pts">4 P</span></h3>
+  <p><span class="m">h(t) = <span class="fr"><span>12</span><span>11</span></span>t³ − <span class="fr"><span>130</span><span>11</span></span>t² + 233</span>, 0 ≤ t ≤ 10 (h in m, t in s).</p>
+  <details class="sol"><summary>a) Zeitpunkt der tiefsten Stelle</summary>
+    <p><span class="m">h′(t) = <span class="fr"><span>36</span><span>11</span></span>t² − <span class="fr"><span>260</span><span>11</span></span>t = 0 ⇒ t = 0 ∨ t = <span class="fr"><span>65</span><span>9</span></span> ≈ 7,22</span>. <span class="m">h″(7,22) = <span class="fr"><span>260</span><span>11</span></span> &gt; 0</span> ⇒ Minimum. Randwerte: <span class="m">h(0) = 233</span>, <span class="m">h(10) ≈ 142,1</span>, <span class="m">h(7,22) ≈ 27,5</span>. <strong>Nach etwa 7,22 s</strong> ist er am tiefsten (ca. 27,5 m über dem Boden).</p></details>
+  <details class="sol"><summary>b) Interpretiere h″(2,11) = −9,83</summary><p>Zum Zeitpunkt t = 2,11 s beträgt die Beschleunigung des Springers −9,83 m/s², d. h. seine Fallgeschwindigkeit nimmt in diesem Moment um ca. 9,83 m/s pro Sekunde zu.</p></details>
+  <details class="sol"><summary>c) Interpretiere (h(5) − h(0))/5 = −31,82</summary><p>In den ersten 5 Sekunden nimmt die Höhe des Springers im Mittel um 31,82 m pro Sekunde ab (mittlere Geschwindigkeit −31,82 m/s).</p></details>
+  <details class="sol"><summary>d) Wann ist er wieder auf Absprunghöhe (Zeitbereich [0; 15])?</summary><p><span class="m">h(t) = 233 ⇒ <span class="fr"><span>12</span><span>11</span></span>t³ − <span class="fr"><span>130</span><span>11</span></span>t² = 0 ⇒ t²(12t − 130) = 0 ⇒ t = 0 ∨ t = <span class="fr"><span>65</span><span>6</span></span> ≈ 10,83 s</span>.</p></details>
+
+  <div class="merke"><span class="lbl">Bilanz</span><p>In der Musterarbeit (12,5 P = Genügend) gingen die meisten Punkte bei Aufgaben verloren, die hier jetzt erklärt sind: Limes mit Zwischenschritten, f‴ ≠ 0, h′ = 0 für Extremwerte, Interpretation von f″, Graph von v aus s, Monotonie/Krümmung ohne Funktionsterm. Mit genau diesen Punkten wären es über 20 gewesen.</p></div>
+  <div class="finish"><label><input type="checkbox" data-done="altsa"> Schularbeit 2025 gerechnet</label><button class="btn primary" data-go="probe">Weiter: Probeschularbeit →</button></div>
+</section>
+
+<!-- ===================================================== PROBE -->
+<section class="view" data-view="probe" hidden>
+  <p class="eyebrow">Generalprobe 2 · neu, im Stil der SA 2025</p>
+  <h1>Probeschularbeit</h1>
+  <div class="exam-meta"><span>100 min</span><span>24 Punkte</span><span>Hilfsmittel: TI-Nspire, Formelsammlung</span></div>
+  <p class="lead">Stell dir einen Timer auf 100 Minuten, rechne auf Papier und deck erst danach die Lösungen auf. Trag am Ende deine Punkte ein.</p>
+
+  <h2>Teil 1 <span class="pts">je 1 Punkt</span></h2>
+  <p class="task"><span class="tn">1</span>Die Temperatur T (in °C) in einem Kühlraum wird t Stunden nach dem Einschalten gemessen. Es gilt <span class="m"><span class="fr"><span>T(4) − T(0)</span><span>4</span></span> = −1,5</span>. Kreuze die zwei zutreffenden Aussagen an:<br>
+  (A) Nach 4 Stunden ist es um 6 °C kälter als zu Beginn. (B) Die Temperatur sinkt in jeder Stunde um 1,5 °C. (C) Die Temperatur nimmt in den ersten 4 Stunden im Mittel um 1,5 °C pro Stunde ab. (D) <span class="m">T′(4) = −1,5</span> (E) <span class="m">T(4) &gt; T(0)</span></p>
+  <details class="sol"><summary>Lösung</summary><p><strong>A und C.</strong> (B) und (D) wären Aussagen über einzelne Stunden bzw. den Moment t = 4.</p></details>
+  <p class="task"><span class="tn">2</span>Gib alle reellen Lösungen der Gleichung <span class="m">x<sup>4</sup> − 5x² + 4 = 0</span> an.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">u = x²</span>: <span class="m">u² − 5u + 4 = 0</span> ⇒ u = 1, u = 4 ⇒ <strong>L = {−2, −1, 1, 2}</strong>.</p></details>
+  <p class="task"><span class="tn">3</span>Jemand löst <span class="m">x³ = 4x²</span>, indem er durch x² dividiert, und erhält L = {4}. Gib die korrekte Lösungsmenge an und erkläre den Fehler.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">x³ − 4x² = x²(x − 4) = 0</span> ⇒ <strong>L = {0, 4}</strong>. Durch x² darf man nur für x ≠ 0 dividieren; dabei ging die Lösung 0 verloren.</p></details>
+  <p class="task"><span class="tn">4</span>Gegeben ist <span class="m">f(x) = 4x²</span>. Schreibe den Differentialquotienten an der Stelle x als Grenzwert an und berechne damit <span class="m">f′(x)</span>. Alle Zwischenschritte!</p>
+  <details class="sol"><summary>Lösung</summary><p class="fb"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>4z² − 4x²</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>4(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 4(z + x) = 8x</p></details>
+  <p class="task"><span class="tn">5</span>Für die elektrische Leistung gilt <span class="m">P = R·I²</span> (R konstant). Berechne <span class="m"><span class="fr"><span>dP</span><span>dI</span></span></span>.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m"><span class="fr"><span>dP</span><span>dI</span></span> = 2R·I</span></p></details>
+  <p class="task"><span class="tn">6</span>Ermittle die Gleichung der Tangente an <span class="m">f(x) = x² − 3x + 1</span> an der Stelle 2.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">f(2) = −1</span>, <span class="m">f′(2) = 1</span> ⇒ <span class="m">−1 = 2 + d</span> ⇒ <strong><span class="m">y = x − 3</span></strong>.</p></details>
+  <p class="task"><span class="tn">7</span>Berechne den Steigungswinkel <span class="m">α ∈ [0°; 180°]</span> der Tangente an <span class="m">f(x) = ⅓x³ − 2x</span> an der Stelle 1.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">f′(1) = 1 − 2 = −1</span> ⇒ <span class="m">tan<sup>−1</sup>(−1) = −45°</span> ⇒ <strong>α = 135°</strong>.</p></details>
+  <p class="task"><span class="tn">8</span>Ein Auto bremst nach <span class="m">s(t) = 20t − t²</span> (m, s). Kreuze die zwei zutreffenden an: (A) <span class="m">v(0) = 20 m/s</span> (B) <span class="m">a(t) = −2 m/s²</span> für alle t (C) Das Auto steht nach 20 s. (D) <span class="m">s″(t)</span> ist die Geschwindigkeit. (E) Der Bremsweg beträgt 200 m.</p>
+  <details class="sol"><summary>Lösung</summary><p><strong>A und B.</strong> <span class="m">v(t) = 20 − 2t</span>, v = 0 bei t = 10 s (nicht 20), Bremsweg <span class="m">s(10) = 100 m</span>, s″ ist die Beschleunigung.</p></details>
+  <p class="task"><span class="tn">9</span>f ist eine Polynomfunktion vom Grad 5. Kreuze die zwei zutreffenden an: (A) f hat genau 5 Nullstellen. (B) f hat mindestens eine Nullstelle. (C) f hat höchstens 4 Extremstellen. (D) f hat mindestens eine Extremstelle. (E) f ist symmetrisch zum Ursprung.</p>
+  <details class="sol"><summary>Lösung</summary><p><strong>B und C.</strong> (D) falsch: z. B. <span class="m">x<sup>5</sup></span> hat keine Extremstelle.</p></details>
+  <p class="task"><span class="tn">10</span>Es gilt <span class="m">f′(3) = 0</span> und <span class="m">f″(3) = −2</span>. Was kann man über die Stelle 3 sagen? Begründe.</p>
+  <details class="sol"><summary>Lösung</summary><p>Waagrechte Tangente und rechtsgekrümmt ⇒ <strong>3 ist eine lokale Maximumstelle</strong> (hinreichende Bedingung mit der 2. Ableitung).</p></details>
+  <p class="task"><span class="tn">11</span>f ist eine gerade Funktion mit <span class="m">f(2) = 5</span> und <span class="m">f′(2) = 3</span>. Gib <span class="m">f(−2)</span> und <span class="m">f′(−2)</span> an.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">f(−2) = 5</span> (Spiegelung an der y-Achse), <span class="m">f′(−2) = −3</span> (gespiegelt wird aus „steigend“ „fallend“).</p></details>
+  <p class="task"><span class="tn">12</span>Für eine Polynomfunktion gilt: <span class="m">f″(x) &lt; 0</span> für x &lt; 1 und <span class="m">f″(x) &gt; 0</span> für x &gt; 1. Gib die Krümmungsbereiche an und die Bedeutung der Stelle 1.</p>
+  <details class="sol"><summary>Lösung</summary><p>Rechtsgekrümmt in (−∞; 1], linksgekrümmt in [1; ∞). Bei 1 ändert sich das Krümmungsverhalten ⇒ <strong>1 ist Wendestelle</strong>.</p></details>
+  <p class="task"><span class="tn">13</span>Berechne alle Stellen, an denen die Tangente an <span class="m">f(x) = x³ − 6x² + 10</span> parallel zur Geraden <span class="m">y = −9x + 2</span> ist.</p>
+  <details class="sol"><summary>Lösung</summary><p><span class="m">3x² − 12x = −9</span> ⇒ <span class="m">x² − 4x + 3 = 0</span> ⇒ <strong>x = 1, x = 3</strong>.</p></details>
+
+  <h2>Teil 2</h2>
+  <h3>Aufgabe 14 · Rodelbahn <span class="pts">4 P</span></h3>
+  <p>Das Profil einer Sommerrodelbahn wird durch <span class="m">h(x) = −0,0002x³ + 0,012x² + 10</span> mit <span class="m">0 ≤ x ≤ 60</span> beschrieben (x … waagrechte Entfernung in m, h(x) … Höhe in m).</p>
+  <p>a) Berechne die Stelle des höchsten Punktes der Bahn und weise rechnerisch nach, dass es ein Maximum ist. Gib die Höhe an.<br>b) Berechne, an welcher Stelle die Bahn am steilsten ansteigt, und gib den Steigungswinkel dort an.<br>c) Interpretiere <span class="m"><span class="fr"><span>h(60) − h(40)</span><span>20</span></span> = −0,32</span> im Kontext.<br>d) Gib die Gleichung der Tangente an der Stelle x = 20 an.</p>
+  <details class="sol"><summary>Lösung</summary>
+    <p>a) <span class="m">h′(x) = −0,0006x² + 0,024x = 0 ⇒ x = 0 ∨ x = 40</span>. <span class="m">h″(x) = −0,0012x + 0,024</span>, <span class="m">h″(40) = −0,024 &lt; 0</span> ⇒ Maximum. <span class="m">h(40) = 16,4 m</span>. (Rand: h(0) = 10, h(60) = 10, also auch global.)</p>
+    <p>b) Steilste Stelle = Wendestelle: <span class="m">h″(x) = 0 ⇒ x = 20</span>, <span class="m">h‴ = −0,0012 ≠ 0</span>. <span class="m">h′(20) = 0,24</span> ⇒ <span class="m">α = tan<sup>−1</sup>(0,24) ≈ 13,5°</span>.</p>
+    <p>c) Auf den letzten 20 m (waagrecht, von x = 40 bis x = 60) verliert die Bahn im Mittel 0,32 m Höhe pro Meter.</p>
+    <p>d) <span class="m">h(20) = 13,2</span>, <span class="m">k = 0,24</span>: <span class="m">13,2 = 0,24·20 + d ⇒ d = 8,4</span> ⇒ <strong><span class="m">y = 0,24x + 8,4</span></strong>.</p>
+  </details>
+
+  <h3>Aufgabe 15 · Drohnenflug <span class="pts">4 P</span></h3>
+  <p>Eine Drohne steigt senkrecht auf. Ihre Höhe ist <span class="m">h(t) = −0,5t³ + 6t²</span> (h in m, t in s, 0 ≤ t ≤ 12).</p>
+  <p>a) Berechne, wann die Drohne am höchsten ist, und die maximale Höhe.<br>b) Berechne die größte Steiggeschwindigkeit und wann sie erreicht wird.<br>c) Interpretiere <span class="m">h″(2) = 6</span> im Kontext.<br>d) Nach 4 s ist die Drohne 64 m hoch. Berechne, wann sie beim Sinken wieder 64 m hoch ist.</p>
+  <details class="sol"><summary>Lösung</summary>
+    <p>a) <span class="m">h′(t) = −1,5t² + 12t = −1,5t(t − 8) = 0 ⇒ t = 8</span>, <span class="m">h″(8) = −12 &lt; 0</span> ⇒ Maximum. <span class="m">h(8) = 128 m</span> nach 8 s.</p>
+    <p>b) Größte Geschwindigkeit = Maximum von h′ ⇒ <span class="m">h″(t) = −3t + 12 = 0 ⇒ t = 4</span>, <span class="m">h′(4) = 24 m/s</span>.</p>
+    <p>c) Zum Zeitpunkt t = 2 s beträgt die Beschleunigung 6 m/s²: Die Steiggeschwindigkeit nimmt in diesem Moment um 6 m/s pro Sekunde zu.</p>
+    <p>d) <code>solve(h(t)=64,t)|4&lt;t≤12</code>: <span class="m">t = 4 + √48 ≈ 10,93 s</span>.</p>
+  </details>
+
+  <h3>Aufgabe 16 · Funktion gesucht <span class="pts">3 P</span></h3>
+  <p>Der Graph einer Polynomfunktion f vom Grad 3 geht durch den Ursprung, hat den Tiefpunkt T(2 | −4) und bei x = 1 eine Wendestelle.</p>
+  <p>a) Stelle ein Gleichungssystem auf und ermittle f.<br>b) Gib den Hochpunkt an.<br>c) Ermittle die Gleichung der Wendetangente.</p>
+  <details class="sol"><summary>Lösung</summary>
+    <p>a) <span class="m">f(0) = 0, f(2) = −4, f′(2) = 0, f″(1) = 0</span> ⇒ <span class="m">a = 1, b = −3, c = 0, d = 0</span> ⇒ <strong><span class="m">f(x) = x³ − 3x²</span></strong>.</p>
+    <p>b) <span class="m">f′(x) = 3x² − 6x = 0 ⇒ x = 0</span>, <span class="m">f″(0) = −6 &lt; 0</span> ⇒ <strong>H(0 | 0)</strong>.</p>
+    <p>c) <span class="m">f(1) = −2</span>, <span class="m">f′(1) = −3</span>: <span class="m">−2 = −3 + d ⇒ d = 1</span> ⇒ <strong><span class="m">y = −3x + 1</span></strong>.</p>
+  </details>
+
+  <h2>Auswertung</h2>
+  <div class="grade"><label for="myPts">Meine Punkte (von 24):</label><input type="number" id="myPts" min="0" max="24" step="0.5" inputmode="decimal"><output id="myGrade" for="myPts">Trag deine Punkte ein.</output></div>
+  <div class="tw"><table>
+    <thead><tr><th>Note</th><th class="num">Punkte (Schlüssel 2025)</th></tr></thead>
+    <tbody><tr><td>Sehr gut</td><td class="num">21 – 24</td></tr><tr><td>Gut</td><td class="num">18 – 20,5</td></tr><tr><td>Befriedigend</td><td class="num">15 – 17,5</td></tr><tr><td>Genügend</td><td class="num">12 – 14,5</td></tr><tr><td>Nicht genügend</td><td class="num">0 – 11,5</td></tr></tbody>
+  </table></div>
+  <p>Jede Aufgabe, die du nicht geschafft hast: zurück ins passende Kapitel, Beispiel dort nachrechnen, dann die Aufgabe hier nochmal ohne Lösung.</p>
+  <div class="finish"><label><input type="checkbox" data-done="probe"> Probeschularbeit gerechnet</label><button class="btn" data-go="start">Zurück zum Lernplan</button></div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- Speicher (nur dieser Browser) ---------- */
+var store = {
+  get: function(k, d){ try{ var v = localStorage.getItem("lp1sa:" + k); return v == null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set: function(k, v){ try{ localStorage.setItem("lp1sa:" + k, JSON.stringify(v)); }catch(e){} }
+};
+function $(s, r){ return (r || document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+function fmt(n, d){
+  if (d === undefined) d = 2;
+  var s = (Math.abs(n) < 1e-9 ? 0 : n).toFixed(d).replace(".", ",");
+  return s.replace("-", "−");
+}
+
+/* ---------- Ansichten ---------- */
+var views = $$(".view");
+var tokens = views.map(function(v){ return v.dataset.view; });
+function show(tok, noScroll){
+  if (tokens.indexOf(tok) < 0) tok = "start";
+  views.forEach(function(v){ v.hidden = v.dataset.view !== tok; });
+  $$(".navbtn").forEach(function(b){
+    if (b.dataset.go === tok) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
+  var cur = $('.navbtn[data-go="' + tok + '"]');
+  if (cur && cur.scrollIntoView && window.matchMedia("(max-width:860px)").matches) {
+    try { cur.scrollIntoView({block:"nearest", inline:"center"}); } catch(e){}
+  }
+  try { history.replaceState(null, "", "#" + tok); } catch(e){}
+  store.set("view", tok);
+  if (!noScroll) window.scrollTo(0, 0);
+  requestAnimationFrame(drawAll);
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-go]");
+  if (b) { e.preventDefault(); show(b.dataset.go); }
+});
+window.addEventListener("hashchange", function(){ show(location.hash.slice(1)); });
+
+/* ---------- Fortschritt ---------- */
+var done = store.get("done", {});
+function paintDone(){
+  $$(".navbtn").forEach(function(b){ b.classList.toggle("is-done", !!done[b.dataset.go]); });
+}
+$$("[data-done]").forEach(function(cb){
+  cb.checked = !!done[cb.dataset.done];
+  cb.addEventListener("change", function(){ done[cb.dataset.done] = cb.checked; store.set("done", done); paintDone(); });
+});
+paintDone();
+var plan = store.get("plan", {});
+$$("#plan input").forEach(function(cb){
+  cb.checked = !!plan[cb.id];
+  cb.closest("li").classList.toggle("checked", cb.checked);
+  cb.addEventListener("change", function(){ plan[cb.id] = cb.checked; store.set("plan", plan); cb.closest("li").classList.toggle("checked", cb.checked); });
+});
+
+/* ---------- Countdown ---------- */
+(function(){
+  var now = new Date(); var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var test = new Date(2026, 10, 5);
+  var d = Math.round((test - today) / 864e5);
+  var n = $("#days"), l = $("#daysLbl");
+  if (d > 1) { n.textContent = d; l.textContent = "Tage bis zur Schularbeit"; }
+  else if (d === 1) { n.textContent = "1"; l.textContent = "Tag. Morgen ist Schularbeit!"; }
+  else if (d === 0) { n.textContent = "Heute"; l.textContent = "Viel Erfolg bei der Schularbeit!"; }
+  else { n.textContent = "✓"; l.textContent = "Die Schularbeit ist vorbei."; }
+})();
+
+/* ---------- Note ---------- */
+var pts = $("#myPts"), gr = $("#myGrade");
+function grade(){
+  var p = parseFloat(String(pts.value).replace(",", "."));
+  if (isNaN(p)) { gr.textContent = "Trag deine Punkte ein."; return; }
+  var g = p >= 21 ? "Sehr gut" : p >= 18 ? "Gut" : p >= 15 ? "Befriedigend" : p >= 12 ? "Genügend" : "Nicht genügend";
+  gr.textContent = "→ " + g;
+  store.set("probe", pts.value);
+}
+pts.value = store.get("probe", "");
+pts.addEventListener("input", grade); grade();
+
+/* ---------- Zeichnen ---------- */
+function tok(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function prep(cv){
+  var r = parseFloat(cv.dataset.ratio) || 0.6;
+  var w = cv.clientWidth; if (!w) return null;
+  var h = Math.round(w * r), dpr = window.devicePixelRatio || 1;
+  if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+  cv.style.height = h + "px";
+  var ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+  return {ctx: ctx, w: w, h: h};
+}
+function niceStep(range){
+  var raw = range / 7, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+  return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p;
+}
+function view(x0, y0, w, h, xmin, xmax, ymin, ymax){
+  return { x0:x0, y0:y0, w:w, h:h, xmin:xmin, xmax:xmax, ymin:ymin, ymax:ymax,
+    X: function(x){ return x0 + (x - xmin) / (xmax - xmin) * w; },
+    Y: function(y){ return y0 + h - (y - ymin) / (ymax - ymin) * h; },
+    inv: function(px){ return xmin + (px - x0) / w * (xmax - xmin); } };
+}
+function axes(ctx, v, o){
+  o = o || {};
+  var C = { grid: tok("--grid"), line: tok("--muted"), txt: tok("--muted") };
+  ctx.save(); ctx.font = "11px " + tok("--f-mono"); ctx.lineWidth = 1;
+  var sx = o.sx || niceStep(v.xmax - v.xmin), sy = o.sy || niceStep(v.ymax - v.ymin);
+  ctx.strokeStyle = C.grid; ctx.beginPath();
+  for (var x = Math.ceil(v.xmin / sx) * sx; x <= v.xmax + 1e-9; x += sx) { ctx.moveTo(v.X(x) + .5, v.y0); ctx.lineTo(v.X(x) + .5, v.y0 + v.h); }
+  for (var y = Math.ceil(v.ymin / sy) * sy; y <= v.ymax + 1e-9; y += sy) { ctx.moveTo(v.x0, v.Y(y) + .5); ctx.lineTo(v.x0 + v.w, v.Y(y) + .5); }
+  ctx.stroke();
+  var ax = Math.min(Math.max(v.Y(0), v.y0), v.y0 + v.h), ay = Math.min(Math.max(v.X(0), v.x0), v.x0 + v.w);
+  ctx.strokeStyle = C.line; ctx.lineWidth = 1.2; ctx.beginPath();
+  ctx.moveTo(v.x0, ax); ctx.lineTo(v.x0 + v.w, ax); ctx.moveTo(ay, v.y0); ctx.lineTo(ay, v.y0 + v.h); ctx.stroke();
+  ctx.fillStyle = C.txt; ctx.textAlign = "center"; ctx.textBaseline = "top";
+  for (x = Math.ceil(v.xmin / sx) * sx; x <= v.xmax + 1e-9; x += sx) {
+    if (Math.abs(x) < 1e-9) continue;
+    var px = v.X(x); if (px < v.x0 + 8 || px > v.x0 + v.w - 8) continue;
+    ctx.fillText(fmtTick(x), px, Math.min(ax + 3, v.y0 + v.h - 13));
+  }
+  ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  var every = Math.max(1, Math.ceil(16 / (v.h * sy / (v.ymax - v.ymin))));
+  for (y = Math.ceil(v.ymin / sy) * sy; y <= v.ymax + 1e-9; y += sy) {
+    if (Math.abs(y) < 1e-9 || Math.round(y / sy) % every !== 0) continue;
+    var py = v.Y(y); if (py < v.y0 + 7 || py > v.y0 + v.h - 7) continue;
+    ctx.fillText(fmtTick(y), Math.max(ay - 4, v.x0 + 26), py);
+  }
+  if (o.xl) { ctx.textAlign = "right"; ctx.textBaseline = "bottom"; ctx.fillText(o.xl, v.x0 + v.w - 4, ax - 3); }
+  if (o.yl) { ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.font = "600 13px " + tok("--f-math"); ctx.fillStyle = tok("--ink"); ctx.fillText(o.yl, ay + 6, v.y0 + 4); }
+  ctx.restore();
+}
+function fmtTick(n){ var r = Math.round(n * 100) / 100; return String(r).replace(".", ",").replace("-", "−"); }
+function clip(ctx, v){ ctx.save(); ctx.beginPath(); ctx.rect(v.x0, v.y0, v.w, v.h); ctx.clip(); }
+function curve(ctx, v, f, color, width, dash){
+  clip(ctx, v); ctx.strokeStyle = color; ctx.lineWidth = width || 2.2; ctx.setLineDash(dash || []); ctx.lineJoin = "round";
+  ctx.beginPath(); var n = Math.max(120, Math.round(v.w));
+  for (var i = 0; i <= n; i++) { var x = v.xmin + (v.xmax - v.xmin) * i / n, y = f(x), px = v.X(x), py = v.Y(y);
+    if (py < v.y0 - 2000) py = v.y0 - 2000; if (py > v.y0 + v.h + 2000) py = v.y0 + v.h + 2000;
+    if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
+  ctx.stroke(); ctx.restore();
+}
+function dot(ctx, v, x, y, color, label, pos){
+  var px = v.X(x), py = v.Y(y);
+  if (px < v.x0 - 2 || px > v.x0 + v.w + 2 || py < v.y0 - 2 || py > v.y0 + v.h + 2) return;
+  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = tok("--sheet"); ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(px, py, 4.5, 0, 7); ctx.fill(); ctx.stroke();
+  if (label) { ctx.font = "600 13px " + tok("--f-math"); ctx.fillStyle = color;
+    var dx = 8, dy = -8; ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+    if (pos === "below") { dy = 8; ctx.textBaseline = "top"; }
+    if (pos === "left") { dx = -8; ctx.textAlign = "right"; }
+    if (pos === "belowleft") { dx = -8; dy = 8; ctx.textAlign = "right"; ctx.textBaseline = "top"; }
+    ctx.fillText(label, px + dx, py + dy); }
+  ctx.restore();
+}
+function text(ctx, s, x, y, color, align, font){
+  ctx.save(); ctx.fillStyle = color; ctx.font = font || ("13px " + tok("--f-body")); ctx.textAlign = align || "left"; ctx.textBaseline = "middle"; ctx.fillText(s, x, y); ctx.restore();
+}
+function vline(ctx, v, x, color, dash){
+  clip(ctx, v); ctx.strokeStyle = color; ctx.lineWidth = 1.2; ctx.setLineDash(dash || [4, 4]);
+  ctx.beginPath(); ctx.moveTo(v.X(x), v.y0); ctx.lineTo(v.X(x), v.y0 + v.h); ctx.stroke(); ctx.restore();
+}
+
+/* statische Abbildungen */
+var figs = {
+  tangent: function(c){
+    var P = 10, v = view(P + 24, P, c.w - 2 * P - 24, c.h - 2 * P, -1, 4.6, -1, 22);
+    axes(c.ctx, v, {sx: 1, sy: 2, xl: "x"});
+    curve(c.ctx, v, function(x){ return x * x - 2 * x + 10; }, tok("--blue"), 2.4);
+    curve(c.ctx, v, function(x){ return 2 * x + 6; }, tok("--red"), 1.8, [6, 4]);
+    var ctx = c.ctx; ctx.save(); ctx.strokeStyle = tok("--ink"); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(v.X(2), v.Y(10)); ctx.lineTo(v.X(3), v.Y(10)); ctx.lineTo(v.X(3), v.Y(12)); ctx.stroke(); ctx.restore();
+    text(ctx, "1", v.X(2.5), v.Y(10) + 10, tok("--ink"), "center");
+    text(ctx, "k = 2", v.X(3) + 6, v.Y(11), tok("--ink"), "left", "600 13px " + tok("--f-math"));
+    dot(ctx, v, 2, 10, tok("--red"), "T(2 | 10)", "left");
+    text(ctx, "f", v.X(4.15) - 12, v.Y(17.5), tok("--blue"), "right", "italic 600 15px " + tok("--f-math"));
+    text(ctx, "t: y = 2x + 6", v.X(0.2), v.Y(7.4) + 14, tok("--red"), "left", "600 13px " + tok("--f-math"));
+  },
+  sv: function(c){
+    var P = 10, gap = 18, ph = (c.h - 2 * P - gap) / 2;
+    var s = function(t){ return 3.2 - 0.35 * (t - 3) * (t - 3); }, vv = function(t){ return -0.7 * (t - 3); };
+    var v1 = view(P + 24, P, c.w - 2 * P - 24, ph, -0.3, 6.4, -0.6, 3.8);
+    var v2 = view(P + 24, P + ph + gap, c.w - 2 * P - 24, ph, -0.3, 6.4, -2.5, 2.5);
+    axes(c.ctx, v1, {sx: 1, sy: 1, xl: "t", yl: "s(t)"}); axes(c.ctx, v2, {sx: 1, sy: 1, xl: "t", yl: "v(t)"});
+    curve(c.ctx, v1, s, tok("--blue"), 2.4); curve(c.ctx, v2, vv, tok("--red"), 2.4);
+    vline(c.ctx, v1, 3, tok("--muted")); vline(c.ctx, v2, 3, tok("--muted"));
+    dot(c.ctx, v1, 3, s(3), tok("--blue"), "Hochpunkt"); dot(c.ctx, v2, 3, 0, tok("--red"), "v(3) = 0", "below");
+    text(c.ctx, "s steigt → v > 0", v2.X(0.1), v2.Y(-1.6), tok("--muted"), "left");
+    text(c.ctx, "s fällt → v < 0", v2.X(6.2), v2.Y(1.6), tok("--muted"), "right");
+  },
+  curv: function(c){
+    var P = 10, v = view(P + 24, P, c.w - 2 * P - 24, c.h - 2 * P, -2.4, 2.4, -3.2, 3.2);
+    var f = function(x){ return x * x * x - 3 * x; };
+    axes(c.ctx, v, {sx: 1, sy: 1, xl: "x"});
+    curve(c.ctx, v, function(x){ return 2.88 * (x + 1.4) + 1.456; }, tok("--amber"), 1.5, [5, 4]);
+    curve(c.ctx, v, function(x){ return 2.88 * (x - 1.4) - 1.456; }, tok("--amber"), 1.5, [5, 4]);
+    curve(c.ctx, v, f, tok("--blue"), 2.4);
+    dot(c.ctx, v, -1.4, f(-1.4), tok("--amber")); dot(c.ctx, v, 1.4, f(1.4), tok("--amber"));
+    dot(c.ctx, v, 0, 0, tok("--red"), "W(0 | 0)", "belowleft");
+    text(c.ctx, "rechtsgekrümmt ∩", v.X(-2.3), v.Y(-2.6), tok("--ink"), "left", "600 13px " + tok("--f-body"));
+    text(c.ctx, "linksgekrümmt ∪", v.X(2.3), v.Y(2.6), tok("--ink"), "right", "600 13px " + tok("--f-body"));
+  }
+};
+
+/* Sekante → Tangente */
+var secX = $("#secX"), secH = $("#secH");
+function hVal(){ var s = +secH.value / 1000; return 0.01 + 1.99 * s * s; }
+function drawSec(){
+  var cv = $("#secCanvas"), c = prep(cv); if (!c) return;
+  var x = +secX.value, h = hVal(), z = x + h, f = function(t){ return t * t; };
+  $("#secXo").textContent = fmt(x, 1); $("#secHo").textContent = fmt(h, 2);
+  $("#secDQ").textContent = fmt(2 * x + h, 3); $("#secDiff").textContent = fmt(2 * x, 3);
+  var P = 10, v = view(P + 24, P, c.w - 2 * P - 24, c.h - 2 * P, -3, 4.3, -1, 17);
+  var ctx = c.ctx; axes(ctx, v, {sx: 1, sy: 2, xl: "x"});
+  curve(ctx, v, f, tok("--ink"), 2.2);
+  var k = 2 * x + h;
+  curve(ctx, v, function(t){ return f(x) + 2 * x * (t - x); }, tok("--red"), 1.6, [6, 4]);
+  curve(ctx, v, function(t){ return f(x) + k * (t - x); }, tok("--blue"), 2);
+  ctx.save(); ctx.strokeStyle = tok("--blue"); ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(v.X(x), v.Y(f(x))); ctx.lineTo(v.X(z), v.Y(f(x))); ctx.lineTo(v.X(z), v.Y(f(z))); ctx.stroke(); ctx.restore();
+  if (h > 0.35) {
+    text(ctx, "h", v.X((x + z) / 2), v.Y(f(x)) + 11, tok("--blue"), "center", "italic 600 13px " + tok("--f-math"));
+    text(ctx, "f(z) − f(x)", v.X(z) + 6, v.Y((f(x) + f(z)) / 2), tok("--blue"), "left", "600 12px " + tok("--f-math"));
+  }
+  dot(ctx, v, x, f(x), tok("--red"), "x", "below");
+  dot(ctx, v, z, f(z), tok("--blue"), "z");
+}
+secX.addEventListener("input", drawSec); secH.addEventListener("input", drawSec);
+
+/* Graph-Trio */
+var FNS = [
+  { f: function(x){ return x*x*x - 3*x*x - 9*x + 5; }, f1: function(x){ return 3*x*x - 6*x - 9; }, f2: function(x){ return 6*x - 6; },
+    a: -3, b: 5, ext: [-1, 3], wp: [1] },
+  { f: function(x){ return x*x*x*x - 4*x*x*x; }, f1: function(x){ return 4*x*x*x - 12*x*x; }, f2: function(x){ return 12*x*x - 24*x; },
+    a: -1.2, b: 4.3, ext: [0, 3], wp: [0, 2] },
+  { f: function(x){ return 5*x*x*x + 15*x*x + 5; }, f1: function(x){ return 15*x*x + 30*x; }, f2: function(x){ return 30*x + 30; },
+    a: -3.2, b: 1.2, ext: [-2, 0], wp: [-1] }
+];
+var trioIdx = 0, trioX = $("#trioX"), trioV = null;
+function range(fn, a, b){
+  var lo = 0, hi = 0;
+  for (var i = 0; i <= 200; i++) { var y = fn(a + (b - a) * i / 200); if (y < lo) lo = y; if (y > hi) hi = y; }
+  var pad = (hi - lo) * 0.12 || 1; return [lo - pad, hi + pad];
+}
+function trioXval(){ var F = FNS[trioIdx]; return F.a + (F.b - F.a) * (+trioX.value / 1000); }
+function drawTrio(){
+  var cv = $("#trio"), c = prep(cv); if (!c) return;
+  var F = FNS[trioIdx], P = 10, gap = 14, ph = (c.h - 2 * P - 2 * gap) / 3, ctx = c.ctx;
+  var list = [[F.f, "f", tok("--blue")], [F.f1, "f′", tok("--green")], [F.f2, "f″", tok("--red")]];
+  var x = trioXval(); trioV = [];
+  list.forEach(function(L, i){
+    var r = range(L[0], F.a, F.b), v = view(P + 30, P + i * (ph + gap), c.w - 2 * P - 30, ph, F.a, F.b, r[0], r[1]);
+    trioV.push(v);
+    axes(ctx, v, {sx: niceStep(F.b - F.a) < 1 ? 1 : niceStep(F.b - F.a), yl: L[1]});
+    curve(ctx, v, L[0], L[2], 2.2);
+    F.ext.forEach(function(p){ dot(ctx, v, p, i === 0 ? F.f(p) : i === 1 ? 0 : F.f2(p), i === 1 ? tok("--blue") : i === 0 ? tok("--blue") : tok("--muted")); });
+    F.wp.forEach(function(p){ dot(ctx, v, p, i === 0 ? F.f(p) : i === 1 ? F.f1(p) : 0, tok("--red")); });
+    vline(ctx, v, x, tok("--ink"), [2, 3]);
+    dot(ctx, v, x, L[0](x), tok("--ink"));
+  });
+  var y1 = F.f1(x), y2 = F.f2(x);
+  $("#trioXo").textContent = fmt(x, 2);
+  $("#trioF").textContent = fmt(F.f(x), 2);
+  $("#trioF1").textContent = fmt(y1, 2) + (Math.abs(y1) < 0.05 ? "  waagrecht" : y1 > 0 ? "  f steigt" : "  f fällt");
+  $("#trioF2").textContent = fmt(y2, 2) + (Math.abs(y2) < 0.05 ? "  Wendestelle?" : y2 > 0 ? "  linksgekr. ∪" : "  rechtsgekr. ∩");
+}
+trioX.addEventListener("input", drawTrio);
+$$("#trioSel button").forEach(function(b){
+  b.addEventListener("click", function(){
+    trioIdx = +b.dataset.fn;
+    $$("#trioSel button").forEach(function(o){ o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+    drawTrio();
+  });
+});
+(function(){
+  var cv = $("#trio");
+  function move(e){
+    if (!trioV) return; var r = cv.getBoundingClientRect(), v = trioV[0];
+    var x = v.inv(e.clientX - r.left), F = FNS[trioIdx];
+    x = Math.max(F.a, Math.min(F.b, x)); trioX.value = Math.round((x - F.a) / (F.b - F.a) * 1000); drawTrio();
+  }
+  cv.addEventListener("pointermove", move); cv.addEventListener("pointerdown", move);
+})();
+
+function drawAll(){
+  $$("canvas[data-fig]").forEach(function(cv){ var c = prep(cv); if (c) figs[cv.dataset.fig](c); });
+  drawSec(); drawTrio();
+}
+var rt; window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(drawAll, 120); });
+try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll); } catch(e){}
+new MutationObserver(drawAll).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+
+/* ---------- Ankreuz-Trainer ---------- */
+var F = function(a, b){ return '<span class="fr"><span>' + a + '</span><span>' + b + '</span></span>'; };
+var LIM = function(s){ return '<span class="lim">lim<span>' + s + '</span></span>'; };
+var Q = [
+  { t: "Welcher Term gibt die momentane Änderungsrate von f an der Stelle x₀ an?", one: true,
+    o: [LIM("h→0") + " " + F("f(x₀ + h) + f(x₀)", "h"), LIM("z→0") + " " + F("f(z) − f(x₀)", "z − x₀"), LIM("h→0") + " " + F("f(x₀ + h) − f(x₀)", "h"), F("f(b) − f(a)", "b − a"), LIM("Δx→0") + " " + F("Δx", "Δy")],
+    c: [2], e: "Differentialquotient: Differenzenquotient mit h → 0. Minus im Zähler, h im Nenner." },
+  { t: "Es gilt f′(2) = 0 und f″(2) = 3. Kreuze die zwei zutreffenden Aussagen an.",
+    o: ["2 ist eine lokale Minimumstelle von f.", "2 ist eine lokale Maximumstelle von f.", "2 ist eine Wendestelle von f.", "f ist an der Stelle 2 rechtsgekrümmt.", "Die Tangente an der Stelle 2 ist waagrecht."],
+    c: [0, 4], e: "f′(2) = 0 → waagrechte Tangente. f″(2) > 0 → linksgekrümmt → Tiefpunkt." },
+  { t: "f ist eine Polynomfunktion vom Grad 3. Kreuze die zwei zutreffenden Aussagen an.",
+    o: ["f hat genau eine Wendestelle.", "f hat mindestens eine reelle Nullstelle.", "f hat genau zwei Extremstellen.", "f hat höchstens zwei Nullstellen.", "f ist symmetrisch zum Ursprung."],
+    c: [0, 1], e: "f″ hat Grad 1, also genau eine Nullstelle mit Vorzeichenwechsel. Ungerader Grad → mindestens eine Nullstelle. Extremstellen: 0 oder 2 (x³ hat keine)." },
+  { t: "Der Differenzenquotient von f in [1; 3] ist 0. Kreuze die zwei zutreffenden Aussagen an.",
+    o: ["f(1) = f(3)", "Die Sekante durch (1 | f(1)) und (3 | f(3)) ist waagrecht.", "f ist in [1; 3] konstant.", "f′(2) = 0", "f hat in [1; 3] keine Nullstelle."],
+    c: [0, 1], e: "Zähler f(3) − f(1) = 0. Über das Verhalten dazwischen weiß man nichts." },
+  { t: "f(x) = 3x⁴ − 2x + 7. Dann ist f′(x) =", one: true,
+    o: ["12x³ − 2", "12x³ − 2 + 7", "3x³ − 2", "12x⁴ − 2", "12x³"], c: [0], e: "Potenzregel und Faktorregel; die Konstante 7 fällt weg." },
+  { t: "Lösungsmenge von x⁴ − 10x² + 9 = 0:", one: true,
+    o: ["{1, 9}", "{−3, −1, 1, 3}", "{−3, 3}", "{1, 3}", "{ }"], c: [1], e: "u = x²: u² − 10u + 9 = 0 → u = 1, u = 9 → x = ±1, ±3. {1, 9} sind die u-Werte!" },
+  { t: "f ist im Intervall I linksgekrümmt. Kreuze die zwei zutreffenden Aussagen an.",
+    o: ["Die Tangenten liegen in I unter dem Graphen.", "f′ ist in I streng monoton steigend.", "f ist in I streng monoton steigend.", "Die Tangenten liegen in I über dem Graphen.", "f hat in I einen Hochpunkt."],
+    c: [0, 1], e: "Linkskurve: f′ wächst (die Steigung nimmt zu) und die Tangenten liegen unter dem Graphen. Ob f selbst steigt, ist offen." },
+  { t: "Welche zwei Funktionen sind gerade (symmetrisch zur y-Achse)?",
+    o: ["x⁴ − 2x² + 1", "x³ − x", "3x⁶ − x²", "x² + x", "x³ + 1"], c: [0, 2], e: "Nur gerade Hochzahlen (Konstante zählt als gerade)." },
+  { t: "s(t) ist eine Zeit-Ort-Funktion. Was ist s″(t)?", one: true,
+    o: ["die Geschwindigkeit zum Zeitpunkt t", "die Beschleunigung zum Zeitpunkt t", "der zurückgelegte Weg", "die mittlere Geschwindigkeit", "die Zeit"], c: [1], e: "v = s′, a = v′ = s″." },
+  { t: "Die Tangente an f an der Stelle p hat den Steigungswinkel 135°. Dann ist f′(p) =", one: true,
+    o: ["1", "−1", "135", "−0,5", "√2"], c: [1], e: "f′(p) = tan(135°) = −1." },
+  { t: "v(t) ist die Geschwindigkeit (m/s) eines Autos, t in s. Es gilt v′(3) = −2. Was bedeutet das?", one: true,
+    o: ["Zum Zeitpunkt t = 3 s nimmt die Geschwindigkeit momentan um 2 m/s pro Sekunde ab.", "Nach 3 s fährt das Auto mit −2 m/s.", "In den ersten 3 s nimmt die Geschwindigkeit im Mittel um 2 m/s ab.", "Das Auto fährt bei t = 3 rückwärts.", "Nach 3 s hat das Auto 2 m zurückgelegt."],
+    c: [0], e: "v′ ist die Beschleunigung (m/s²) zu einem Zeitpunkt, also eine momentane Änderungsrate." },
+  { t: "p ist eine Sattelstelle (Terrassenstelle) von f. Welche zwei Bedingungen gelten sicher?",
+    o: ["f′(p) = 0", "f″(p) = 0", "f″(p) > 0", "f(p) = 0", "f′(p) > 0"], c: [0, 1], e: "Sattelpunkt = Wendepunkt mit waagrechter Tangente (und f‴(p) ≠ 0)." },
+  { t: "Eine Wendestelle von f ist für f′ eine …", one: true,
+    o: ["Nullstelle", "lokale Extremstelle", "Wendestelle", "Sattelstelle", "nichts Besonderes"], c: [1], e: "Dort ist die Steigung am größten oder kleinsten." },
+  { t: "Lösungsmenge von x³ = 4x:", one: true,
+    o: ["{2}", "{−2, 2}", "{−2, 0, 2}", "{0, 4}", "{0, 2}"], c: [2], e: "x³ − 4x = x(x² − 4) = 0. Wer durch x dividiert, verliert 0." },
+  { t: "Eine Polynomfunktion vom Grad 4 hat höchstens wie viele Extremstellen?", one: true,
+    o: ["2", "3", "4", "5", "1"], c: [1], e: "Höchstens n − 1 = 3 (f′ hat Grad 3)." },
+  { t: "Es gilt f′(x) > 0 für alle x ∈ (a; b). Kreuze die zwei zutreffenden Aussagen an.",
+    o: ["f ist in [a; b] streng monoton steigend.", "Der Differenzenquotient von f in [a; b] ist positiv.", "f(a) > f(b)", "f hat in (a; b) eine Extremstelle.", "f″(x) > 0 für alle x ∈ (a; b)"],
+    c: [0, 1], e: "Monotoniesatz; wenn f steigt, ist f(b) > f(a), also auch der Differenzenquotient positiv." },
+  { t: "Die Tangente an f(x) = x² an der Stelle 3 hat die Gleichung", one: true,
+    o: ["y = 6x − 9", "y = 6x + 9", "y = 2x + 3", "y = 6x", "y = 3x"], c: [0], e: "f(3) = 9, k = f′(3) = 6, 9 = 18 + d → d = −9." },
+  { t: "Vereinfache " + F("z² − x²", "z − x") + " (für z ≠ x):", one: true,
+    o: ["z + x", "z − x", "2x", "z²", "1"], c: [0], e: "3. binomische Formel: z² − x² = (z − x)(z + x), dann kürzen." },
+  { t: "Zylindervolumen V = πr²h (h konstant). Dann ist dV/dr =", one: true,
+    o: ["2πrh", "πr²", "2πr", "πr²h", "2πh"], c: [0], e: "Nach r ableiten, π und h sind Konstanten." },
+  { t: "Eine algebraische Gleichung vom Grad 4 hat in ℝ …", one: true,
+    o: ["genau 4 Lösungen", "mindestens 4 Lösungen", "höchstens 4 Lösungen", "mindestens 1 Lösung", "genau 2 Lösungen"], c: [2], e: "Höchstens n. x⁴ + 1 = 0 hat z. B. gar keine." }
+];
+var qRes = store.get("quiz", {});
+function qScore(){
+  var k = Object.keys(qRes), r = k.filter(function(i){ return qRes[i]; }).length;
+  $("#qScore").textContent = r + " / " + Q.length;
+}
+function renderQuiz(){
+  var box = $("#quizBox"); box.innerHTML = "";
+  Q.forEach(function(q, i){
+    var d = document.createElement("div"); d.className = "q";
+    var type = q.one ? "radio" : "checkbox";
+    var h = '<div class="qh"><span>Frage ' + (i + 1) + '</span><span>' + (q.one ? "1 aus 5" : "2 aus 5") + '</span></div><div class="qt">' + q.t + '</div>';
+    q.o.forEach(function(o, j){ h += '<label class="opt"><input type="' + type + '" name="q' + i + '" id="q' + i + "o" + j + '" value="' + j + '"><span class="mw">' + o + '</span></label>'; });
+    h += '<button class="btn" type="button">Prüfen</button><div class="fb-out" hidden></div>';
+    d.innerHTML = h;
+    d.querySelector("button").addEventListener("click", function(){
+      var sel = $$("input", d).filter(function(x){ return x.checked; }).map(function(x){ return +x.value; });
+      var ok = sel.length === q.c.length && sel.every(function(s){ return q.c.indexOf(s) >= 0; });
+      $$("label.opt", d).forEach(function(l, j){
+        l.classList.remove("right", "wrong");
+        if (q.c.indexOf(j) >= 0) l.classList.add("right"); else if (sel.indexOf(j) >= 0) l.classList.add("wrong");
+      });
+      var out = d.querySelector(".fb-out"); out.hidden = false;
+      out.innerHTML = (ok ? '<strong class="ok">Richtig!</strong> ' : '<strong class="bad">Noch nicht.</strong> ') + q.e;
+      qRes[i] = ok; store.set("quiz", qRes); qScore();
+    });
+    box.appendChild(d);
+  });
+  qScore();
+}
+$("#qReset").addEventListener("click", function(){ qRes = {}; store.set("quiz", qRes); renderQuiz(); });
+renderQuiz();
+
+/* ---------- Lernkarten ---------- */
+var CARDS = [
+  ["Polynom vom Grad n: Definition?", "a<sub>n</sub>x<sup>n</sup> + … + a<sub>1</sub>x + a<sub>0</sub> mit n ∈ ℕ, a<sub>i</sub> ∈ ℝ und <b>a<sub>n</sub> ≠ 0</b>."],
+  ["Produkt-Null-Satz?", "Ein Produkt ist genau dann 0, wenn mindestens ein Faktor 0 ist: A·B = 0 ⇔ A = 0 ∨ B = 0."],
+  ["Regel von Horner?", "a<sup>n</sup> − b<sup>n</sup> = (a − b)(a<sup>n−1</sup> + a<sup>n−2</sup>b + … + ab<sup>n−2</sup> + b<sup>n−1</sup>)"],
+  ["Satz vom Linearfaktor?", "Ist x₀ Lösung von f(x) = 0 (Grad n), dann f(x) = (x − x₀)·g(x) mit Grad g = n − 1."],
+  ["Wie viele Lösungen hat eine Gleichung vom Grad n?", "<b>Höchstens n.</b> Ein Polynom vom Grad n hat höchstens n Nullstellen."],
+  ["Differenzenquotient: Definition und Deutungen?", "(f(b) − f(a)) / (b − a) = mittlere Änderungsrate in [a; b] = Steigung der Sekante."],
+  ["Differentialquotient: Definition und Deutungen?", "f′(x) = lim<sub>z→x</sub> (f(z) − f(x))/(z − x) = (momentane) Änderungsrate an der Stelle x = Steigung der Tangente."],
+  ["Tangente an der Stelle x: Definition?", "Die Gerade durch (x | f(x)) mit der Steigung f′(x)."],
+  ["Differenzenquotient einer linearen Funktion?", "In jedem Intervall gleich k. Beweis: (kb + d − ka − d)/(b − a) = k(b − a)/(b − a) = k."],
+  ["Steigung und Winkel der Tangente?", "f′(x) = k = tan(α)"],
+  ["Ableitungsregeln (4)?", "c′ = 0; (x<sup>n</sup>)′ = n·x<sup>n−1</sup>; (c·g)′ = c·g′; (g + h)′ = g′ + h′"],
+  ["f(x) = a·x²: f′ mit dem Limes?", "lim (az² − ax²)/(z − x) = lim a(z − x)(z + x)/(z − x) = lim a(z + x) = 2ax"],
+  ["Was bedeuten s′, s″ bei einer Bewegung?", "v = s′ Geschwindigkeit (m/s), a = v′ = s″ Beschleunigung (m/s²)."],
+  ["Was bedeutet dy/dx?", "Leibniz-Schreibweise für f′(x) = lim<sub>Δx→0</sub> Δy/Δx. „Ableitung von y nach x“."],
+  ["Streng monoton steigend: Definition?", "Für alle x₁, x₂ ∈ I: x₁ &lt; x₂ ⇒ f(x₁) &lt; f(x₂)."],
+  ["Monotoniesatz?", "f′(x) &gt; 0 für alle inneren Stellen von I ⇒ f streng monoton steigend in I (f′ &lt; 0 ⇒ fallend)."],
+  ["Lokale Maximumstelle: Definition?", "Es gibt ein Intervall um p mit f(x) ≤ f(p) für alle x darin. H = (p | f(p)) heißt Hochpunkt."],
+  ["Notwendige Bedingung für eine Extremstelle?", "p lokale Extremstelle (innere Stelle) ⇒ f′(p) = 0."],
+  ["Hinreichende Bedingung mit f″?", "f′(p) = 0 ∧ f″(p) &lt; 0 ⇒ Max; f′(p) = 0 ∧ f″(p) <b>&gt;</b> 0 ⇒ Min. Bei f″(p) = 0: keine Aussage!"],
+  ["Hinreichende Bedingung mit Vorzeichenwechsel?", "Wechselt f′ bei p von + nach −: Max; von − nach +: Min; kein Wechsel: Terrassenstelle."],
+  ["Krümmungssatz?", "f″ &gt; 0 im Inneren von I ⇒ linksgekrümmt (∪); f″ &lt; 0 ⇒ rechtsgekrümmt (∩)."],
+  ["Wendestelle: Definition?", "Stelle, an der sich das Krümmungsverhalten ändert. W = (p | f(p)), Tangente dort = Wendetangente."],
+  ["Hinreichende Bedingung für eine Wendestelle?", "f″(p) = 0 ∧ f‴(p) ≠ 0 ⇒ p ist Wendestelle."],
+  ["Sattelpunkt (Terrassenpunkt)?", "Wendepunkt mit waagrechter Tangente: f′(p) = 0, f″(p) = 0, f‴(p) ≠ 0."],
+  ["Gerade / ungerade Funktion?", "gerade: f(−x) = f(x), symmetrisch zur y-Achse (nur gerade Hochzahlen). ungerade: f(−x) = −f(x), symmetrisch zum Ursprung (nur ungerade)."],
+  ["Was ist eine Wendestelle von f für f′?", "Eine lokale Extremstelle von f′. Dort ist f am steilsten."],
+  ["Verhalten für x → ±∞?", "Bestimmt nur a<sub>n</sub>x<sup>n</sup>: gerader Grad → beide Enden gleich, ungerader → entgegengesetzt; Vorzeichen von a<sub>n</sub> entscheidet oben/unten."]
+];
+var known = store.get("known", {}), stack = [], flipped = false;
+function shuffle(a){ for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function buildStack(){ stack = shuffle(CARDS.map(function(_, i){ return i; }).filter(function(i){ return !known[i]; })); flipped = false; renderCard(); }
+function renderCard(){
+  var card = $("#card"), n = Object.keys(known).filter(function(k){ return known[k]; }).length;
+  $("#deckStat").textContent = n + " von " + CARDS.length + " Karten gekonnt";
+  if (!stack.length) {
+    card.className = "card back"; card.innerHTML = '<div class="side-lbl">Fertig</div><div class="front-q" style="text-align:center">Alle Karten gekonnt. Morgen nochmal mischen!</div>';
+    $("#deckInfo").textContent = "Stapel leer"; $("#deckFlip").disabled = $("#deckAgain").disabled = $("#deckKnown").disabled = true; return;
+  }
+  $("#deckFlip").disabled = $("#deckAgain").disabled = $("#deckKnown").disabled = false;
+  var c = CARDS[stack[0]];
+  card.className = flipped ? "card back" : "card";
+  card.innerHTML = flipped ? '<div class="side-lbl">Antwort</div><div class="mw">' + c[1] + '</div>' : '<div class="side-lbl">Frage · antippen zum Umdrehen</div><div class="front-q">' + c[0] + '</div>';
+  $("#deckInfo").textContent = "noch " + stack.length + " im Stapel";
+}
+function flip(){ if (stack.length) { flipped = !flipped; renderCard(); } }
+$("#card").addEventListener("click", flip);
+$("#card").addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } });
+$("#deckFlip").addEventListener("click", flip);
+$("#deckAgain").addEventListener("click", function(){ if (stack.length) { stack.push(stack.shift()); flipped = false; renderCard(); } });
+$("#deckKnown").addEventListener("click", function(){ if (stack.length) { known[stack.shift()] = true; store.set("known", known); flipped = false; renderCard(); } });
+$("#deckReset").addEventListener("click", function(){ known = {}; store.set("known", known); buildStack(); });
+buildStack();
+
+/* ---------- Start ---------- */
+var first = location.hash.slice(1);
+show(tokens.indexOf(first) >= 0 ? first : store.get("view", "start"), true);
+})();
+</script>
