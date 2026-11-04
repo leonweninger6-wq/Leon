@@ -382,10 +382,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>Durch x darf man nur dividieren, wenn x ≠ 0 ist. Dabei geht die Lösung 0 verloren. <strong>L = {−1; 0; 5}</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Division durch 0 ist verboten. Wer durch x teilt, nimmt stillschweigend an, dass x ≠ 0 ist, und wirft damit die Lösung x = 0 weg.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Statt zu dividieren: x herausheben → x·(x² − 4x − 5) = 0</li>
+        <li>Statt zu dividieren: x herausheben → x·(x² − 4x − 5) = 0<em class="why">Herausheben statt dividieren: So bleibt x = 0 als Lösung erhalten.</em></li>
         <li>Produkt-Null-Satz: x = 0 <em>oder</em> x² − 4x − 5 = 0<em class="why">Ein Produkt ist 0, wenn mindestens ein Faktor 0 ist.</em></li>
-        <li>Kleine Lösungsformel mit p = −4, q = −5: x = 2 ± √(4 + 5) = 2 ± 3 → x = 5 oder x = −1</li>
-        <li>L = {−1; 0; 5}</li>
+        <li>Kleine Lösungsformel mit p = −4, q = −5: x = 2 ± √(4 + 5) = 2 ± 3 → x = 5 oder x = −1<em class="why">Die Klammer ist eine normale quadratische Gleichung. Kleine Formel: p ist die Zahl vor x, q die Zahl allein.</em></li>
+        <li>L = {−1; 0; 5}<em class="why">Alle Lösungen zusammen: die 0 aus dem Faktor x und die zwei aus der Klammer.</em></li>
       </ol>
       <p class="ti-check">Kontrolle am TI: <code>solve(x^3-4*x^2-5*x=0,x)</code> → x=−1 or x=0 or x=5</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>Durch x darf man nur dividieren, wenn x ≠ 0 ist. Dabei geht die Lösung 0 verloren. <strong>L = {−1; 0; 5}</strong></p></div></div></div></details>
@@ -397,9 +397,9 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) L = {0; 4} &nbsp; f) L = {−2; 0; 2} &nbsp; c) L = {0}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Kein Term ohne x → die kleinste Potenz herausheben.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> x³ herausheben: x³·(x − 4) = 0 → x³ = 0 (also x = 0) oder x = 4.</li>
+        <li><b>a)</b> x³ herausheben: x³·(x − 4) = 0 → x³ = 0 (also x = 0) oder x = 4.<em class="why">x³ steckt in beiden Termen. Nach dem Herausheben gilt der Produkt-Null-Satz.</em></li>
         <li><b>f)</b> x⁴ herausheben: x⁴·(x² − 4) = 0 → x = 0 oder x² = 4 → x = ±2.<em class="why">Bei x² = 4 gibt es immer zwei Lösungen: +2 und −2.</em></li>
-        <li><b>c)</b> x² herausheben: x²·(x² + 25) = 0 → x = 0 oder x² = −25. Ein Quadrat kann nie negativ sein, also keine weitere Lösung.</li>
+        <li><b>c)</b> x² herausheben: x²·(x² + 25) = 0 → x = 0 oder x² = −25. Ein Quadrat kann nie negativ sein, also keine weitere Lösung.<em class="why">x² + 25 ist immer mindestens 25. Es kann nie 0 werden, darum gibt es nur x = 0.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) L = {0; 4} &nbsp; f) L = {−2; 0; 2} &nbsp; c) L = {0}</p></div></div></div></details>
   </article>
@@ -410,7 +410,7 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) L = {0; 2; 6} &nbsp; b) L = {−2; −½; 0} &nbsp; e) L = {0; 4}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Kein konstantes Glied → kleinste x-Potenz herausheben. Den Rest löst du mit der Lösungsformel oder einer binomischen Formel.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> x·(x² − 8x + 12) = 0. x = 0 oder x² − 8x + 12 = 0 → x = 4 ± √(16 − 12) = 4 ± 2 → x = 6, x = 2.</li>
+        <li><b>a)</b> x·(x² − 8x + 12) = 0. x = 0 oder x² − 8x + 12 = 0 → x = 4 ± √(16 − 12) = 4 ± 2 → x = 6, x = 2.<em class="why">x herausheben, dann die Klammer mit der kleinen Formel lösen. Die 0 nicht vergessen.</em></li>
         <li><b>b)</b> x·(2x² + 5x + 2) = 0. Große Lösungsformel mit a = 2, b = 5, c = 2: x = (−5 ± √(25 − 16)) / 4 = (−5 ± 3)/4 → x = −½ oder x = −2.<em class="why">Steht vor x² keine 1, nimm die große Formel (oder dividiere zuerst durch 2).</em></li>
         <li><b>e)</b> x²·(x² − 8x + 16) = 0 → x²·(x − 4)² = 0 → x = 0 oder x = 4.<em class="why">x² − 8x + 16 ist die 2. binomische Formel (x − 4)².</em></li>
       </ol>
@@ -423,9 +423,9 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) L = {−3; −1; 1} &nbsp; b) L = {0; 2; 4} &nbsp; d) L = {−4; −1; 1; 4}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Hier ist nicht x, sondern eine ganze <b>Klammer</b> in beiden Termen. Die Klammer wird herausgehoben, als wäre sie eine Variable.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> (x + 3) herausheben: (x + 3)·(x² − 1) = 0 → x = −3 oder x² = 1 → x = ±1.</li>
+        <li><b>a)</b> (x + 3) herausheben: (x + 3)·(x² − 1) = 0 → x = −3 oder x² = 1 → x = ±1.<em class="why">Die Klammer (x + 3) kommt zweimal vor. Man hebt sie heraus wie eine Variable.</em></li>
         <li><b>b)</b> Erst alles nach links: x²(x − 4) − 2x(x − 4) = 0 → (x − 4)·(x² − 2x) = 0 → (x − 4)·x·(x − 2) = 0 → x = 4, 0, 2.<em class="why">Nicht durch (x − 4) kürzen! Dann wäre x = 4 weg.</em></li>
-        <li><b>d)</b> (x² + 1)(x² − 1) − 17(x² − 1) = 0 → (x² − 1)·(x² + 1 − 17) = 0 → (x² − 1)(x² − 16) = 0 → x = ±1 oder x = ±4.</li>
+        <li><b>d)</b> (x² + 1)(x² − 1) − 17(x² − 1) = 0 → (x² − 1)·(x² + 1 − 17) = 0 → (x² − 1)(x² − 16) = 0 → x = ±1 oder x = ±4.<em class="why">Erst alles auf eine Seite, dann (x² − 1) herausheben. Jeder Faktor gibt zwei Lösungen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) L = {−3; −1; 1} &nbsp; b) L = {0; 2; 4} &nbsp; d) L = {−4; −1; 1; 4}</p></div></div></div></details>
   </article>
@@ -443,10 +443,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) L = {−4; −2; 2; 4} &nbsp; b) L = {−√3; −√2; √2; √3}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Nur x⁴ und x² → u = x² setzen. Dann ist es eine normale quadratische Gleichung. Am Ende zurück zu x!</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> u = x²: u² − 20u + 64 = 0 → u = 10 ± √(100 − 64) = 10 ± 6 → u = 16 oder u = 4.</li>
+        <li><b>a)</b> u = x²: u² − 20u + 64 = 0 → u = 10 ± √(100 − 64) = 10 ± 6 → u = 16 oder u = 4.<em class="why">Mit u = x² wird es quadratisch. Kleine Formel mit p = −20 und q = 64.</em></li>
         <li>Rücksubstitution: x² = 16 → x = ±4; x² = 4 → x = ±2.<em class="why">Gefragt ist x, nicht u. Darum nie bei den u-Werten aufhören.</em></li>
-        <li><b>b)</b> u² − 5u + 6 = 0 → u = 2,5 ± √(6,25 − 6) = 2,5 ± 0,5 → u = 3 oder u = 2.</li>
-        <li>x² = 3 → x = ±√3; x² = 2 → x = ±√2.</li>
+        <li><b>b)</b> u² − 5u + 6 = 0 → u = 2,5 ± √(6,25 − 6) = 2,5 ± 0,5 → u = 3 oder u = 2.<em class="why">Gleiche Methode: u = x², dann kleine Formel mit p = −5 und q = 6.</em></li>
+        <li>x² = 3 → x = ±√3; x² = 2 → x = ±√2.<em class="why">Rücksubstitution: Aus x² = Zahl bekommt man x = ± Wurzel aus der Zahl.</em></li>
       </ol>
       <p class="ti-check">TI: <code>solve(x^4-5*x^2+6=0,x)</code> → x = ±1.414…, ±1.732… (das sind √2 und √3)</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) L = {−4; −2; 2; 4} &nbsp; b) L = {−√3; −√2; √2; √3}</p></div></div></div></details>
@@ -458,10 +458,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>i) L = {∛2; 2} (∛2 ≈ 1,26) &nbsp; j) L = {−∛4; ∛3} (≈ −1,59 und 1,44)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>x⁶ = (x³)². Darum hier u = x³.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>i)</b> u² − 10u + 16 = 0 → u = 5 ± 3 → u = 8 oder u = 2.</li>
+        <li><b>i)</b> u² − 10u + 16 = 0 → u = 5 ± 3 → u = 8 oder u = 2.<em class="why">Mit u = x³ wird es quadratisch. Kleine Formel mit p = −10, q = 16.</em></li>
         <li>x³ = 8 → x = 2; x³ = 2 → x = ∛2.<em class="why">Eine dritte Wurzel gibt es immer genau einmal, auch aus negativen Zahlen.</em></li>
-        <li><b>j)</b> u² + u − 12 = 0 → u = −0,5 ± √(0,25 + 12) = −0,5 ± 3,5 → u = 3 oder u = −4.</li>
-        <li>x³ = 3 → x = ∛3; x³ = −4 → x = −∛4.</li>
+        <li><b>j)</b> u² + u − 12 = 0 → u = −0,5 ± √(0,25 + 12) = −0,5 ± 3,5 → u = 3 oder u = −4.<em class="why">Kleine Formel mit p = 1 und q = −12. Ein u ist negativ, aber bei x³ ist das kein Problem.</em></li>
+        <li>x³ = 3 → x = ∛3; x³ = −4 → x = −∛4.<em class="why">Zurück zu x: Bei x³ zieht man die dritte Wurzel. Die geht auch aus negativen Zahlen, darum gibt es hier für beide u eine Lösung.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>i) L = {∛2; 2} (∛2 ≈ 1,26) &nbsp; j) L = {−∛4; ∛3} (≈ −1,59 und 1,44)</p></div></div></div></details>
   </article>
@@ -472,10 +472,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) L = {−3; 1} &nbsp; b) L = {−2; 0; 2; 4}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Die ganze Klammer wird ersetzt: u = (x + 1)². Nicht ausmultiplizieren!</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> u² + u − 20 = 0 → u = −0,5 ± 4,5 → u = 4 oder u = −5.</li>
-        <li>(x + 1)² = 4 → x + 1 = ±2 → x = 1 oder x = −3. (x + 1)² = −5 → keine Lösung.</li>
-        <li><b>b)</b> u = (x − 1)²: u² − 10u + 9 = 0 → u = 9 oder u = 1.</li>
-        <li>(x − 1)² = 9 → x − 1 = ±3 → x = 4, x = −2. (x − 1)² = 1 → x − 1 = ±1 → x = 2, x = 0.</li>
+        <li><b>a)</b> u² + u − 20 = 0 → u = −0,5 ± 4,5 → u = 4 oder u = −5.<em class="why">Mit u = (x + 1)² ist es eine normale quadratische Gleichung: kleine Formel mit p = 1, q = −20.</em></li>
+        <li>(x + 1)² = 4 → x + 1 = ±2 → x = 1 oder x = −3. (x + 1)² = −5 → keine Lösung.<em class="why">Zurück zur Klammer: Ein Quadrat = 4 heißt, die Klammer ist +2 oder −2. Ein Quadrat kann nie −5 sein.</em></li>
+        <li><b>b)</b> u = (x − 1)²: u² − 10u + 9 = 0 → u = 9 oder u = 1.<em class="why">Gleicher Trick: Die Klammer (x − 1)² wird zu u. Dann kleine Formel mit p = −10, q = 9.</em></li>
+        <li>(x − 1)² = 9 → x − 1 = ±3 → x = 4, x = −2. (x − 1)² = 1 → x − 1 = ±1 → x = 2, x = 0.<em class="why">Rücksubstitution: Jede positive Zahl unter dem Quadrat gibt zwei Möglichkeiten für die Klammer, + und −.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) L = {−3; 1} &nbsp; b) L = {−2; 0; 2; 4}</p></div></div></div></details>
   </article>
@@ -486,10 +486,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p><strong>B und C</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Mit u = x² wird jede Gleichung quadratisch. Keine x-Lösung gibt es, wenn die u-Gleichung keine Lösung hat <em>oder</em> alle u-Lösungen negativ sind.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>A: u² − 6u + 5 = 0 → u = 1, u = 5 → beide positiv → 4 Lösungen.</li>
-        <li>B: u² + 8u + 12 = 0 → u = −2, u = −6 → beide negativ → <b>keine</b> Lösung.</li>
-        <li>C: u² − 3u + 4 = 0 → Diskriminante (−3)² − 4·4 = 9 − 16 &lt; 0 → <b>keine</b> Lösung.</li>
-        <li>D: u = 1 oder u = −5 → nur x = ±1. E: u = 2 oder u = −3 → nur x = ±√2.</li>
+        <li>A: u² − 6u + 5 = 0 → u = 1, u = 5 → beide positiv → 4 Lösungen.<em class="why">Zwei positive u geben je zwei x-Werte, also vier Lösungen. Diese Gleichung ist nicht gesucht.</em></li>
+        <li>B: u² + 8u + 12 = 0 → u = −2, u = −6 → beide negativ → <b>keine</b> Lösung.<em class="why">x² ist nie negativ. Sind beide u negativ, passt kein x. Also keine Lösung.</em></li>
+        <li>C: u² − 3u + 4 = 0 → Diskriminante (−3)² − 4·4 = 9 − 16 &lt; 0 → <b>keine</b> Lösung.<em class="why">Die Diskriminante ist negativ, also hat schon die u-Gleichung keine Lösung. Ohne u gibt es auch kein x.</em></li>
+        <li>D: u = 1 oder u = −5 → nur x = ±1. E: u = 2 oder u = −3 → nur x = ±√2.<em class="why">Hier gibt es je ein positives u. Darum haben D und E Lösungen und sind nicht gesucht.</em></li>
       </ol>
       <p class="ti-check">TI: <code>solve(x^4+8*x^2+12=0,x)</code> → <code>false</code> heißt „keine Lösung“.</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>B und C</strong></p></div></div></div></details>
@@ -501,8 +501,8 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>z. B. a) a = −5, b = 4 (Lösungen ±1, ±2) &nbsp; b) a = −4, b = 0 (Lösungen 0, ±2)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Rückwärts denken. Welche u-Lösungen brauchst du?</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> Vier Lösungen brauchen zwei verschiedene <b>positive</b> u-Werte, z. B. u = 1 und u = 4. Dann ist (u − 1)(u − 4) = u² − 5u + 4, also x⁴ − 5x² + 4 = 0.</li>
-        <li><b>b)</b> Drei Lösungen: Ein u muss 0 sein (gibt nur x = 0), das andere positiv. u = 0 und u = 4: u(u − 4) = u² − 4u → x⁴ − 4x² = 0 → x²(x² − 4) = 0 → 0, ±2.</li>
+        <li><b>a)</b> Vier Lösungen brauchen zwei verschiedene <b>positive</b> u-Werte, z. B. u = 1 und u = 4. Dann ist (u − 1)(u − 4) = u² − 5u + 4, also x⁴ − 5x² + 4 = 0.<em class="why">Rückwärts bauen: gewünschte u-Lösungen wählen, daraus die Faktoren machen, ausmultiplizieren und u wieder durch x² ersetzen.</em></li>
+        <li><b>b)</b> Drei Lösungen: Ein u muss 0 sein (gibt nur x = 0), das andere positiv. u = 0 und u = 4: u(u − 4) = u² − 4u → x⁴ − 4x² = 0 → x²(x² − 4) = 0 → 0, ±2.<em class="why">u = 0 gibt nur x = 0 (eine Lösung), u = 4 gibt ±2 (zwei Lösungen). Zusammen sind das drei.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>z. B. a) a = −5, b = 4 (Lösungen ±1, ±2) &nbsp; b) a = −4, b = 0 (Lösungen 0, ±2)</p></div></div></div></details>
   </article>
@@ -520,10 +520,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) einzige Lösung x = 3 &nbsp; b) einzige Lösung x = 4</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Horner für n = 3: a³ − b³ = (a − b)(a² + ab + b²). Dann zeigen, dass der quadratische Faktor keine Lösung hat.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> x³ − 27 = x³ − 3³ = (x − 3)(x² + 3x + 9) = 0</li>
-        <li>x − 3 = 0 → x = 3.</li>
+        <li><b>a)</b> x³ − 27 = x³ − 3³ = (x − 3)(x² + 3x + 9) = 0<em class="why">Horner für n = 3 mit a = x und b = 3. So wird aus der Differenz ein Produkt.</em></li>
+        <li>x − 3 = 0 → x = 3.<em class="why">Der erste Faktor gibt sofort die Lösung 3.</em></li>
         <li>x² + 3x + 9 = 0: Diskriminante (p/2)² − q = 2,25 − 9 &lt; 0 → keine reelle Lösung.<em class="why">Darum ist 3 die einzige Lösung. Genau dieses Argument will die Aufgabe sehen.</em></li>
-        <li><b>b)</b> x³ − 4³ = (x − 4)(x² + 4x + 16). x² + 4x + 16: 4 − 16 &lt; 0 → keine Lösung. Einzige Lösung x = 4.</li>
+        <li><b>b)</b> x³ − 4³ = (x − 4)(x² + 4x + 16). x² + 4x + 16: 4 − 16 &lt; 0 → keine Lösung. Einzige Lösung x = 4.<em class="why">Gleiche Zerlegung mit b = 4. Der quadratische Faktor hat eine negative Diskriminante und damit keine Lösung.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) einzige Lösung x = 3 &nbsp; b) einzige Lösung x = 4</p></div></div></div></details>
   </article>
@@ -534,12 +534,12 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>c) L = {−3; 2; 3} &nbsp; d) L = {−2; ½} (½ ist eine Doppellösung)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>x₀ ist schon gegeben. Erst durch Einsetzen prüfen, dann durch (x − x₀) dividieren. Übrig bleibt eine quadratische Gleichung.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>c) Probe:</b> 8 − 8 − 18 + 18 = 0 ✓, also ist 2 eine Lösung.</li>
+        <li><b>c) Probe:</b> 8 − 8 − 18 + 18 = 0 ✓, also ist 2 eine Lösung.<em class="why">Einsetzen zeigt, ob x₀ wirklich eine Lösung ist: Es muss 0 herauskommen.</em></li>
         <li>Polynomdivision (x³ − 2x² − 9x + 18) : (x − 2) = x² − 9. Rest 0.<em class="why">Rest 0 bestätigt nochmal, dass x₀ eine Lösung war.</em></li>
-        <li>x² − 9 = 0 → x = ±3. L = {−3; 2; 3}.</li>
-        <li><b>d) Probe:</b> 4·(−8) + 4·4 + 14 + 2 = −32 + 16 + 14 + 2 = 0 ✓.</li>
+        <li>x² − 9 = 0 → x = ±3. L = {−3; 2; 3}.<em class="why">Nach der Division bleibt x² − 9. Zusammen mit x₀ = 2 hat man alle Lösungen.</em></li>
+        <li><b>d) Probe:</b> 4·(−8) + 4·4 + 14 + 2 = −32 + 16 + 14 + 2 = 0 ✓.<em class="why">Probe mit x₀ = −2: Klammern um die negative Zahl setzen. Kommt 0 heraus, ist es eine Lösung.</em></li>
         <li>(4x³ + 4x² − 7x + 2) : (x + 2) = 4x² − 4x + 1 = (2x − 1)².<em class="why">x − (−2) = x + 2.</em></li>
-        <li>(2x − 1)² = 0 → x = ½. L = {−2; ½}.</li>
+        <li>(2x − 1)² = 0 → x = ½. L = {−2; ½}.<em class="why">Der Rest ist eine binomische Formel. Ein Quadrat ist nur 0, wenn die Klammer 0 ist.</em></li>
       </ol>
       <p class="ti-check">TI: <code>factor(4*x^3+4*x^2-7*x+2)</code> → (x+2)·(2x−1)²</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>c) L = {−3; 2; 3} &nbsp; d) L = {−2; ½} (½ ist eine Doppellösung)</p></div></div></div></details>
@@ -551,10 +551,10 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>a) L = {1; 2; 3} &nbsp; b) L = {−2; −1; 4}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Ganzzahlige Lösungen sind Teiler des konstanten Glieds. Bei −6 probierst du ±1, ±2, ±3, ±6.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li><b>a)</b> x = 1: 1 − 6 + 11 − 6 = 0 ✓.</li>
-        <li>(x³ − 6x² + 11x − 6) : (x − 1) = x² − 5x + 6 → x = 2,5 ± 0,5 → 3 und 2.</li>
-        <li><b>b)</b> x = −1: −1 − 1 + 10 − 8 = 0 ✓.</li>
-        <li>(x³ − x² − 10x − 8) : (x + 1) = x² − 2x − 8 → x = 1 ± 3 → 4 und −2.</li>
+        <li><b>a)</b> x = 1: 1 − 6 + 11 − 6 = 0 ✓.<em class="why">Man probiert kleine ganze Zahlen (Teiler von 6). Bei x = 1 kommt 0 heraus, also ist 1 eine Lösung.</em></li>
+        <li>(x³ − 6x² + 11x − 6) : (x − 1) = x² − 5x + 6 → x = 2,5 ± 0,5 → 3 und 2.<em class="why">Durch (x − 1) dividieren spaltet diese Lösung ab. Der Rest ist quadratisch und wird mit der kleinen Formel gelöst.</em></li>
+        <li><b>b)</b> x = −1: −1 − 1 + 10 − 8 = 0 ✓.<em class="why">Teiler von 8 probieren. Bei x = −1 kommt 0 heraus.</em></li>
+        <li>(x³ − x² − 10x − 8) : (x + 1) = x² − 2x − 8 → x = 1 ± 3 → 4 und −2.<em class="why">Lösung −1 heißt Faktor (x + 1). Nach der Division bleibt eine quadratische Gleichung.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) L = {1; 2; 3} &nbsp; b) L = {−2; −1; 4}</p></div></div></div></details>
   </article>
@@ -565,9 +565,9 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
     <details class="res"><summary>Ergebnis</summary><div><p>L = {−⅓; 2; 3}</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Eine Lösung ist gegeben → Linearfaktor (x − 2) abspalten → Rest mit der großen Lösungsformel.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Probe: 3·8 − 14·4 + 26 + 6 = 24 − 56 + 26 + 6 = 0 ✓.</li>
-        <li>(3x³ − 14x² + 13x + 6) : (x − 2) = 3x² − 8x − 3.</li>
-        <li>3x² − 8x − 3 = 0: x = (8 ± √(64 + 36)) / 6 = (8 ± 10)/6 → x = 3 oder x = −⅓.</li>
+        <li>Probe: 3·8 − 14·4 + 26 + 6 = 24 − 56 + 26 + 6 = 0 ✓.<em class="why">Einsetzen von 2 ergibt 0. Damit ist 2 bewiesen eine Lösung.</em></li>
+        <li>(3x³ − 14x² + 13x + 6) : (x − 2) = 3x² − 8x − 3.<em class="why">Polynomdivision durch (x − 2). Übrig bleibt ein Polynom vom Grad 2.</em></li>
+        <li>3x² − 8x − 3 = 0: x = (8 ± √(64 + 36)) / 6 = (8 ± 10)/6 → x = 3 oder x = −⅓.<em class="why">Vor x² steht eine 3, darum die große Lösungsformel mit a = 3, b = −8, c = −3.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>L = {−⅓; 2; 3}</p></div></div></div></details>
   </article>
@@ -580,9 +580,9 @@ tan⁻¹(f1(2))                    <span class="c">Winkel (Modus: Grad!)</span><
 <div class="lw-ti"><span class="lw-tag">Am TI-Nspire eingeben</span><pre class="cas">factor(x^3+2*x^2-x-2)          <span class="r">(x−1)·(x+1)·(x+2)</span>
 factor(x^4-2*x^3-3*x^2+4*x+4)  <span class="r">(x−2)²·(x+1)²</span></pre></div>
       <ol class="st">
-        <li>Produkt-Null-Satz: jeder Linearfaktor gibt eine Lösung.</li>
+        <li>Produkt-Null-Satz: jeder Linearfaktor gibt eine Lösung.<em class="why">Ein Produkt ist 0, wenn ein Faktor 0 ist. Jeder Faktor (x − a) gibt die Lösung x = a.</em></li>
         <li>Bei d) kommen (x − 2) und (x + 1) doppelt vor: <b>Doppellösungen</b>. In der Lösungsmenge stehen sie trotzdem nur einmal.<em class="why">Am Graphen: Bei einer Doppelnullstelle berührt der Graph die x-Achse nur.</em></li>
-        <li>Von Hand bei a): Gruppen bilden: x²(x + 2) − (x + 2) = (x + 2)(x² − 1).</li>
+        <li>Von Hand bei a): Gruppen bilden: x²(x + 2) − (x + 2) = (x + 2)(x² − 1).<em class="why">Man fasst je zwei Terme zusammen und hebt aus beiden Paaren dasselbe heraus. So sieht man die gemeinsame Klammer (x + 2).</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) (x − 1)(x + 1)(x + 2), L = {−2; −1; 1} &nbsp; d) (x − 2)²(x + 1)², L = {−1; 2}</p></div></div></div></details>
   </article>
@@ -603,7 +603,7 @@ factor(x^4-2*x^3-3*x^2+4*x+4)  <span class="r">(x−2)²·(x+1)²</span></pre></
 expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
       <ol class="st">
         <li>a) (x + 2)(x − 2)(x − 4) = (x² − 4)(x − 4) = x³ − 4x² − 4x + 16 → a = −4, b = −4, c = 16.<em class="why">Lösung −2 gibt den Faktor (x − (−2)) = (x + 2).</em></li>
-        <li>b) x(x − 1)(x − 3) = x(x² − 4x + 3) = x³ − 4x² + 3x → a = −4, b = 3, c = 0.</li>
+        <li>b) x(x − 1)(x − 3) = x(x² − 4x + 3) = x³ − 4x² + 3x → a = −4, b = 3, c = 0.<em class="why">Aus den Lösungen 0, 1, 3 werden die Faktoren x, (x − 1), (x − 3). Ausmultipliziert liest man a, b, c ab.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) a = −4, b = −4, c = 16 &nbsp; b) a = −4, b = 3, c = 0</p></div></div></div></details>
   </article>
@@ -615,7 +615,7 @@ expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Aus den Lösungen die Faktoren bauen und ausmultiplizieren. Dann liest du a und b ab.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>Faktoren: (x − 1)(x + 1)(x − 2)(x + 2) = (x² − 1)(x² − 4).<em class="why">3. binomische Formel jeweils paarweise.</em></li>
-        <li>Ausmultiplizieren: x⁴ − 4x² − x² + 4 = x⁴ − 5x² + 4.</li>
+        <li>Ausmultiplizieren: x⁴ − 4x² − x² + 4 = x⁴ − 5x² + 4.<em class="why">Die beiden Klammern ausmultiplizieren und zusammenfassen. Dann a (vor x²) und b (allein) ablesen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a = −5, b = 4</p></div></div></div></details>
   </article>
@@ -626,9 +626,9 @@ expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>z. B. a) (x − 1)²(x − 2) = 0 &nbsp; b) x⁴ + 1 = 0 &nbsp; c) x²(x − 1)(x + 1) = 0</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Grad n heißt n Linearfaktoren. Weniger Lösungen bekommt man, wenn Faktoren doppelt vorkommen oder keine reelle Lösung haben.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) Grad 3 heißt drei Linearfaktoren. Für nur zwei verschiedene Lösungen muss ein Faktor doppelt vorkommen: (x − 1)²·(x − 2).</li>
-        <li>b) x⁴ ist nie negativ, also x⁴ + 1 ≥ 1 &gt; 0. Genauso: (x² + 1)(x² + 4) = 0.</li>
-        <li>c) Vier Faktoren, einer doppelt: x·x·(x − 1)(x + 1) → Lösungen 0, 1, −1.</li>
+        <li>a) Grad 3 heißt drei Linearfaktoren. Für nur zwei verschiedene Lösungen muss ein Faktor doppelt vorkommen: (x − 1)²·(x − 2).<em class="why">Ein doppelter Faktor gibt dieselbe Lösung zweimal. So hat Grad 3 nur zwei verschiedene Lösungen.</em></li>
+        <li>b) x⁴ ist nie negativ, also x⁴ + 1 ≥ 1 &gt; 0. Genauso: (x² + 1)(x² + 4) = 0.<em class="why">Eine Summe aus nie-negativen Teilen und einer positiven Zahl kann nie 0 werden.</em></li>
+        <li>c) Vier Faktoren, einer doppelt: x·x·(x − 1)(x + 1) → Lösungen 0, 1, −1.<em class="why">Der doppelte Faktor x gibt nur die Lösung 0. Mit den zwei anderen Faktoren sind es drei verschiedene Lösungen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>z. B. a) (x − 1)²(x − 2) = 0 &nbsp; b) x⁴ + 1 = 0 &nbsp; c) x²(x − 1)(x + 1) = 0</p></div></div></div></details>
   </article>
@@ -639,8 +639,8 @@ expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>① → B (3 Lösungen: 0, −1, −7) &nbsp; ② → D (5 Lösungen: 0, ±√2, ±√6)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Erst herausheben, dann den Rest lösen (eventuell mit Substitution). Am Ende verschiedene Lösungen zählen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>① x³ herausheben: x³(x² + 8x + 7) = 0 → x = 0 oder x² + 8x + 7 = 0 → x = −4 ± 3 → −1, −7. Drei verschiedene Lösungen.</li>
-        <li>② x herausheben: x(x⁴ − 8x² + 12) = 0. Substitution u = x²: u² − 8u + 12 = 0 → u = 2, u = 6 → x = ±√2, ±√6. Mit x = 0: fünf Lösungen.</li>
+        <li>① x³ herausheben: x³(x² + 8x + 7) = 0 → x = 0 oder x² + 8x + 7 = 0 → x = −4 ± 3 → −1, −7. Drei verschiedene Lösungen.<em class="why">x³ steckt in allen Termen. Herausheben, dann die Klammer mit der Lösungsformel lösen und verschiedene Lösungen zählen.</em></li>
+        <li>② x herausheben: x(x⁴ − 8x² + 12) = 0. Substitution u = x²: u² − 8u + 12 = 0 → u = 2, u = 6 → x = ±√2, ±√6. Mit x = 0: fünf Lösungen.<em class="why">Erst x herausheben, dann hat die Klammer nur x⁴ und x². Mit u = x² wird sie lösbar.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>① → B (3 Lösungen: 0, −1, −7) &nbsp; ② → D (5 Lösungen: 0, ±√2, ±√6)</p></div></div></div></details>
   </article>
@@ -651,11 +651,11 @@ expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p><strong>C und D</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Jede Gleichung schnell herausheben und die verschiedenen Lösungen zählen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>A: x³(x − 4) → 0, 4 → zwei.</li>
-        <li>B: x²(x³ − 4) → 0, ∛4 → zwei.</li>
-        <li>C: x³(x² − 4) → 0, ±2 → <b>drei</b> ✓.</li>
+        <li>A: x³(x − 4) → 0, 4 → zwei.<em class="why">Herausheben zeigt die Faktoren. Gezählt werden nur verschiedene Lösungen.</em></li>
+        <li>B: x²(x³ − 4) → 0, ∛4 → zwei.<em class="why">x³ = 4 hat nur eine reelle Lösung. Mit x = 0 sind es zwei.</em></li>
+        <li>C: x³(x² − 4) → 0, ±2 → <b>drei</b> ✓.<em class="why">x² = 4 gibt +2 und −2. Mit x = 0 sind es genau drei.</em></li>
         <li>D: x²(x⁴ − 4) → 0, x⁴ = 4 → x = ±√2 → <b>drei</b> ✓.<em class="why">x⁴ = 4 heißt x² = 2 (x² = −2 geht nicht).</em></li>
-        <li>E: x³(x³ − 4) → 0, ∛4 → zwei.</li>
+        <li>E: x³(x³ − 4) → 0, ∛4 → zwei.<em class="why">Wie bei B: x³ = 4 gibt nur eine Lösung, dazu x = 0. Also zwei.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>C und D</strong></p></div></div></div></details>
   </article>
@@ -667,8 +667,8 @@ expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Ungerader Grad hat immer eine Nullstelle, die fällt sofort weg. Die anderen mit Lösungsformel oder Substitution prüfen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>f₃ hat <b>ungeraden Grad</b>, hat also sicher mindestens eine Nullstelle. Sofort weg.<em class="why">Die Enden gehen nach −∞ und +∞, dazwischen muss der Graph die x-Achse schneiden.</em></li>
-        <li>f₁: Nullstellen −1, −3. f₂: u² + 3u − 4 = 0 → u = 1 → x = ±1.</li>
-        <li>f₄: Diskriminante 4 − 5 &lt; 0 → keine Nullstelle. f₅: alle Terme ≥ 0, und + 4 → immer ≥ 4 → keine.</li>
+        <li>f₁: Nullstellen −1, −3. f₂: u² + 3u − 4 = 0 → u = 1 → x = ±1.<em class="why">Diese beiden haben Nullstellen, sind also nicht gesucht.</em></li>
+        <li>f₄: Diskriminante 4 − 5 &lt; 0 → keine Nullstelle. f₅: alle Terme ≥ 0, und + 4 → immer ≥ 4 → keine.<em class="why">Negative Diskriminante → keine Lösung. Bei f₅ ist jeder Term ≥ 0 und dazu kommt + 4, also nie 0.</em></li>
       </ol>
       <p class="ti-check">TI: <code>zeros(x^2-4*x+5,x)</code> → { } (leere Liste)</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>f₄ und f₅</strong></p></div></div></div></details>
@@ -682,8 +682,8 @@ expand(x*(x-1)*(x-3))       <span class="r">x³−4·x²+3·x</span></pre></div>
 <div class="lw-ti"><span class="lw-tag">Am TI-Nspire eingeben</span><pre class="cas">propFrac((x^3+3*x^2-5*x+1)/(x-1))   <span class="r">x²+4·x−1</span>   <span class="c">(oder Polynomdivision)</span>
 factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</span></pre></div>
       <ol class="st">
-        <li>a) Probe f(1) = 1 + 3 − 5 + 1 = 0 ✓, dann Division durch (x − 1).</li>
-        <li>c) Jede Lösung gibt einen Faktor: (x + 2) für −2, (x + 3) für −3, (x − 1) für 1.</li>
+        <li>a) Probe f(1) = 1 + 3 − 5 + 1 = 0 ✓, dann Division durch (x − 1).<em class="why">Erst prüfen, dass 1 eine Lösung ist. Dann darf man den Faktor (x − 1) abspalten.</em></li>
+        <li>c) Jede Lösung gibt einen Faktor: (x + 2) für −2, (x + 3) für −3, (x − 1) für 1.<em class="why">Jede gewünschte Lösung x₀ wird zum Faktor (x − x₀). Das Produkt ist dann das gesuchte Polynom.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) g(x) = x² + 4x − 1 &nbsp; b) (x − 1)(x − 2)(x − 3), L = {1; 2; 3} &nbsp; c) z. B. f(x) = (x + 2)(x + 3)(x − 1)</p></div></div></div></details>
   </article>
@@ -702,9 +702,9 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Absolute Änderung = späterer Wert minus früherer Wert. Mittlere Änderungsrate = diese Änderung durch die vergangene Zeit.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>Absolute Änderung = Endwert − Anfangswert: T(14) − T(8) = 17 − 9 = 8 °C; T(18) − T(12) = 13 − 13 = 0 °C; T(20) − T(14) = 11 − 17 = −6 °C.<em class="why">Immer „später minus früher“.</em></li>
-        <li>Negativ: Am Ende ist es kälter als am Anfang (Temperaturabnahme).</li>
-        <li>Rate: 8 / (14 − 8) = 8/6 ≈ 1,33 °C pro Stunde. Deutung: Zwischen 8 und 14 Uhr steigt die Temperatur <b>im Mittel</b> um 1,33 °C pro Stunde.</li>
-        <li>−6 / 6 = −1 °C/h: Zwischen 14 und 20 Uhr sinkt die Temperatur im Mittel um 1 °C pro Stunde.</li>
+        <li>Negativ: Am Ende ist es kälter als am Anfang (Temperaturabnahme).<em class="why">Später minus früher ist negativ, wenn der spätere Wert kleiner ist. Die Temperatur ist also gesunken.</em></li>
+        <li>Rate: 8 / (14 − 8) = 8/6 ≈ 1,33 °C pro Stunde. Deutung: Zwischen 8 und 14 Uhr steigt die Temperatur <b>im Mittel</b> um 1,33 °C pro Stunde.<em class="why">Die mittlere Änderungsrate ist die Änderung pro Stunde. Darum teilt man durch die Anzahl der Stunden.</em></li>
+        <li>−6 / 6 = −1 °C/h: Zwischen 14 und 20 Uhr sinkt die Temperatur im Mittel um 1 °C pro Stunde.<em class="why">Gleiche Rechnung. Das Minus bedeutet, dass die Temperatur im Mittel sinkt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) +8 °C, 0 °C, −6 °C &nbsp; 2) Temperatur hat abgenommen &nbsp; 3) ≈ 1,33 °C/h und −1 °C/h</p></div></div></div></details>
   </article>
@@ -717,9 +717,9 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
 <div class="lw-ti"><span class="lw-tag">Am TI-Nspire eingeben</span><pre class="cas">f(x):=x^3-2*x^2
 (f(3)-f(-1))/(3-(-1))      <span class="r">3</span></pre></div>
       <ol class="st">
-        <li>b) f(4) = 16 + 4 = 20, f(0) = 0 → (20 − 0)/(4 − 0) = 5.</li>
+        <li>b) f(4) = 16 + 4 = 20, f(0) = 0 → (20 − 0)/(4 − 0) = 5.<em class="why">Erst Endwert und Anfangswert ausrechnen, dann den Bruch bilden.</em></li>
         <li>c) f(3) = 27 − 18 = 9, f(−1) = −1 − 2 = −3 → (9 − (−3)) / (3 − (−1)) = 12/4 = 3.<em class="why">Klammern bei negativen Zahlen: minus minus wird plus.</em></li>
-        <li>d) f(2) = 16 − 20 + 6 = 2, f(0) = 6 → (2 − 6)/2 = −2.</li>
+        <li>d) f(2) = 16 − 20 + 6 = 2, f(0) = 6 → (2 − 6)/2 = −2.<em class="why">Gleiche Formel. Negativ heißt, f fällt im Mittel in diesem Intervall.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>b) 5 &nbsp; c) 3 &nbsp; d) −2</p></div></div></div></details>
   </article>
@@ -730,9 +730,9 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
     <details class="res"><summary>Ergebnis</summary><div><p>b) 4 &nbsp; c) 8 &nbsp; d) −4</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>„Steigung der Sekante“ ist nur ein anderes Wort für den Differenzenquotienten.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>b) f(4) = 8, f(2) = 0 → 8/2 = 4.</li>
-        <li>c) f(3) = 24, f(0) = 0 → 24/3 = 8.</li>
-        <li>d) f(1) = 0, f(−2) = 4 + 8 = 12 → (0 − 12)/(1 + 2) = −4.</li>
+        <li>b) f(4) = 8, f(2) = 0 → 8/2 = 4.<em class="why">Sekantensteigung = Differenzenquotient: Endwert minus Anfangswert durch Intervalllänge.</em></li>
+        <li>c) f(3) = 24, f(0) = 0 → 24/3 = 8.<em class="why">f(3) und f(0) ausrechnen, dann durch die Länge 3 teilen.</em></li>
+        <li>d) f(1) = 0, f(−2) = 4 + 8 = 12 → (0 − 12)/(1 + 2) = −4.<em class="why">Bei negativen Zahlen Klammern setzen: (−2)² = 4 und (−2)³ = −8, also −(−8) = +8.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>b) 4 &nbsp; c) 8 &nbsp; d) −4</p></div></div></div></details>
   </article>
@@ -743,10 +743,10 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
     <details class="res"><summary>Ergebnis</summary><div><p>2.07: f(4) = 1 &nbsp; 2.08: f(4) = 9, f(6) = 7, f(1) = 2</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Formel nach dem unbekannten Funktionswert umstellen: f(b) = f(a) + Rate · (b − a).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>2.07: (f(4) − (−5)) / 3 = 2 → f(4) + 5 = 6 → f(4) = 1.</li>
-        <li>2.08: (f(4) − (−3)) / 6 = 2 → f(4) = 12 − 3 = 9.</li>
+        <li>2.07: (f(4) − (−5)) / 3 = 2 → f(4) + 5 = 6 → f(4) = 1.<em class="why">In die Formel einsetzen, was man kennt. Dann wie eine normale Gleichung nach f(4) auflösen.</em></li>
+        <li>2.08: (f(4) − (−3)) / 6 = 2 → f(4) = 12 − 3 = 9.<em class="why">Gleiches Vorgehen: Formel hinschreiben, Bekanntes einsetzen, nach dem gesuchten Wert auflösen.</em></li>
         <li>(f(6) − 9) / 2 = −1 → f(6) = 7.<em class="why">Mit dem gerade berechneten f(4) weiterrechnen.</em></li>
-        <li>(7 − f(1)) / 5 = 1 → 7 − f(1) = 5 → f(1) = 2.</li>
+        <li>(7 − f(1)) / 5 = 1 → 7 − f(1) = 5 → f(1) = 2.<em class="why">Jetzt kennt man f(6) = 7 aus dem Schritt davor. Damit kann man f(1) ausrechnen.</em></li>
       </ol>
       <p class="ti-check">TI: <code>solve((y-(-3))/6=2,y)</code> → y = 9 (so kannst du jede Umformung prüfen).</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>2.07: f(4) = 1 &nbsp; 2.08: f(4) = 9, f(6) = 7, f(1) = 2</p></div></div></div></details>
@@ -759,9 +759,9 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Das ist das Training für den Limes. Ziel: den Nenner wegkürzen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>a) (2x₂² + 3 − 2x₁² − 3) / (x₂ − x₁) = 2(x₂² − x₁²) / (x₂ − x₁) = 2(x₂ − x₁)(x₂ + x₁) / (x₂ − x₁) = 2(x₂ + x₁).<em class="why">3. binomische Formel, dann kürzen.</em></li>
-        <li>b) f(a + h) = (a + h)² − 6(a + h) = a² + 2ah + h² − 6a − 6h.</li>
-        <li>f(a + h) − f(a) = 2ah + h² − 6h = h(2a + h − 6).</li>
-        <li>Durch h dividieren: 2a + h − 6.</li>
+        <li>b) f(a + h) = (a + h)² − 6(a + h) = a² + 2ah + h² − 6a − 6h.<em class="why">Für f(a + h) setzt man überall statt x die Klammer (a + h) ein und multipliziert aus.</em></li>
+        <li>f(a + h) − f(a) = 2ah + h² − 6h = h(2a + h − 6).<em class="why">f(a) abziehen: a² und −6a heben sich weg. Übrig bleiben nur Terme mit h, darum kann man h herausheben.</em></li>
+        <li>Durch h dividieren: 2a + h − 6.<em class="why">Der Nenner ist h. Weil h jetzt auch oben als Faktor steht, kürzt es sich weg.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) 2(x₂ + x₁) &nbsp; b) 2a + h − 6</p></div></div></div></details>
   </article>
@@ -772,10 +772,10 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
     <details class="res"><summary>Ergebnis</summary><div><p><strong>B und C</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Mittlere Geschwindigkeit ist eine mittlere Änderungsrate von s. Geschwindigkeit zu einem Zeitpunkt ist die Ableitung von s.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Mittlere Geschwindigkeit = (s(t₂) − s(t₁)) / (t₂ − t₁) = mittlere Änderungsrate von s → C ✓.</li>
-        <li>A falsch: Die Änderung des Ortes ist nur der Zähler (in m, nicht in m/s).</li>
-        <li>Momentangeschwindigkeit v(t) = s′(t) = (momentane) Änderungsrate → B ✓. D falsch, das wäre die mittlere.</li>
-        <li>E falsch: Die Änderung der Geschwindigkeit hat mit der Beschleunigung zu tun.</li>
+        <li>Mittlere Geschwindigkeit = (s(t₂) − s(t₁)) / (t₂ − t₁) = mittlere Änderungsrate von s → C ✓.<em class="why">Die mittlere Geschwindigkeit ist Weg durch Zeit. Das ist genau die mittlere Änderungsrate von s.</em></li>
+        <li>A falsch: Die Änderung des Ortes ist nur der Zähler (in m, nicht in m/s).<em class="why">Die Änderung des Ortes ist nur der zurückgelegte Weg. Für eine Geschwindigkeit muss man noch durch die Zeit teilen.</em></li>
+        <li>Momentangeschwindigkeit v(t) = s′(t) = (momentane) Änderungsrate → B ✓. D falsch, das wäre die mittlere.<em class="why">Die Geschwindigkeit in einem Moment ist die Ableitung, also die momentane Änderungsrate.</em></li>
+        <li>E falsch: Die Änderung der Geschwindigkeit hat mit der Beschleunigung zu tun.<em class="why">Die Änderung der Geschwindigkeit hat nichts mit der mittleren Geschwindigkeit zu tun.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>B und C</strong></p></div></div></div></details>
   </article>
@@ -793,9 +793,9 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
     <details class="res"><summary>Ergebnis</summary><div><p>1) 25 m/s &nbsp; 2) v̄(t; z) = 5(z + t) &nbsp; 3) v(3) = 30 m/s</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Mittlere Geschwindigkeit mit dem Differenzenquotienten. Die Geschwindigkeit zu einem Zeitpunkt ist der Limes davon.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>1) (s(4) − s(1)) / (4 − 1) = (80 − 5)/3 = 75/3 = 25 m/s.</li>
+        <li>1) (s(4) − s(1)) / (4 − 1) = (80 − 5)/3 = 75/3 = 25 m/s.<em class="why">Mittlere Geschwindigkeit ist Weg durch Zeit: Wegunterschied geteilt durch Zeitunterschied.</em></li>
         <li>2) <span class="mw"><span class="fr"><span>5z² − 5t²</span><span>z − t</span></span> = <span class="fr"><span>5(z − t)(z + t)</span><span>z − t</span></span> = 5(z + t)</span> (für z ≠ t).<em class="why">Wir dürfen kürzen, weil z ≠ t ist. Sonst wäre der Nenner 0.</em></li>
-        <li>3) Lass z immer näher an 3 rücken: v(3) = lim<sub>z→3</sub> 5(z + 3) = 5·6 = 30 m/s.</li>
+        <li>3) Lass z immer näher an 3 rücken: v(3) = lim<sub>z→3</sub> 5(z + 3) = 5·6 = 30 m/s.<em class="why">Weil z gegen 3 geht, setzt man am Ende z = 3 in die gekürzte Formel ein. Das geht erst nach dem Kürzen.</em></li>
       </ol>
       <p class="ti-check">TI-Kontrolle: <code>limit((5*z^2-5*t^2)/(z-t),z,t)</code> → 10·t, also v(3) = 30.</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) 25 m/s &nbsp; 2) v̄(t; z) = 5(z + t) &nbsp; 3) v(3) = 30 m/s</p></div></div></div></details>
@@ -811,9 +811,9 @@ factor(x^3-6*x^2+11*x-6)            <span class="r">(x−3)·(x−2)·(x−1)</s
 v(t):=d/dt(h(t))       <span class="r">Fertig</span>     <span class="c">v(t) = 34 − 10t</span>
 v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div>
       <ol class="st">
-        <li>h(2) = 68 − 20 = 48 → 48/2 = 24 m/s.</li>
-        <li>Mit dem Limes: <span class="mw"><span class="fr"><span>34z − 5z² − 34t + 5t²</span><span>z − t</span></span> = <span class="fr"><span>34(z − t) − 5(z − t)(z + t)</span><span>z − t</span></span> = 34 − 5(z + t)</span> → v(t) = 34 − 10t.</li>
-        <li>Vorzeichenwechsel zwischen t = 3 und t = 4: Dort ist der höchste Punkt. Danach ist v negativ, die Höhe nimmt ab.</li>
+        <li>h(2) = 68 − 20 = 48 → 48/2 = 24 m/s.<em class="why">Mittlere Geschwindigkeit: Höhe nach 2 s minus Höhe am Start, geteilt durch 2 s.</em></li>
+        <li>Mit dem Limes: <span class="mw"><span class="fr"><span>34z − 5z² − 34t + 5t²</span><span>z − t</span></span> = <span class="fr"><span>34(z − t) − 5(z − t)(z + t)</span><span>z − t</span></span> = 34 − 5(z + t)</span> → v(t) = 34 − 10t.<em class="why">Man hebt (z − t) aus beiden Teilen heraus, kürzt und lässt dann z gegen t gehen.</em></li>
+        <li>Vorzeichenwechsel zwischen t = 3 und t = 4: Dort ist der höchste Punkt. Danach ist v negativ, die Höhe nimmt ab.<em class="why">Ist v positiv, steigt der Körper. Ist v negativ, fällt er. Wo v das Vorzeichen wechselt, ist der höchste Punkt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) 24 m/s &nbsp; 2) 34, 24, 14, 4, −6, −16 m/s. Negativ: Der Körper fällt wieder nach unten.</p></div></div></div></details>
   </article>
@@ -824,11 +824,11 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
     <details class="res"><summary>Ergebnis</summary><div><p>1) t = 10 s &nbsp; 2) −19 L und −1 L &nbsp; 3) −10 L/s &nbsp; 4) V′(t) = 2t − 20 &nbsp; 5) −16 L/s und −4 L/s</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Leer heißt V = 0. Änderung = Endwert minus Anfangswert. V′(t) mit dem Limes-Rezept (Klammer ausmultiplizieren!).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>1) V(t) = 0 → 10 − t = 0 → t = 10.</li>
-        <li>2) V(1) − V(0) = 81 − 100 = −19; V(10) − V(9) = 0 − 1 = −1. Negativ: Das Volumen nimmt ab.</li>
-        <li>3) (0 − 100)/10 = −10 L/s. Im Mittel fließen 10 Liter pro Sekunde ab.</li>
+        <li>1) V(t) = 0 → 10 − t = 0 → t = 10.<em class="why">Leer heißt: Volumen 0. Ein Quadrat ist nur 0, wenn die Klammer 0 ist.</em></li>
+        <li>2) V(1) − V(0) = 81 − 100 = −19; V(10) − V(9) = 0 − 1 = −1. Negativ: Das Volumen nimmt ab.<em class="why">Änderung = späterer Wert minus früherer Wert. Ein negatives Ergebnis heißt: Es ist weniger Wasser geworden.</em></li>
+        <li>3) (0 − 100)/10 = −10 L/s. Im Mittel fließen 10 Liter pro Sekunde ab.<em class="why">Mittlere Änderungsgeschwindigkeit = Änderung durch Zeit. Die Einheit ist Liter pro Sekunde.</em></li>
         <li>4) <span class="mw"><span class="fr"><span>(10 − z)² − (10 − t)²</span><span>z − t</span></span> = <span class="fr"><span>z² − t² − 20(z − t)</span><span>z − t</span></span> = <span class="fr"><span>(z − t)(z + t − 20)</span><span>z − t</span></span> = z + t − 20</span>, Limes z → t: 2t − 20.<em class="why">Ausmultiplizieren: (10 − z)² = 100 − 20z + z². Die 100 hebt sich weg.</em></li>
-        <li>5) V′(2) = −16 L/s, V′(8) = −4 L/s. Am Anfang fließt es schneller ab.</li>
+        <li>5) V′(2) = −16 L/s, V′(8) = −4 L/s. Am Anfang fließt es schneller ab.<em class="why">In V′(t) = 2t − 20 einsetzen. Die Zahl sagt, wie viele Liter pro Sekunde in diesem Moment abfließen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) t = 10 s &nbsp; 2) −19 L und −1 L &nbsp; 3) −10 L/s &nbsp; 4) V′(t) = 2t − 20 &nbsp; 5) −16 L/s und −4 L/s</p></div></div></div></details>
   </article>
@@ -839,10 +839,10 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
     <details class="res"><summary>Ergebnis</summary><div><p>1) 28π/3 ≈ 29,32 dm³ &nbsp; 2) 52π/3 ≈ 54,45 dm³/dm &nbsp; 3) V′(r) = 4πr²; V′(1) ≈ 12,57, V′(3) ≈ 113,10 dm³/dm</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Volumenänderung = V(Ende) − V(Anfang). Für V′(r) hilft die Regel von Horner, um z³ − r³ zu zerlegen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>1) V(2) − V(1) = <span class="mw"><span class="fr"><span>4π</span><span>3</span></span></span>(8 − 1) = 28π/3 ≈ 29,32 dm³.</li>
-        <li>2) (V(3) − V(1))/2 = <span class="mw"><span class="fr"><span>4π</span><span>3</span></span></span>·26/2 = 52π/3 ≈ 54,45. Das Volumen nimmt pro zusätzlichem dm Radius im Mittel um 54,45 dm³ zu.</li>
-        <li>3) Horner für n = 3: z³ − r³ = (z − r)(z² + zr + r²) → <span class="mw"><span class="fr"><span>4π</span><span>3</span></span>(z² + zr + r²)</span> → Limes: <span class="mw"><span class="fr"><span>4π</span><span>3</span></span>·3r² = 4πr²</span>.</li>
-        <li>V′(1) = 4π ≈ 12,57; V′(3) = 36π ≈ 113,10 dm³/dm.</li>
+        <li>1) V(2) − V(1) = <span class="mw"><span class="fr"><span>4π</span><span>3</span></span></span>(8 − 1) = 28π/3 ≈ 29,32 dm³.<em class="why">Änderung = Endwert − Anfangswert. Den Faktor 4π/3 kann man herausheben.</em></li>
+        <li>2) (V(3) − V(1))/2 = <span class="mw"><span class="fr"><span>4π</span><span>3</span></span></span>·26/2 = 52π/3 ≈ 54,45. Das Volumen nimmt pro zusätzlichem dm Radius im Mittel um 54,45 dm³ zu.<em class="why">Mittlere Änderungsrate: Änderung des Volumens geteilt durch die Änderung des Radius.</em></li>
+        <li>3) Horner für n = 3: z³ − r³ = (z − r)(z² + zr + r²) → <span class="mw"><span class="fr"><span>4π</span><span>3</span></span>(z² + zr + r²)</span> → Limes: <span class="mw"><span class="fr"><span>4π</span><span>3</span></span>·3r² = 4πr²</span>.<em class="why">Mit Horner bekommt man oben den Faktor (z − r) und kann kürzen. Danach z = r setzen: 3 gleiche Summanden r².</em></li>
+        <li>V′(1) = 4π ≈ 12,57; V′(3) = 36π ≈ 113,10 dm³/dm.<em class="why">In die Formel V′(r) = 4πr² einsetzen. Die Einheit ist dm³ pro dm Radius.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) 28π/3 ≈ 29,32 dm³ &nbsp; 2) 52π/3 ≈ 54,45 dm³/dm &nbsp; 3) V′(r) = 4πr²; V′(1) ≈ 12,57, V′(3) ≈ 113,10 dm³/dm</p></div></div></div></details>
   </article>
@@ -854,8 +854,8 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Limes-Rezept: Differenzenquotient hinschreiben, einsetzen, (z − x) herausheben, kürzen, dann z = x setzen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>a) <span class="mw">f′(x) = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>4z² − z − (4x² − x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>4(z² − x²) − (z − x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>(z − x)·[4(z + x) − 1]</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> (4(z + x) − 1) = 8x − 1</span><em class="why">Die Klammer um (4x² − x) nicht vergessen, sonst stimmt das Vorzeichen bei +x nicht.</em></li>
-        <li>b) <span class="mw"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>−3z + 3x</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>−3(z − x)</span><span>z − x</span></span> = −3</span></li>
-        <li>c) <span class="mw"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>0,5(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 0,5(z + x) = x</span></li>
+        <li>b) <span class="mw"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>−3z + 3x</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> <span class="fr"><span>−3(z − x)</span><span>z − x</span></span> = −3</span><em class="why">−3 herausheben, dann (z − x) kürzen. Übrig bleibt eine Zahl ohne z, das ist der Grenzwert.</em></li>
+        <li>c) <span class="mw"><span class="lim">lim<span>z→x</span></span> <span class="fr"><span>0,5(z − x)(z + x)</span><span>z − x</span></span> = <span class="lim">lim<span>z→x</span></span> 0,5(z + x) = x</span><em class="why">0,5 herausheben, z² − x² zerlegen, kürzen, dann z = x setzen: 0,5 · 2x = x.</em></li>
       </ol>
       <p class="ti-check">Nur zur Kontrolle (ersetzt nicht den Rechenweg!): <code>limit((4*z^2-z-(4*x^2-x))/(z-x),z,x)</code> → 8·x−1</p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) 8x − 1 &nbsp; b) −3 &nbsp; c) x</p></div></div></div></details>
@@ -874,9 +874,9 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
     <details class="res"><summary>Ergebnis</summary><div><p>a) f′ = 20x⁴ − 12x³ + 1, f″ = 80x³ − 36x² &nbsp; b) f′ = 12x⁵ + 16x − 5, f″ = 60x⁴ + 16</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Ableitungsregeln Term für Term. Für f″ einfach f′ nochmal ableiten.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Term für Term: 4x⁵ → 4·5x⁴ = 20x⁴; −3x⁴ → −12x³; x → 1.</li>
+        <li>Term für Term: 4x⁵ → 4·5x⁴ = 20x⁴; −3x⁴ → −12x³; x → 1.<em class="why">Potenzregel für jeden Term: Hochzahl nach vorne multiplizieren und um 1 verkleinern.</em></li>
         <li>Nochmal ableiten: 20x⁴ → 80x³; −12x³ → −36x²; 1 → 0.<em class="why">Konstanten fallen beim Ableiten weg.</em></li>
-        <li>b) 2x⁶ → 12x⁵; 8x² → 16x; −5x → −5; 1 → 0. Dann 12x⁵ → 60x⁴, 16x → 16, −5 → 0.</li>
+        <li>b) 2x⁶ → 12x⁵; 8x² → 16x; −5x → −5; 1 → 0. Dann 12x⁵ → 60x⁴, 16x → 16, −5 → 0.<em class="why">Erst jede Potenz ableiten, Zahlen allein fallen weg. Für f″ das Ergebnis nochmal ableiten.</em></li>
       </ol>
       <p class="ti-check">TI: <code>d/dx(4*x^5-3*x^4+x)</code> und für f″ die Vorlage mit Ordnung 2: <code>d²/dx²(…)</code></p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) f′ = 20x⁴ − 12x³ + 1, f″ = 80x³ − 36x² &nbsp; b) f′ = 12x⁵ + 16x − 5, f″ = 60x⁴ + 16</p></div></div></div></details>
@@ -888,11 +888,11 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
     <details class="res"><summary>Ergebnis</summary><div><p><strong>B und E</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Erst ableiten, dann einsetzen. Jede Option einzeln prüfen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>A: f′ = 6x → f′(1) = 6 ≠ 0 ✗</li>
-        <li>B: f′ = 6x² − 10x → 24 − 20 = 4 ✓</li>
-        <li>C: f′ = 8x³ − 5x⁴ → f′(0) = 0 ✗</li>
-        <li>D: f′ = 6x + 6 → −12 + 6 = −6 ✗</li>
-        <li>E: f′ = 4x³ + 6x² → −4 + 6 = 2 ✓</li>
+        <li>A: f′ = 6x → f′(1) = 6 ≠ 0 ✗<em class="why">Erst ableiten, dann 1 einsetzen. 6 ist nicht 0, also ist A falsch.</em></li>
+        <li>B: f′ = 6x² − 10x → 24 − 20 = 4 ✓<em class="why">f′ an der Stelle 2: 6·4 − 10·2 = 4. Passt, also richtig.</em></li>
+        <li>C: f′ = 8x³ − 5x⁴ → f′(0) = 0 ✗<em class="why">Setzt man 0 ein, wird jeder Term 0. Die Behauptung 3 stimmt nicht.</em></li>
+        <li>D: f′ = 6x + 6 → −12 + 6 = −6 ✗<em class="why">f′(−2) = 6·(−2) + 6 = −6, nicht 0.</em></li>
+        <li>E: f′ = 4x³ + 6x² → −4 + 6 = 2 ✓<em class="why">(−1)³ = −1 und (−1)² = 1. Also 4·(−1) + 6·1 = 2. Passt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>B und E</strong></p></div></div></div></details>
   </article>
@@ -903,11 +903,11 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
     <details class="res"><summary>Ergebnis</summary><div><p><strong>D und E</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>In der Klammer steht, nach welcher Variable abgeleitet wird. Die andere Variable ist eine feste Zahl.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>A: nach x; −2y ist konstant → fällt weg → f′ = 6x ✗</li>
-        <li>B: nach y; 4x⁵ ist ein Faktor → 4x⁵; 5x·y³ → 15xy². Richtig wäre 4x⁵ + 15xy² ✗</li>
-        <li>C: nach x; ¾y·x⁴ → 3x³y; 2y·x → 2y. Richtig wäre 3x³y + 2y ✗ (das y fehlt).</li>
-        <li>D: y⁵ → 5y⁴; −2x·y → −2x; −x konstant → 0 ✓</li>
-        <li>E: −y⁵·x⁶ → −6x⁵y⁵ ✓</li>
+        <li>A: nach x; −2y ist konstant → fällt weg → f′ = 6x ✗<em class="why">Bei Ableitung nach x ist y eine feste Zahl. −2y fällt deshalb weg wie jede Konstante.</em></li>
+        <li>B: nach y; 4x⁵ ist ein Faktor → 4x⁵; 5x·y³ → 15xy². Richtig wäre 4x⁵ + 15xy² ✗<em class="why">Nach y ableiten: x-Teile sind Faktoren. Aus y wird 1, aus y³ wird 3y².</em></li>
+        <li>C: nach x; ¾y·x⁴ → 3x³y; 2y·x → 2y. Richtig wäre 3x³y + 2y ✗ (das y fehlt).<em class="why">Das y ist ein Faktor und muss beim Ableiten stehen bleiben. Es darf nicht verschwinden.</em></li>
+        <li>D: y⁵ → 5y⁴; −2x·y → −2x; −x konstant → 0 ✓<em class="why">Nach y: y⁵ → 5y⁴, aus −2xy wird −2x, und −x hat kein y, fällt also weg.</em></li>
+        <li>E: −y⁵·x⁶ → −6x⁵y⁵ ✓<em class="why">Nach x: y⁵ ist ein Faktor. Aus x⁶ wird 6x⁵.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>D und E</strong></p></div></div></div></details>
   </article>
@@ -920,7 +920,7 @@ v({0,1,2,3,4,5})       <span class="r">{34,24,14,4,−6,−16}</span></pre></div
 <div class="lw-ti"><span class="lw-tag">Am TI-Nspire eingeben</span><pre class="cas">d/dN(4/3*c^2*N^3-1/3*c^6*M^2*N^4)    <span class="r">4·c²·N²−4·c⁶·M²·N³/3</span>
 d/dM(4/3*c^2*N^3-1/3*c^6*M^2*N^4)    <span class="r">−2·c⁶·M·N⁴/3</span></pre></div>
       <ol class="st">
-        <li>a) nach N: <span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>c²·3N² = 4c²N²; −<span class="mw"><span class="fr"><span>1</span><span>3</span></span></span>c⁶M²·4N³ = −<span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>c⁶M²N³.</li>
+        <li>a) nach N: <span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>c²·3N² = 4c²N²; −<span class="mw"><span class="fr"><span>1</span><span>3</span></span></span>c⁶M²·4N³ = −<span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>c⁶M²N³.<em class="why">Nach N ableiten: c und M sind Konstanten. Nur die N-Potenzen werden abgeleitet.</em></li>
         <li>b) nach M: Der erste Term hat kein M → 0. −<span class="mw"><span class="fr"><span>1</span><span>3</span></span></span>c⁶N⁴·2M = −<span class="mw"><span class="fr"><span>2</span><span>3</span></span></span>c⁶MN⁴.<em class="why">Am TI kleine/große Buchstaben genau so tippen, und Malzeichen zwischen allen Faktoren.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) 4c²N² − <span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>c⁶M²N³ &nbsp; b) −<span class="mw"><span class="fr"><span>2</span><span>3</span></span></span>c⁶MN⁴</p></div></div></div></details>
@@ -932,8 +932,8 @@ d/dM(4/3*c^2*N^3-1/3*c^6*M^2*N^4)    <span class="r">−2·c⁶·M·N⁴/3</span
     <details class="res"><summary>Ergebnis</summary><div><p>1) dE/dv = m·v = p &nbsp; 2) p(t) = m·g·t, dp/dt = m·g = G</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Nach der Variable unten im Bruch ableiten. Alles andere (m, g) bleibt als Faktor stehen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>1) E = <span class="mw"><span class="fr"><span>m</span><span>2</span></span></span>·v² → <span class="mw"><span class="fr"><span>dE</span><span>dv</span></span> = <span class="fr"><span>m</span><span>2</span></span>·2v = m·v = p</span>. ∎</li>
-        <li>2) p = m·v = m·g·t. m·g ist eine Konstante, die Ableitung von t ist 1 → <span class="mw"><span class="fr"><span>dp</span><span>dt</span></span> = m·g = G</span>. ∎</li>
+        <li>1) E = <span class="mw"><span class="fr"><span>m</span><span>2</span></span></span>·v² → <span class="mw"><span class="fr"><span>dE</span><span>dv</span></span> = <span class="fr"><span>m</span><span>2</span></span>·2v = m·v = p</span>. ∎<em class="why">Nach v ableiten. Aus v² wird 2v, die 2 kürzt sich mit dem Nenner. Das Ergebnis m·v ist genau der Impuls.</em></li>
+        <li>2) p = m·v = m·g·t. m·g ist eine Konstante, die Ableitung von t ist 1 → <span class="mw"><span class="fr"><span>dp</span><span>dt</span></span> = m·g = G</span>. ∎<em class="why">Für v setzt man g·t ein. Nach t abgeleitet bleibt nur der Faktor m·g übrig.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) dE/dv = m·v = p &nbsp; 2) p(t) = m·g·t, dp/dt = m·g = G</p></div></div></div></details>
   </article>
@@ -944,7 +944,7 @@ d/dM(4/3*c^2*N^3-1/3*c^6*M^2*N^4)    <span class="r">−2·c⁶·M·N⁴/3</span
     <details class="res"><summary>Ergebnis</summary><div><p>f′ = 5x⁴ − 6x² + 1; f″ = 20x³ − 12x; f‴ = 60x² − 12; f⁽⁴⁾ = 120x; f⁽⁵⁾ = 120; f⁽⁶⁾ = 0</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Immer wieder ableiten. Bei jedem Schritt wird der Grad um 1 kleiner, bis 0 herauskommt.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Jedes Mal einfach die vorige Ableitung nochmal ableiten.</li>
+        <li>Jedes Mal einfach die vorige Ableitung nochmal ableiten.<em class="why">Jede Ableitung ist die Ableitung der vorherigen. Der Grad sinkt jedes Mal um 1.</em></li>
         <li>Der Grad sinkt jedes Mal um 1: 5 → 4 → 3 → 2 → 1 → 0 (Konstante) → dann 0.<em class="why">Merke: Bei Grad n ist die (n+1)-te Ableitung null.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>f′ = 5x⁴ − 6x² + 1; f″ = 20x³ − 12x; f‴ = 60x² − 12; f⁽⁴⁾ = 120x; f⁽⁵⁾ = 120; f⁽⁶⁾ = 0</p></div></div></div></details>
@@ -966,8 +966,8 @@ d/dM(4/3*c^2*N^3-1/3*c^6*M^2*N^4)    <span class="r">−2·c⁶·M·N⁴/3</span
 f1(x):=d/dx(f(x))
 f1(3)                 <span class="r">−8</span></pre></div>
       <ol class="st">
-        <li>a) f′ = 4x − 5 → f′(4) = 11.</li>
-        <li>d) f′ = 3x² − 12x + 1 → 27 − 36 + 1 = −8.</li>
+        <li>a) f′ = 4x − 5 → f′(4) = 11.<em class="why">Steigung an einer Stelle: zuerst ableiten, dann die Stelle einsetzen.</em></li>
+        <li>d) f′ = 3x² − 12x + 1 → 27 − 36 + 1 = −8.<em class="why">Gleiches Vorgehen: Ableitung bilden, 3 einsetzen und ausrechnen.</em></li>
         <li>f) f′ = 6x⁵ − 3x² → 6·(−1) − 3·1 = −9.<em class="why">(−1)⁵ = −1, (−1)² = +1.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) 11 &nbsp; d) −8 &nbsp; f) −9</p></div></div></div></details>
@@ -986,12 +986,12 @@ solve(2=-5*(-2)+d,d)         <span class="r">d=−8</span>
 tan⁻¹(−5)                    <span class="r">−78.69</span>   <span class="c">+180 → 101.31°</span>
 tangentLine(f(x),x,-2)       <span class="r">−5·x−8</span>   <span class="c">Kontrolle</span></pre></div>
       <ol class="st">
-        <li>a) Punkt: f(−2) = 8 − 6 = 2 → P(−2 | 2). Steigung: f′(x) = 4x + 3 → k = −5.</li>
-        <li>In y = kx + d: 2 = −5·(−2) + d → d = −8 → <b>y = −5x − 8</b>.</li>
+        <li>a) Punkt: f(−2) = 8 − 6 = 2 → P(−2 | 2). Steigung: f′(x) = 4x + 3 → k = −5.<em class="why">Für die Tangente braucht man den Punkt (aus f) und die Steigung (aus f′).</em></li>
+        <li>In y = kx + d: 2 = −5·(−2) + d → d = −8 → <b>y = −5x − 8</b>.<em class="why">Punkt und Steigung in y = kx + d einsetzen und nach d auflösen.</em></li>
         <li>Winkel: tan⁻¹(−5) ≈ −78,69°. Neigungswinkel in [0°; 180°]: −78,69° + 180° = 101,31°.<em class="why">Ein negativer Winkel heißt „Tangente fällt“. Ob du +180° rechnen musst, hängt von der Angabe ab.</em></li>
-        <li>b) f(3) = 9 − 3 = 6, f′ = x² − 1 → k = 8; 6 = 24 + d → d = −18; tan⁻¹(8) ≈ 82,87°.</li>
-        <li>c) f(4) = 5 − 8 = −3, f′ = −x → k = −4; −3 = −16 + d → d = 13; tan⁻¹(−4) ≈ −75,96° → 104,04°.</li>
-        <li>f) f = x³ − x²: f(2) = 4, f′ = 3x² − 2x → k = 8; 4 = 16 + d → d = −12.</li>
+        <li>b) f(3) = 9 − 3 = 6, f′ = x² − 1 → k = 8; 6 = 24 + d → d = −18; tan⁻¹(8) ≈ 82,87°.<em class="why">Gleiches Rezept: Punkt, Steigung, d. Der Winkel kommt aus tan⁻¹ der Steigung.</em></li>
+        <li>c) f(4) = 5 − 8 = −3, f′ = −x → k = −4; −3 = −16 + d → d = 13; tan⁻¹(−4) ≈ −75,96° → 104,04°.<em class="why">Negative Steigung gibt einen negativen Winkel. Für den Neigungswinkel zählt man 180° dazu.</em></li>
+        <li>f) f = x³ − x²: f(2) = 4, f′ = 3x² − 2x → k = 8; 4 = 16 + d → d = −12.<em class="why">Zuerst ausmultiplizieren, damit man ableiten kann. Dann wie gewohnt Punkt, Steigung und d.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) y = −5x − 8; α ≈ 101,31° (fällt mit 78,69°) &nbsp; b) y = 8x − 18; α ≈ 82,87° &nbsp; c) y = −4x + 13; α ≈ 104,04° &nbsp; f) y = 8x − 12; α ≈ 82,87°</p></div></div></div></details>
   </article>
@@ -1007,8 +1007,8 @@ solve(f1(x)=9,x)       <span class="r">x=−3 or x=1</span>
 f(1)                   <span class="r">6</span>
 f(−3)                  <span class="r">2</span></pre></div>
       <ol class="st">
-        <li>a) f′ = 2x − 4 = 2 → x = 3; f(3) = 9 − 12 − 5 = −8.</li>
-        <li>c) 3x² + 6x = 9 → x² + 2x − 3 = 0 → x = 1, x = −3.</li>
+        <li>a) f′ = 2x − 4 = 2 → x = 3; f(3) = 9 − 12 − 5 = −8.<em class="why">Parallel heißt gleiche Steigung: f′(x) = 2. Den y-Wert des Punktes bekommt man aus f.</em></li>
+        <li>c) 3x² + 6x = 9 → x² + 2x − 3 = 0 → x = 1, x = −3.<em class="why">f′(x) = 9 setzen, alles nach links, durch 3 teilen, kleine Formel.</em></li>
         <li>d) g: y = 8 ist waagrecht, Steigung 0 → 4x³ − 16x = 0 → 4x(x² − 4) = 0 → x = 0, ±2.<em class="why">Die Frage „wo ist die Tangente waagrecht“ ist dasselbe wie f′(x) = 0.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) (3 | −8) &nbsp; c) (1 | 6) und (−3 | 2) &nbsp; d) (0 | 6), (2 | −10), (−2 | −10)</p></div></div></div></details>
@@ -1020,8 +1020,8 @@ f(−3)                  <span class="r">2</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) x = −2, x = 4 &nbsp; b) x = 2, x = 5</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>„Steigung k“ heißt f′(x) = k. Diese Gleichung lösen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) f′ = 3x² − 6x − 20 = 4 → 3x² − 6x − 24 = 0 → x² − 2x − 8 = 0 → x = 1 ± 3.</li>
-        <li>b) f′ = 3x² − 21x + 24 = −6 → 3x² − 21x + 30 = 0 → x² − 7x + 10 = 0 → x = 2, x = 5.</li>
+        <li>a) f′ = 3x² − 6x − 20 = 4 → 3x² − 6x − 24 = 0 → x² − 2x − 8 = 0 → x = 1 ± 3.<em class="why">f′(x) gleich der gewünschten Steigung setzen. Dann umformen und mit der kleinen Formel lösen.</em></li>
+        <li>b) f′ = 3x² − 21x + 24 = −6 → 3x² − 21x + 30 = 0 → x² − 7x + 10 = 0 → x = 2, x = 5.<em class="why">Gleiche Methode: f′(x) = −6, alles auf eine Seite, durch 3 teilen, lösen.</em></li>
       </ol>
       <p class="ti-check">TI: <code>solve(f1(x)=4,x)</code></p>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) x = −2, x = 4 &nbsp; b) x = 2, x = 5</p></div></div></div></details>
@@ -1037,9 +1037,9 @@ f(x):=a*x^2+b*x+5
 f1(x):=d/dx(f(x))
 solve(f(−2)=−4 and f1(−2)=3,{a,b})     <span class="r">a=3/4 and b=6</span></pre></div>
       <ol class="st">
-        <li>2.43: I: 4a − 2b + 5 = −4. II: f′(x) = 2ax + b → −4a + b = 3.</li>
+        <li>2.43: I: 4a − 2b + 5 = −4. II: f′(x) = 2ax + b → −4a + b = 3.<em class="why">Zwei Unbekannte brauchen zwei Gleichungen: eine aus dem Punkt (f(−2) = −4), eine aus der Steigung (f′(−2) = 3).</em></li>
         <li>2.44: g umformen: y = −5x + 3 → Steigung −5. I: f(−1) = −1 + a − b = 5. II: f′(x) = 3x² + 2ax + b → 3 − 2a + b = −5.<em class="why">Eine Gerade in der Form 5x + y = 3 immer zuerst nach y auflösen.</em></li>
-        <li>I + II: 2 − a = 0 → a = 2, dann b = −4.</li>
+        <li>I + II: 2 − a = 0 → a = 2, dann b = −4.<em class="why">Addiert man die Gleichungen, fällt b weg. So bekommt man zuerst a, dann b.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>2.43 a) a = ¾, b = 6 &nbsp; 2.44: a = 2, b = −4</p></div></div></div></details>
   </article>
@@ -1050,9 +1050,9 @@ solve(f(−2)=−4 and f1(−2)=3,{a,b})     <span class="r">a=3/4 and b=6</span
     <details class="res"><summary>Ergebnis</summary><div><p>a) N₁(−1 | 0) mit k = 2, N₂(−3 | 0) mit k = −2, S(0 | 3) mit k = 4 &nbsp; b) (−2 | −1); (−1 | 0) &nbsp; c) (−1,5 | −0,75)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Achsenschnittpunkte: f(x) = 0 und f(0). Steigungen dort mit f′. Parallel = gleiche Steigung, 45° = Steigung 1.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) Nullstellen: x² + 4x + 3 = 0 → x = −2 ± 1 → −1, −3. y-Achse: f(0) = 3. f′ = 2x + 4 → f′(−1) = 2, f′(−3) = −2, f′(0) = 4.</li>
-        <li>b) parallel zur x-Achse: f′ = 0 → x = −2, f(−2) = −1. Gerade: y = 2x + 3 → Steigung 2 → 2x + 4 = 2 → x = −1, f(−1) = 0.</li>
-        <li>c) 45° → k = tan 45° = 1 → 2x + 4 = 1 → x = −1,5; f(−1,5) = 2,25 − 6 + 3 = −0,75.</li>
+        <li>a) Nullstellen: x² + 4x + 3 = 0 → x = −2 ± 1 → −1, −3. y-Achse: f(0) = 3. f′ = 2x + 4 → f′(−1) = 2, f′(−3) = −2, f′(0) = 4.<em class="why">Schnitt mit der x-Achse heißt f(x) = 0. Schnitt mit der y-Achse heißt x = 0. Die Steigungen liefert f′.</em></li>
+        <li>b) parallel zur x-Achse: f′ = 0 → x = −2, f(−2) = −1. Gerade: y = 2x + 3 → Steigung 2 → 2x + 4 = 2 → x = −1, f(−1) = 0.<em class="why">Parallel zur x-Achse heißt waagrecht, also f′ = 0. Parallel zur Geraden heißt gleiche Steigung.</em></li>
+        <li>c) 45° → k = tan 45° = 1 → 2x + 4 = 1 → x = −1,5; f(−1,5) = 2,25 − 6 + 3 = −0,75.<em class="why">Ein Winkel von 45° entspricht der Steigung tan 45° = 1. Also f′(x) = 1 lösen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) N₁(−1 | 0) mit k = 2, N₂(−3 | 0) mit k = −2, S(0 | 3) mit k = 4 &nbsp; b) (−2 | −1); (−1 | 0) &nbsp; c) (−1,5 | −0,75)</p></div></div></div></details>
   </article>
@@ -1063,9 +1063,9 @@ solve(f(−2)=−4 and f1(−2)=3,{a,b})     <span class="r">a=3/4 and b=6</span
     <details class="res"><summary>Ergebnis</summary><div><p>2.90 a) y = 5x − 9 &nbsp; 2.91: x = −1, x = 3 &nbsp; 2.92: a = 2, b = −10</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Zwei Unbekannte → zwei Gleichungen: der Punkt gibt f(1) = 4, die Steigung gibt f′(1) = −6.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>2.90: f(3) = 6, f′ = 2x − 1 → k = 5 → 6 = 15 + d → d = −9.</li>
-        <li>2.91: 3x² − 6x − 6 = 3 → x² − 2x − 3 = 0 → x = 3, x = −1.</li>
-        <li>2.92: I: a + b + 12 = 4. II: 2a + b = −6. II − I: a − 12 = −10 → a = 2; b = −10.</li>
+        <li>2.90: f(3) = 6, f′ = 2x − 1 → k = 5 → 6 = 15 + d → d = −9.<em class="why">Tangenten-Rezept: Punkt f(3), Steigung f′(3), dann d aus y = kx + d.</em></li>
+        <li>2.91: 3x² − 6x − 6 = 3 → x² − 2x − 3 = 0 → x = 3, x = −1.<em class="why">Steigung 3 heißt f′(x) = 3. Umformen und mit der kleinen Formel lösen.</em></li>
+        <li>2.92: I: a + b + 12 = 4. II: 2a + b = −6. II − I: a − 12 = −10 → a = 2; b = −10.<em class="why">Punkt und Steigung geben zwei Gleichungen. Zieht man sie voneinander ab, fällt b weg.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>2.90 a) y = 5x − 9 &nbsp; 2.91: x = −1, x = 3 &nbsp; 2.92: a = 2, b = −10</p></div></div></div></details>
   </article>
@@ -1083,10 +1083,10 @@ solve(f(−2)=−4 and f1(−2)=3,{a,b})     <span class="r">a=3/4 and b=6</span
     <details class="res"><summary>Ergebnis</summary><div><p>1) v(t) = t + 1 &nbsp; 2) t = 3 &nbsp; 3) ja, a(t) = 1 &gt; 0 &nbsp; 4) lineare Funktion</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>v ist die Ableitung von s, a die Ableitung von v.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>v = s′ = t + 1.</li>
-        <li>t + 1 = 4 → t = 3.</li>
-        <li>a = v′ = 1 &gt; 0 → v nimmt pro Zeiteinheit um 1 zu.</li>
-        <li>v(t) = 1·t + 1 hat die Form k·t + d → linear.</li>
+        <li>v = s′ = t + 1.<em class="why">Die Geschwindigkeit ist die Ableitung des Weges.</em></li>
+        <li>t + 1 = 4 → t = 3.<em class="why">Die Formel für v gleich 4 setzen und nach t auflösen.</em></li>
+        <li>a = v′ = 1 &gt; 0 → v nimmt pro Zeiteinheit um 1 zu.<em class="why">Die Beschleunigung ist die Ableitung von v. Positiv heißt, das Tempo nimmt zu.</em></li>
+        <li>v(t) = 1·t + 1 hat die Form k·t + d → linear.<em class="why">Eine Funktion der Form k·t + d ist eine Gerade, also linear.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) v(t) = t + 1 &nbsp; 2) t = 3 &nbsp; 3) ja, a(t) = 1 &gt; 0 &nbsp; 4) lineare Funktion</p></div></div></div></details>
   </article>
@@ -1104,11 +1104,11 @@ v(5)                     <span class="r">10</span>
 solve(s(t)=0,t)          <span class="r">t=−2 or t=14</span>
 v(14)                    <span class="r">−80</span></pre></div>
       <ol class="st">
-        <li>1) 140 + 60t − 5t² = 140 → 5t(12 − t) = 0 → t = 12 (t = 0 ist der Abschuss).</li>
-        <li>2) s(5) = 140 + 300 − 125 = 315 → (315 − 140)/5 = 35 m/s.</li>
-        <li>3) v(t) = 60 − 10t → v(5) = 10 m/s (noch auf dem Weg nach oben).</li>
+        <li>1) 140 + 60t − 5t² = 140 → 5t(12 − t) = 0 → t = 12 (t = 0 ist der Abschuss).<em class="why">Abschusshöhe ist 140. Wenn man 140 abzieht, bleibt ein Produkt, das man mit dem Produkt-Null-Satz löst.</em></li>
+        <li>2) s(5) = 140 + 300 − 125 = 315 → (315 − 140)/5 = 35 m/s.<em class="why">Mittlere Geschwindigkeit: Höhenunterschied geteilt durch die Zeit.</em></li>
+        <li>3) v(t) = 60 − 10t → v(5) = 10 m/s (noch auf dem Weg nach oben).<em class="why">Momentane Geschwindigkeit = Ableitung der Höhe. Positiv heißt, die Kugel fliegt noch nach oben.</em></li>
         <li>4) Boden heißt s = 0: t² − 12t − 28 = 0 → t = 6 ± 8 → t = 14 (−2 hat keinen Sinn).<em class="why">Negative Zeiten im Kontext immer streichen und dazuschreiben, warum.</em></li>
-        <li>v(14) = −80 m/s: Sie trifft mit 80 m/s auf, das Minus heißt „nach unten“.</li>
+        <li>v(14) = −80 m/s: Sie trifft mit 80 m/s auf, das Minus heißt „nach unten“.<em class="why">Die Geschwindigkeit beim Aufschlag ist v zu diesem Zeitpunkt. Das Minus zeigt nur die Richtung (nach unten).</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) t = 12 s &nbsp; 2) 35 m/s &nbsp; 3) 10 m/s &nbsp; 4) nach 14 s mit 80 m/s (v = −80 m/s)</p></div></div></div></details>
   </article>
@@ -1126,8 +1126,8 @@ v(0.3967)                   <span class="r">61.03</span>
 solve(v(t)=0,t)             <span class="r">t=6.5</span>
 s(6.5)                      <span class="r">211.25</span></pre></div>
       <ol class="st">
-        <li>1) 5t(13 − t) = 0 → t = 13 s.</li>
-        <li>2) In 25 m Höhe ist er zweimal: hinauf und wieder hinunter. v(t) = 65 − 10t an beiden Zeitpunkten einsetzen.</li>
+        <li>1) 5t(13 − t) = 0 → t = 13 s.<em class="why">Aufschlag am Boden heißt Höhe 0. t herausheben und Produkt-Null-Satz.</em></li>
+        <li>2) In 25 m Höhe ist er zweimal: hinauf und wieder hinunter. v(t) = 65 − 10t an beiden Zeitpunkten einsetzen.<em class="why">Die Gleichung s(t) = 25 hat zwei Lösungen. Bei beiden Zeitpunkten rechnet man v aus.</em></li>
         <li>3) Höchster Punkt: Dort ist die Geschwindigkeit 0 → 65 − 10t = 0 → t = 6,5 s; s(6,5) = 211,25 m.<em class="why">Am höchsten Punkt steigt er nicht mehr und fällt noch nicht: v = 0.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) nach 13 s &nbsp; 2) ≈ 61,03 m/s (aufwärts) bzw. −61,03 m/s (abwärts), bei t ≈ 0,40 s und t ≈ 12,60 s &nbsp; 3) nach 6,5 s, 211,25 m</p></div></div></div></details>
@@ -1139,10 +1139,10 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>1) 125 000 J und 375 000 J &nbsp; 2) 25 000 J/s und 75 000 J/s &nbsp; 3) E′(t) = 10 000t, am schnellsten bei t = 10 &nbsp; 4) 0, 50 000, 100 000 J/s</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Zunahme = Endwert − Anfangswert. Mittlere Zunahme = durch die Zeit. Momentane Zunahme = E′(t).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>1) E(5) − E(0) = 125 000; E(10) − E(5) = 500 000 − 125 000 = 375 000 J. Im zweiten Intervall ist die Zunahme größer.</li>
-        <li>2) Durch die Intervalllänge 5 dividieren: 25 000 und 75 000 J/s.</li>
+        <li>1) E(5) − E(0) = 125 000; E(10) − E(5) = 500 000 − 125 000 = 375 000 J. Im zweiten Intervall ist die Zunahme größer.<em class="why">Absolute Zunahme = Endwert minus Anfangswert, in Joule.</em></li>
+        <li>2) Durch die Intervalllänge 5 dividieren: 25 000 und 75 000 J/s.<em class="why">Mittlere Zunahme ist die Zunahme pro Sekunde. Darum durch die Dauer 5 s teilen.</em></li>
         <li>3) E′(t) = 10 000t. E′ wird mit t immer größer, also bei t = 10 am größten.<em class="why">Eine steigende Ableitung heißt: Die Funktion wächst immer schneller.</em></li>
-        <li>4) Einsetzen. Deutung von E′(5) = 50 000: Nach 5 s nimmt die Energie momentan um 50 000 J pro Sekunde zu.</li>
+        <li>4) Einsetzen. Deutung von E′(5) = 50 000: Nach 5 s nimmt die Energie momentan um 50 000 J pro Sekunde zu.<em class="why">In E′(t) = 10 000t einsetzen. Die Zahl sagt, wie schnell die Energie genau in diesem Moment wächst.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) 125 000 J und 375 000 J &nbsp; 2) 25 000 J/s und 75 000 J/s &nbsp; 3) E′(t) = 10 000t, am schnellsten bei t = 10 &nbsp; 4) 0, 50 000, 100 000 J/s</p></div></div></div></details>
   </article>
@@ -1153,7 +1153,7 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>2.93: v(10) = 14 m/s, v(20) = 88 m/s &nbsp; 2.94: v(2) = 8 m/s, a(2) = 4 m/s²</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Geschwindigkeit = Ableitung des Weges, Beschleunigung = Ableitung der Geschwindigkeit.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>2.93: v = 0,3t² − 1,6t → v(10) = 30 − 16 = 14; v(20) = 120 − 32 = 88.</li>
+        <li>2.93: v = 0,3t² − 1,6t → v(10) = 30 − 16 = 14; v(20) = 120 − 32 = 88.<em class="why">Geschwindigkeit = Ableitung des Weges. Dann die Zeitpunkte einsetzen.</em></li>
         <li>2.94: v = t² + 4 → v(2) = 8. a = v′ = 2t → a(2) = 4.<em class="why">Beschleunigung = 2. Ableitung des Weges.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>2.93: v(10) = 14 m/s, v(20) = 88 m/s &nbsp; 2.94: v(2) = 8 m/s, a(2) = 4 m/s²</p></div></div></div></details>
@@ -1165,10 +1165,10 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a1) 4,8 km/s; 11,2 km/s; v(1) = 6,4 km/s; v(3) = 12,8 km/s &nbsp; a2) v′(t) = 3,2 &gt; 0 &nbsp; b1) 2 s &nbsp; b2) 9,6 km/s</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Mittlere Geschwindigkeit mit dem Differenzenquotienten, momentane mit der Ableitung. „Immer schneller“ heißt v′ &gt; 0.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>s(1) = 4,8, s(0) = 0 → 4,8 km/s. s(3) = 24, s(2) = 12,8 → 11,2 km/s.</li>
-        <li>v(t) = 3,2t + 3,2 → v(1) = 6,4; v(3) = 12,8.</li>
+        <li>s(1) = 4,8, s(0) = 0 → 4,8 km/s. s(3) = 24, s(2) = 12,8 → 11,2 km/s.<em class="why">Mittlere Geschwindigkeit = Wegunterschied durch Zeitunterschied. Hier sind beide Intervalle 1 s lang.</em></li>
+        <li>v(t) = 3,2t + 3,2 → v(1) = 6,4; v(3) = 12,8.<em class="why">Momentane Geschwindigkeit ist die Ableitung. Dann die Zeitpunkte einsetzen.</em></li>
         <li>a2) v′(t) = 3,2 &gt; 0 für alle t → v ist streng monoton steigend.<em class="why">Begründen mit der Ableitung, nicht nur mit zwei Zahlenbeispielen.</em></li>
-        <li>b) 1,6t² + 3,2t = 12,8 → t² + 2t − 8 = 0 → t = 2 (−4 streichen). v(2) = 9,6 km/s.</li>
+        <li>b) 1,6t² + 3,2t = 12,8 → t² + 2t − 8 = 0 → t = 2 (−4 streichen). v(2) = 9,6 km/s.<em class="why">s(t) = 12,8 setzen und lösen. Eine negative Zeit hat keinen Sinn, darum nur t = 2.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a1) 4,8 km/s; 11,2 km/s; v(1) = 6,4 km/s; v(3) = 12,8 km/s &nbsp; a2) v′(t) = 3,2 &gt; 0 &nbsp; b1) 2 s &nbsp; b2) 9,6 km/s</p></div></div></div></details>
   </article>
@@ -1179,8 +1179,8 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>2.52: f′(20) = 0,4, f′(30) = 0,8 → an der Stelle 30 steiler &nbsp; 2.50: F′(200) = 920, F′(400) = 1840 N pro km/h → nimmt zu</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Steiler heißt größere Steigung. Also f′ an beiden Stellen ausrechnen und vergleichen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>2.52: Ausmultiplizieren oder am TI: f′(x) = <span class="mw"><span class="fr"><span>2</span><span>50</span></span></span>(x − 10) = (x − 10)/25. Größere Steigung = steiler.</li>
-        <li>2.50: F′(v) = 4,6v. Deutung: Bei 200 km/h steigt der Widerstand pro zusätzlichem km/h um etwa 920 N.</li>
+        <li>2.52: Ausmultiplizieren oder am TI: f′(x) = <span class="mw"><span class="fr"><span>2</span><span>50</span></span></span>(x − 10) = (x − 10)/25. Größere Steigung = steiler.<em class="why">Die Steigung des Seils ist f′. Je größer f′, desto steiler.</em></li>
+        <li>2.50: F′(v) = 4,6v. Deutung: Bei 200 km/h steigt der Widerstand pro zusätzlichem km/h um etwa 920 N.<em class="why">F′ ist die Änderungsrate des Widerstands. Die Zahl sagt, um wie viel F pro km/h mehr Tempo wächst.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>2.52: f′(20) = 0,4, f′(30) = 0,8 → an der Stelle 30 steiler &nbsp; 2.50: F′(200) = 920, F′(400) = 1840 N pro km/h → nimmt zu</p></div></div></div></details>
   </article>
@@ -1192,8 +1192,8 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>a1) Differenzenquotient ausrechnen und zeigen, dass er nicht von r und z abhängt. b) Ableitung von A bilden.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>a1) (2πz − 2πr)/(z − r) = 2π(z − r)/(z − r) = 2π. Hängt nicht von r, z ab. ∎<em class="why">Das ist der Satz „Differenzenquotient einer linearen Funktion = k“.</em></li>
-        <li>b1) A′(r) = 2πr hat die Form k·r → linear.</li>
-        <li>b2) A′(r) = 2π·r, also Faktor mal r ohne Konstante → direkt proportional.</li>
+        <li>b1) A′(r) = 2πr hat die Form k·r → linear.<em class="why">Eine Funktion der Form k·r ist eine Gerade durch den Ursprung, also linear.</em></li>
+        <li>b2) A′(r) = 2π·r, also Faktor mal r ohne Konstante → direkt proportional.<em class="why">Direkt proportional heißt: doppeltes r gibt doppelten Wert. Das gilt, wenn es nur „Zahl mal r“ ist, ohne Zusatzzahl.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a1) immer 2π &nbsp; b1) A′(r) = 2πr (lineare Funktion) &nbsp; b2) ja, direkt proportional</p></div></div></div></details>
   </article>
@@ -1212,9 +1212,9 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Extremstellen: f′(x) = 0. Ob Hoch- oder Tiefpunkt, sagt das Vorzeichen von f′ links und rechts.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>f′(x) = 3x² − 12x + 9 = 0 → x² − 4x + 3 = 0 → x = 1, x = 3.<em class="why">Nur hier kann ein Hoch- oder Tiefpunkt sein (notwendige Bedingung).</em></li>
-        <li>Testwerte in f′: f′(0) = 9 &gt; 0, f′(2) = −3 &lt; 0, f′(4) = 9 &gt; 0.</li>
-        <li>Bei 1: + → − → Maximum; f(1) = 1 − 6 + 9 − 2 = 2. Bei 3: − → + → Minimum; f(3) = 27 − 54 + 27 − 2 = −2.</li>
-        <li>Monotonie aus den Vorzeichen: f′ &gt; 0 → steigend; f′ &lt; 0 → fallend.</li>
+        <li>Testwerte in f′: f′(0) = 9 &gt; 0, f′(2) = −3 &lt; 0, f′(4) = 9 &gt; 0.<em class="why">Testzahlen vor, zwischen und nach den Extremstellen zeigen das Vorzeichen von f′.</em></li>
+        <li>Bei 1: + → − → Maximum; f(1) = 1 − 6 + 9 − 2 = 2. Bei 3: − → + → Minimum; f(3) = 27 − 54 + 27 − 2 = −2.<em class="why">Wechselt f′ von plus nach minus, war es vorher bergauf und danach bergab: ein Hochpunkt. Umgekehrt ist es ein Tiefpunkt.</em></li>
+        <li>Monotonie aus den Vorzeichen: f′ &gt; 0 → steigend; f′ &lt; 0 → fallend.<em class="why">Positive Steigung heißt steigend, negative heißt fallend.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>H(1 | 2), T(3 | −2). Steigend in (−∞; 1] und [3; ∞), fallend in [1; 3].</p></div></div></div></details>
   </article>
@@ -1225,7 +1225,7 @@ s(6.5)                      <span class="r">211.25</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) T(−0,5 | −6,25); fallend (−∞; −0,5], steigend [−0,5; ∞) &nbsp; d) H(1 | 1); steigend (−∞; 1], fallend [1; ∞)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Bei einer Parabel gibt es genau einen Extrempunkt, dort wo f′ = 0 ist.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) f′ = 2x + 1 = 0 → x = −0,5; f″ = 2 &gt; 0 → Minimum. f(−0,5) = 0,25 − 0,5 − 6 = −6,25.</li>
+        <li>a) f′ = 2x + 1 = 0 → x = −0,5; f″ = 2 &gt; 0 → Minimum. f(−0,5) = 0,25 − 0,5 − 6 = −6,25.<em class="why">Bei einer Parabel gibt es nur eine Extremstelle. f″ &gt; 0 zeigt ∪, also Tiefpunkt.</em></li>
         <li>d) f′ = −2x + 2 = 0 → x = 1; f″ = −2 &lt; 0 → Maximum. f(1) = 1.<em class="why">Parabel: nach oben offen (a &gt; 0) → Tiefpunkt; nach unten offen → Hochpunkt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) T(−0,5 | −6,25); fallend (−∞; −0,5], steigend [−0,5; ∞) &nbsp; d) H(1 | 1); steigend (−∞; 1], fallend [1; ∞)</p></div></div></div></details>
@@ -1246,8 +1246,8 @@ f(0)                   <span class="r">5</span>
 f(2)                   <span class="r">1</span></pre></div>
       <ol class="st">
         <li>b) f′ = 3x² + 6x + 3 = 3(x + 1)² → nur x = −1. Aber (x + 1)² ist nie negativ → f′ ≥ 0, <b>kein Vorzeichenwechsel</b> → keine Extremstelle.<em class="why">f″(−1) = 0, der f″-Test sagt hier nichts. Darum mit dem Vorzeichen argumentieren.</em></li>
-        <li>c) siehe TI-Eingabe: steigend (−∞; 0], fallend [0; 2], steigend [2; ∞).</li>
-        <li>g) Ausmultiplizieren: x³ − 3x + 1. f′ = 3x² − 3 = 0 → x = ±1. f″ = 6x: f″(−1) = −6 → H(−1 | 3); f″(1) = 6 → T(1 | −1).</li>
+        <li>c) siehe TI-Eingabe: steigend (−∞; 0], fallend [0; 2], steigend [2; ∞).<em class="why">Hochpunkt bei 0, Tiefpunkt bei 2. Davor steigt f, dazwischen fällt f, danach steigt f wieder.</em></li>
+        <li>g) Ausmultiplizieren: x³ − 3x + 1. f′ = 3x² − 3 = 0 → x = ±1. f″ = 6x: f″(−1) = −6 → H(−1 | 3); f″(1) = 6 → T(1 | −1).<em class="why">Erst ausmultiplizieren, damit man leicht ableiten kann. Dann f′ = 0 und mit f″ die Art bestimmen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>b) keine Extremstelle (Terrassenpunkt (−1 | −1)), streng monoton steigend in ℝ &nbsp; c) H(0 | 5), T(2 | 1) &nbsp; g) H(−1 | 3), T(1 | −1)</p></div></div></div></details>
   </article>
@@ -1259,8 +1259,8 @@ f(2)                   <span class="r">1</span></pre></div>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p><code>factor(f1(x))</code> zeigt dir sofort doppelte Nullstellen. Eine doppelte Nullstelle von f′ heißt meistens Terrassenstelle (kein Vorzeichenwechsel).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
 <div class="lw-ti"><span class="lw-tag">Am TI-Nspire eingeben</span><pre class="cas">factor(d/dx(-x^4+4*x^3-4))    <span class="r">−4·x²·(x−3)</span></pre></div>
       <ol class="st">
-        <li>b) f′ = 3x² − 18x + 27 = 3(x − 3)² ≥ 0 → kein Wechsel bei 3 → Terrassenstelle. f(3) = 27 − 81 + 81 + 6 = 33.</li>
-        <li>e) f′ = x³ + 4x² + 4x = x(x + 2)². Vorzeichen: links von −2 negativ, zwischen −2 und 0 negativ, rechts von 0 positiv. Bei −2 kein Wechsel → Terrasse; bei 0 − → + → Minimum.</li>
+        <li>b) f′ = 3x² − 18x + 27 = 3(x − 3)² ≥ 0 → kein Wechsel bei 3 → Terrassenstelle. f(3) = 27 − 81 + 81 + 6 = 33.<em class="why">f′ ist ein Quadrat mal 3 und wird nie negativ. Ohne Vorzeichenwechsel gibt es keinen Hoch- oder Tiefpunkt, nur eine Terrasse.</em></li>
+        <li>e) f′ = x³ + 4x² + 4x = x(x + 2)². Vorzeichen: links von −2 negativ, zwischen −2 und 0 negativ, rechts von 0 positiv. Bei −2 kein Wechsel → Terrasse; bei 0 − → + → Minimum.<em class="why">Der Faktor (x + 2)² ist nie negativ. Das Vorzeichen bestimmt nur x. Darum Wechsel bei 0, aber nicht bei −2.</em></li>
         <li>f) f′ = −4x²(x − 3). Testwerte: f′(−1) = 16 &gt; 0, f′(1) = 8 &gt; 0, f′(4) = −64 &lt; 0. Bei 0 kein Wechsel → Terrasse (0 | −4); bei 3 + → − → H(3 | 23).<em class="why">f(3) = −81 + 108 − 4 = 23.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>b) Terrassenpunkt (3 | 33), streng monoton steigend in ℝ &nbsp; e) Terrassenpunkt (−2 | <span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>), T(0 | 0); fallend (−∞; 0], steigend [0; ∞) &nbsp; f) Terrassenpunkt (0 | −4), H(3 | 23); steigend (−∞; 3], fallend [3; ∞)</p></div></div></div></details>
@@ -1282,8 +1282,8 @@ f(2)                   <span class="r">1</span></pre></div>
 solve(d/dx(f(x))=0,x)       <span class="r">x=1 or x=3</span>
 f({0,1,3,5})                <span class="r">{−2,−1,−2,3}</span></pre></div>
       <ol class="st">
-        <li>f′ = ¾(x² − 4x + 3) = 0 → x = 1, x = 3. Beide liegen in [0; 5].</li>
-        <li>Werte: f(0) = −2, f(1) = −1, f(3) = −2, f(5) = 3.</li>
+        <li>f′ = ¾(x² − 4x + 3) = 0 → x = 1, x = 3. Beide liegen in [0; 5].<em class="why">Extremstellen innerhalb des Intervalls suchen. Beide gefundenen Stellen liegen in [0; 5].</em></li>
+        <li>Werte: f(0) = −2, f(1) = −1, f(3) = −2, f(5) = 3.<em class="why">Bei einem Intervall vergleicht man die Werte an allen Kandidaten und an beiden Rändern. Der größte und der kleinste Wert gewinnen.</em></li>
         <li>Größter Wert 3 bei x = 5 (Randstelle!). Kleinster Wert −2 bei x = 0 und x = 3.<em class="why">Der lokale Hochpunkt (1 | −1) ist <b>nicht</b> das globale Maximum.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>steigend [0; 1], fallend [1; 3], steigend [3; 5]. Globales Maximum bei 5 (f = 3), globale Minima bei 0 und 3 (f = −2).</p></div></div></div></details>
@@ -1298,8 +1298,8 @@ f({0,1,3,5})                <span class="r">{−2,−1,−2,3}</span></pre></div
 solve(d/dx(f(x))=0,x)       <span class="r">x=3 or x=5</span>
 f({1,3,5,6})                <span class="r">{−19,1,−3,1}</span></pre></div>
       <ol class="st">
-        <li>a) Kandidaten 1 (Rand), 3, 5, 6 (Rand). Größter Wert 1 (zweimal), kleinster −19.</li>
-        <li>b) f = x³ − 3x², f′ = 3x² − 6x = 3x(x − 2) → 0, 2. Werte: f(−1) = −4, f(0) = 0, f(2) = −4, f(3) = 0.</li>
+        <li>a) Kandidaten 1 (Rand), 3, 5, 6 (Rand). Größter Wert 1 (zweimal), kleinster −19.<em class="why">Man vergleicht alle Werte. Der größte Wert ist das globale Maximum, der kleinste das globale Minimum.</em></li>
+        <li>b) f = x³ − 3x², f′ = 3x² − 6x = 3x(x − 2) → 0, 2. Werte: f(−1) = −4, f(0) = 0, f(2) = −4, f(3) = 0.<em class="why">Kandidaten innen (0, 2) und Ränder (−1, 3) einsetzen und vergleichen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) Max 1 bei x = 3 und x = 6; Min −19 bei x = 1 &nbsp; b) Max 0 bei x = 0 und x = 3; Min −4 bei x = −1 und x = 2</p></div></div></div></details>
   </article>
@@ -1310,7 +1310,7 @@ f({1,3,5,6})                <span class="r">{−19,1,−3,1}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) fallend [−1; 1], steigend [1; 3]; globales Min 0 bei 1, globales Max 4 bei −1 und 3 &nbsp; c) streng monoton steigend in [−2; 1]; Min −8 bei −2, Max 1 bei 1</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Monotonie mit f′, globale Extrema durch Vergleich der Werte an Kandidaten und Rändern.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) f′ = 2(x − 1) = 0 → x = 1. f(−1) = 4, f(1) = 0, f(3) = 4.</li>
+        <li>a) f′ = 2(x − 1) = 0 → x = 1. f(−1) = 4, f(1) = 0, f(3) = 4.<em class="why">Einziger Kandidat innen ist 1. Dazu kommen die Ränder −1 und 3.</em></li>
         <li>c) f = −x² + 2x, f′ = −2x + 2 = 0 → x = 1, und das ist genau der rechte Rand. Im Inneren ist f′ &gt; 0 → überall steigend. f(−2) = −8, f(1) = 1.<em class="why">Bei einer steigenden Funktion liegt das Minimum links am Rand, das Maximum rechts.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) fallend [−1; 1], steigend [1; 3]; globales Min 0 bei 1, globales Max 4 bei −1 und 3 &nbsp; c) streng monoton steigend in [−2; 1]; Min −8 bei −2, Max 1 bei 1</p></div></div></div></details>
@@ -1322,9 +1322,9 @@ f({1,3,5,6})                <span class="r">{−19,1,−3,1}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) v(6) = 1,8 m/min, v(16) = 0 m/min &nbsp; b) zunehmend in [6; 8], abnehmend in [8; 16]</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Die Frage ist nach der Monotonie von <b>v</b>, nicht von s. Also v ableiten.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>v(t) = s′(t) = −0,03t² + 0,48t. v(6) = −1,08 + 2,88 = 1,8; v(16) = −7,68 + 7,68 = 0.</li>
-        <li>v′(t) = −0,06t + 0,48 = 0 → t = 8.</li>
-        <li>v′(7) &gt; 0 → v nimmt in [6; 8] zu; v′(10) &lt; 0 → v nimmt in [8; 16] ab.</li>
+        <li>v(t) = s′(t) = −0,03t² + 0,48t. v(6) = −1,08 + 2,88 = 1,8; v(16) = −7,68 + 7,68 = 0.<em class="why">Geschwindigkeit = Ableitung des Weges. Dann Anfangs- und Endzeit einsetzen.</em></li>
+        <li>v′(t) = −0,06t + 0,48 = 0 → t = 8.<em class="why">Wann v am größten ist, sagt die Ableitung von v. Wo v′ = 0, wechselt v von zunehmend zu abnehmend.</em></li>
+        <li>v′(7) &gt; 0 → v nimmt in [6; 8] zu; v′(10) &lt; 0 → v nimmt in [8; 16] ab.<em class="why">Testwerte in v′: Positiv heißt, die Geschwindigkeit nimmt zu. Negativ heißt, sie nimmt ab.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) v(6) = 1,8 m/min, v(16) = 0 m/min &nbsp; b) zunehmend in [6; 8], abnehmend in [8; 16]</p></div></div></div></details>
   </article>
@@ -1342,7 +1342,7 @@ f({1,3,5,6})                <span class="r">{−19,1,−3,1}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) f″ = −6 &lt; 0 → rechtsgekrümmt &nbsp; c) f″ = 2 &gt; 0 → linksgekrümmt &nbsp; e) f″ = 4 &gt; 0 → linksgekrümmt</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Ist f″ überall positiv (oder überall negativ), ist der ganze Graph gleich gekrümmt.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Zweimal ableiten. Bei einer Parabel ax² + … ist f″ = 2a, also eine Konstante.</li>
+        <li>Zweimal ableiten. Bei einer Parabel ax² + … ist f″ = 2a, also eine Konstante.<em class="why">Bei Grad 2 ist f″ immer eine feste Zahl. Ihr Vorzeichen gilt dann für den ganzen Graphen.</em></li>
         <li>Ist f″ überall positiv (bzw. negativ), hat f im ganzen Definitionsbereich dieselbe Krümmung.<em class="why">Krümmungssatz: f″ &gt; 0 für alle x → linksgekrümmt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) f″ = −6 &lt; 0 → rechtsgekrümmt &nbsp; c) f″ = 2 &gt; 0 → linksgekrümmt &nbsp; e) f″ = 4 &gt; 0 → linksgekrümmt</p></div></div></div></details>
@@ -1354,8 +1354,8 @@ f({1,3,5,6})                <span class="r">{−19,1,−3,1}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) rechts (−∞; 0], links [0; ∞) &nbsp; b) rechts (−∞; 3], links [3; ∞) &nbsp; e) rechts (−∞; 1], links [1; ∞)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Krümmungsbereiche: f″ = 0 lösen, dann links und rechts davon das Vorzeichen von f″ prüfen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) f″ = 18x = 0 → x = 0. f″(−1) &lt; 0 → rechts; f″(1) &gt; 0 → links.</li>
-        <li>b) f″ = 6x − 18 = 0 → x = 3. Testwerte f″(0) = −18, f″(4) = 6.</li>
+        <li>a) f″ = 18x = 0 → x = 0. f″(−1) &lt; 0 → rechts; f″(1) &gt; 0 → links.<em class="why">f″ = 0 gibt die Grenze. Mit Testwerten in f″ bestimmt man links und rechts die Krümmung.</em></li>
+        <li>b) f″ = 6x − 18 = 0 → x = 3. Testwerte f″(0) = −18, f″(4) = 6.<em class="why">Gleiches Vorgehen. Negativer Testwert → rechtsgekrümmt, positiver → linksgekrümmt.</em></li>
         <li>e) f″ = 6x − 6 = 0 → x = 1.<em class="why">Bei Grad 3 mit a &gt; 0 ist es immer erst rechts-, dann linksgekrümmt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) rechts (−∞; 0], links [0; ∞) &nbsp; b) rechts (−∞; 3], links [3; ∞) &nbsp; e) rechts (−∞; 1], links [1; ∞)</p></div></div></div></details>
@@ -1373,8 +1373,8 @@ solve(f1(x)=0,x)       <span class="r">x=−1 or x=0 or x=1</span>
 f2({−1,0,1})           <span class="r">{8,−4,8}</span>
 f({−1,0,1})            <span class="r">{0,1,0}</span></pre></div>
       <ol class="st">
-        <li>3.24: f′ = 3x² + 6x = 3x(x + 2) → −2, 0. f″ = 6x + 6: f″(−2) = −6 &lt; 0 → Max; f″(0) = 6 &gt; 0 → Min.</li>
-        <li>c) f′ = 3x² − 27 = 0 → x = ±3; f″ = 6x.</li>
+        <li>3.24: f′ = 3x² + 6x = 3x(x + 2) → −2, 0. f″ = 6x + 6: f″(−2) = −6 &lt; 0 → Max; f″(0) = 6 &gt; 0 → Min.<em class="why">Kandidaten aus f′ = 0. Mit f″ die Art bestimmen: negativ Hochpunkt, positiv Tiefpunkt.</em></li>
+        <li>c) f′ = 3x² − 27 = 0 → x = ±3; f″ = 6x.<em class="why">f″ = 6x: Bei −3 negativ (Hochpunkt), bei 3 positiv (Tiefpunkt).</em></li>
         <li>f) f′ = 4x³ − 4x = 4x(x² − 1) → −1, 0, 1. Schreib in der SA für jede Stelle: „f′(p) = 0 ∧ f″(p) … ⇒ …“.<em class="why">Genau dieser Satz bringt den Punkt für „weise rechnerisch nach“.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.24: H(−2 | 0), T(0 | −4) &nbsp; c) H(−3 | 54), T(3 | −54) &nbsp; f) T(−1 | 0), H(0 | 1), T(1 | 0)</p></div></div></div></details>
@@ -1386,8 +1386,8 @@ f({−1,0,1})            <span class="r">{0,1,0}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p><strong>B und E</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Minimum sicher heißt: f′ = 0 und f″ &gt; 0. Also nur positive Werte von f″ passen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Minimum sicher: f′(−2) = 0 und f″(−2) <b>&gt; 0</b>. Das gilt bei B (1) und E (4).</li>
-        <li>C: f″ = 0 → keine Aussage möglich. D: f″ &lt; 0 → Maximum. A: Der Funktionswert sagt nichts über die Art.</li>
+        <li>Minimum sicher: f′(−2) = 0 und f″(−2) <b>&gt; 0</b>. Das gilt bei B (1) und E (4).<em class="why">Der Satz mit der 2. Ableitung: waagrecht und f″ &gt; 0 gibt sicher ein Minimum. Jeder positive Wert passt.</em></li>
+        <li>C: f″ = 0 → keine Aussage möglich. D: f″ &lt; 0 → Maximum. A: Der Funktionswert sagt nichts über die Art.<em class="why">f″ = 0 entscheidet nichts. Negativ gäbe ein Maximum. Der y-Wert sagt nichts über die Form.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>B und E</strong></p></div></div></div></details>
   </article>
@@ -1398,9 +1398,9 @@ f({−1,0,1})            <span class="r">{0,1,0}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>Von O = (0 | 0) bis P = (100 | 25) nach rechts (rechtsgekrümmt), von P bis Q = (200 | 50) nach links. Wechsel im Punkt P = (100 | 25).</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Nach rechts lenken = rechtsgekrümmt (f″ &lt; 0). Der Wechsel passiert an der Wendestelle (f″ = 0).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>f″(x) = <span class="mw"><span class="fr"><span>1</span><span>10⁴</span></span></span>(6x − 600) = 0 → x = 100.</li>
+        <li>f″(x) = <span class="mw"><span class="fr"><span>1</span><span>10⁴</span></span></span>(6x − 600) = 0 → x = 100.<em class="why">Für die Krümmung braucht man f″. Wo f″ = 0, wechselt die Lenkrichtung.</em></li>
         <li>f″(50) &lt; 0 → rechtsgekrümmt in [0; 100]; f″(150) &gt; 0 → linksgekrümmt in [100; 200].<em class="why">„Nach rechts lenken“ = rechtsgekrümmt (wenn man von links nach rechts fährt).</em></li>
-        <li>f(100) = (10⁶ − 3·10⁶ + 2,25·10⁶)/10⁴ = 25 → P(100 | 25).</li>
+        <li>f(100) = (10⁶ − 3·10⁶ + 2,25·10⁶)/10⁴ = 25 → P(100 | 25).<em class="why">Den Punkt angeben: x = 100 in f einsetzen und ausrechnen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>Von O = (0 | 0) bis P = (100 | 25) nach rechts (rechtsgekrümmt), von P bis Q = (200 | 50) nach links. Wechsel im Punkt P = (100 | 25).</p></div></div></div></details>
   </article>
@@ -1418,10 +1418,10 @@ f({−1,0,1})            <span class="r">{0,1,0}</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>W(2 | −2), Wendetangente t: y = −3x + 4</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Wendestelle: f″ = 0 und f‴ ≠ 0. Wendetangente: Tangente in diesem Punkt (Punkt + Steigung f′).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>f′ = 3x² − 12x + 9; f″ = 6x − 12; f‴ = 6.</li>
+        <li>f′ = 3x² − 12x + 9; f″ = 6x − 12; f‴ = 6.<em class="why">Für Wendestellen braucht man f″ und zur Bestätigung f‴. Darum dreimal ableiten.</em></li>
         <li>f″(x) = 0 → x = 2. f‴(2) = 6 ≠ 0 → 2 ist Wendestelle.<em class="why">Den Satz „f″(2) = 0 ∧ f‴(2) ≠ 0 ⇒ Wendestelle“ immer dazuschreiben.</em></li>
-        <li>f(2) = 8 − 24 + 18 − 4 = −2 → W(2 | −2).</li>
-        <li>k = f′(2) = 12 − 24 + 9 = −3. −2 = −3·2 + d → d = 4 → t: y = −3x + 4.</li>
+        <li>f(2) = 8 − 24 + 18 − 4 = −2 → W(2 | −2).<em class="why">Den y-Wert des Wendepunkts durch Einsetzen in f berechnen.</em></li>
+        <li>k = f′(2) = 12 − 24 + 9 = −3. −2 = −3·2 + d → d = 4 → t: y = −3x + 4.<em class="why">Wendetangente = Tangente im Wendepunkt: Steigung f′(2), Punkt W, dann d ausrechnen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>W(2 | −2), Wendetangente t: y = −3x + 4</p></div></div></div></details>
   </article>
@@ -1443,8 +1443,8 @@ f1(−1/2)                  <span class="r">1/4</span>
 f1(0)                     <span class="r">0</span>      <span class="c">→ Sattelpunkt</span>
 tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
       <ol class="st">
-        <li>b) f″ = 6x = 0 → x = 0; f‴ = 6 ≠ 0. f(0) = 4, f′(0) = −4 → y = −4x + 4.</li>
-        <li>d) Erst ausmultiplizieren (TI: <code>expand</code>): x³ − 6x² − 9x + 54. f″ = 6x − 12 → x = 2; f(2) = 20; f′(2) = 12 − 24 − 9 = −21 → 20 = −42 + d → d = 62.</li>
+        <li>b) f″ = 6x = 0 → x = 0; f‴ = 6 ≠ 0. f(0) = 4, f′(0) = −4 → y = −4x + 4.<em class="why">Wendestelle mit f″ = 0 und f‴ ≠ 0, dann Tangente mit Punkt und Steigung.</em></li>
+        <li>d) Erst ausmultiplizieren (TI: <code>expand</code>): x³ − 6x² − 9x + 54. f″ = 6x − 12 → x = 2; f(2) = 20; f′(2) = 12 − 24 − 9 = −21 → 20 = −42 + d → d = 62.<em class="why">In Klammerform ist Ableiten schwer, darum ausmultiplizieren. Dann wie gewohnt f″ = 0, y-Wert, Steigung und d.</em></li>
         <li>h) Zwei Wendestellen. Bei 0 ist auch f′(0) = 0 → waagrechte Wendetangente → <b>Sattelpunkt</b>.<em class="why">Krümmung: f″ = 6x(2x + 1). Testwerte f″(−1) = 6 &gt; 0, f″(−0,25) &lt; 0, f″(1) &gt; 0.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>b) W(0 | 4), t: y = −4x + 4; rechts (−∞; 0], links [0; ∞) &nbsp; d) W(2 | 20), t: y = −21x + 62; rechts (−∞; 2], links [2; ∞) &nbsp; h) W₁(−½ | −1/16), t₁: y = ¼x + 1/16; W₂(0 | 0) ist Sattelpunkt, t₂: y = 0; links (−∞; −½], rechts [−½; 0], links [0; ∞)</p></div></div></div></details>
@@ -1456,10 +1456,10 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>3.31 c) T(−3 | −9), H(0 | 0), T(3 | −9); W(±√3 | −5) ≈ (±1,73 | −5); fallend (−∞; −3], steigend [−3; 0], fallend [0; 3], steigend [3; ∞); links (−∞; −√3], rechts [−√3; √3], links [√3; ∞)<br>3.32 b) H(−2 | 24), T(2 | −8), W(0 | 8); steigend (−∞; −2], fallend [−2; 2], steigend [2; ∞); rechts (−∞; 0], links [0; ∞)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Komplette Untersuchung: f′ → Extrempunkte und Monotonie; f″ → Wendepunkte und Krümmung.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>3.31 c) f′ = <span class="mw"><span class="fr"><span>4</span><span>9</span></span></span>x³ − 4x = <span class="mw"><span class="fr"><span>4</span><span>9</span></span></span>x(x² − 9) → 0, ±3.</li>
-        <li>f″ = <span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>x² − 4: f″(±3) = 8 &gt; 0 → Minima; f″(0) = −4 &lt; 0 → Maximum.</li>
+        <li>3.31 c) f′ = <span class="mw"><span class="fr"><span>4</span><span>9</span></span></span>x³ − 4x = <span class="mw"><span class="fr"><span>4</span><span>9</span></span></span>x(x² − 9) → 0, ±3.<em class="why">Extremstellen: f′ = 0. Herausheben macht ein Produkt mit drei Lösungen.</em></li>
+        <li>f″ = <span class="mw"><span class="fr"><span>4</span><span>3</span></span></span>x² − 4: f″(±3) = 8 &gt; 0 → Minima; f″(0) = −4 &lt; 0 → Maximum.<em class="why">f″ positiv → Tiefpunkt (∪), f″ negativ → Hochpunkt (∩).</em></li>
         <li>f″ = 0 → x² = 3 → x = ±√3; f‴ = <span class="mw"><span class="fr"><span>8</span><span>3</span></span></span>x ≠ 0. f(√3) = 1 − 6 = −5.<em class="why">Gerade Funktion (nur gerade Hochzahlen) → alles symmetrisch zur y-Achse. Spart Rechnen.</em></li>
-        <li>3.32 b) f′ = 3x² − 12 → ±2; f″ = 6x: f″(−2) &lt; 0 → H, f″(2) &gt; 0 → T. f″ = 0 → x = 0, f‴ = 6 ≠ 0 → W(0 | 8).</li>
+        <li>3.32 b) f′ = 3x² − 12 → ±2; f″ = 6x: f″(−2) &lt; 0 → H, f″(2) &gt; 0 → T. f″ = 0 → x = 0, f‴ = 6 ≠ 0 → W(0 | 8).<em class="why">f′ = 0 für Extremstellen, f″ für die Art. f″ = 0 und f‴ ≠ 0 für den Wendepunkt.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.31 c) T(−3 | −9), H(0 | 0), T(3 | −9); W(±√3 | −5) ≈ (±1,73 | −5); fallend (−∞; −3], steigend [−3; 0], fallend [0; 3], steigend [3; ∞); links (−∞; −√3], rechts [−√3; √3], links [√3; ∞)<br>3.32 b) H(−2 | 24), T(2 | −8), W(0 | 8); steigend (−∞; −2], fallend [−2; 2], steigend [2; ∞); rechts (−∞; 0], links [0; ∞)</p></div></div></div></details>
   </article>
@@ -1470,9 +1470,9 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>Keine Extremstellen; streng monoton fallend in ℝ; Sattelpunkt S(1 | −1); linksgekrümmt (−∞; 1], rechtsgekrümmt [1; ∞)</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>f′ ist hier ein Quadrat mal −3, also nie positiv. Darum gibt es keinen Vorzeichenwechsel und keinen Hoch- oder Tiefpunkt.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>f′ = −3x² + 6x − 3 = −3(x − 1)² ≤ 0 → f′(1) = 0, aber kein Vorzeichenwechsel.</li>
-        <li>f″ = −6x + 6 → f″(1) = 0; f‴ = −6 ≠ 0 → Wendestelle 1. Weil auch f′(1) = 0 → Sattelpunkt. f(1) = −1 + 3 − 3 = −1.</li>
-        <li>f″(0) = 6 &gt; 0 → links; f″(2) = −6 &lt; 0 → rechts.</li>
+        <li>f′ = −3x² + 6x − 3 = −3(x − 1)² ≤ 0 → f′(1) = 0, aber kein Vorzeichenwechsel.<em class="why">f′ ist −3 mal ein Quadrat und wird nie positiv. Darum gibt es keinen Vorzeichenwechsel und kein Extremum.</em></li>
+        <li>f″ = −6x + 6 → f″(1) = 0; f‴ = −6 ≠ 0 → Wendestelle 1. Weil auch f′(1) = 0 → Sattelpunkt. f(1) = −1 + 3 − 3 = −1.<em class="why">Wendestelle mit waagrechter Tangente ist ein Sattelpunkt. Der y-Wert kommt aus f(1).</em></li>
+        <li>f″(0) = 6 &gt; 0 → links; f″(2) = −6 &lt; 0 → rechts.<em class="why">Testwerte in f″ links und rechts von 1 zeigen die Krümmung.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>Keine Extremstellen; streng monoton fallend in ℝ; Sattelpunkt S(1 | −1); linksgekrümmt (−∞; 1], rechtsgekrümmt [1; ∞)</p></div></div></div></details>
   </article>
@@ -1483,11 +1483,11 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p><strong>A und E</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Bei „⇒“-Aussagen nach einem Gegenbeispiel suchen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>A: notwendige Bedingung, stimmt ✓.</li>
-        <li>B: Gegenbeispiel x³ bei 0: f′(0) = 0, aber Terrassenstelle ✗.</li>
-        <li>C: Gegenbeispiel x⁴ bei 0: f″(0) = 0, aber Tiefpunkt, keine Wendestelle ✗.</li>
+        <li>A: notwendige Bedingung, stimmt ✓.<em class="why">Jedes Extremum hat eine waagrechte Tangente. Diese Richtung stimmt immer.</em></li>
+        <li>B: Gegenbeispiel x³ bei 0: f′(0) = 0, aber Terrassenstelle ✗.<em class="why">Ein Gegenbeispiel reicht: x³ ist bei 0 waagrecht, steigt aber weiter. Kein Extremum.</em></li>
+        <li>C: Gegenbeispiel x⁴ bei 0: f″(0) = 0, aber Tiefpunkt, keine Wendestelle ✗.<em class="why">Gegenbeispiel: x⁴ hat bei 0 f″ = 0, ist aber einfach ein Tiefpunkt ohne Krümmungswechsel.</em></li>
         <li>D: Gegenbeispiel x⁵ bei 0: Wendestelle, aber f‴(0) = 0 ✗.<em class="why">f″ = 0 ∧ f‴ ≠ 0 ist hinreichend, aber nicht notwendig.</em></li>
-        <li>E: Terrassenstelle hat nach Definition f′(p) = 0 ✓.</li>
+        <li>E: Terrassenstelle hat nach Definition f′(p) = 0 ✓.<em class="why">Eine Terrassenstelle ist per Definition eine waagrechte Stelle, also f′(p) = 0.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>A und E</strong></p></div></div></div></details>
   </article>
@@ -1498,8 +1498,8 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>3.35: Wendestelle x = −b/(3a), f‴ = 6a ≠ 0 &nbsp; 3.34: Wendestelle x = (x₁ + x₂ + x₃)/3</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Allgemein rechnen statt mit Zahlen: f″ = 0 nach x auflösen und f‴ ≠ 0 zeigen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>3.35: f″(x) = 6ax + 2b = 0 → x = −<span class="mw"><span class="fr"><span>b</span><span>3a</span></span></span> (genau eine Lösung, weil a ≠ 0). f‴(x) = 6a ≠ 0 → es ist eine Wendestelle. ∎</li>
-        <li>3.34: Ausmultiplizieren: f(x) = a[x³ − (x₁ + x₂ + x₃)x² + …]. Also b = −a(x₁ + x₂ + x₃).</li>
+        <li>3.35: f″(x) = 6ax + 2b = 0 → x = −<span class="mw"><span class="fr"><span>b</span><span>3a</span></span></span> (genau eine Lösung, weil a ≠ 0). f‴(x) = 6a ≠ 0 → es ist eine Wendestelle. ∎<em class="why">f″ ist bei Grad 3 eine Gerade mit genau einer Nullstelle. f‴ = 6a ist nie 0, also ist es sicher eine Wendestelle.</em></li>
+        <li>3.34: Ausmultiplizieren: f(x) = a[x³ − (x₁ + x₂ + x₃)x² + …]. Also b = −a(x₁ + x₂ + x₃).<em class="why">Beim Ausmultiplizieren sieht man, was vor x² steht. Mehr braucht man für die Wendestelle nicht.</em></li>
         <li>Mit 3.35: x = −b/(3a) = a(x₁ + x₂ + x₃)/(3a) = (x₁ + x₂ + x₃)/3. ∎<em class="why">Nur der x²-Koeffizient ist wichtig, die anderen braucht man nicht auszurechnen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.35: Wendestelle x = −b/(3a), f‴ = 6a ≠ 0 &nbsp; 3.34: Wendestelle x = (x₁ + x₂ + x₃)/3</p></div></div></div></details>
@@ -1519,7 +1519,7 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Gerade: f(−x) = f(x). Ungerade: f(−x) = −f(x). Einfach −x einsetzen und vereinfachen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>a) f(−x) = ½(−x)⁴ + (−x)² = ½x⁴ + x² = f(x) → gerade → symmetrisch zur y-Achse. ∎<em class="why">(−x) mit gerader Hochzahl wird positiv.</em></li>
-        <li>b) f(−x) = (−x)³ − 3(−x) = −x³ + 3x = −(x³ − 3x) = −f(x) → ungerade → symmetrisch zum Ursprung. ∎</li>
+        <li>b) f(−x) = (−x)³ − 3(−x) = −x³ + 3x = −(x³ − 3x) = −f(x) → ungerade → symmetrisch zum Ursprung. ∎<em class="why">Für −x einsetzen und vereinfachen. Kommt genau −f(x) heraus, ist die Funktion ungerade.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) f(−x) = f(x) &nbsp; b) f(−x) = −f(x)</p></div></div></div></details>
   </article>
@@ -1530,8 +1530,8 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p><strong>A (ungerade) und E (gerade)</strong></p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Nur auf die Hochzahlen schauen. Die Konstante zählt als x⁰, also als gerade Hochzahl.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>A: nur Hochzahl 3 → ungerade ✓. E: Hochzahlen 2 und 0 → gerade ✓.</li>
-        <li>B, C: gemischte Hochzahlen. D: 3 und 0 (die −1 ist x⁰) → gemischt → weder noch.</li>
+        <li>A: nur Hochzahl 3 → ungerade ✓. E: Hochzahlen 2 und 0 → gerade ✓.<em class="why">Nur auf die Hochzahlen schauen. Die −1 bei E ist x⁰, also eine gerade Hochzahl.</em></li>
+        <li>B, C: gemischte Hochzahlen. D: 3 und 0 (die −1 ist x⁰) → gemischt → weder noch.<em class="why">Kommen gerade und ungerade Hochzahlen gemischt vor, ist die Funktion weder gerade noch ungerade.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p><strong>A (ungerade) und E (gerade)</strong></p></div></div></div></details>
   </article>
@@ -1542,8 +1542,8 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>a) −3, 0, 2; x → −∞: −∞, x → ∞: ∞ &nbsp; b) 0; x → −∞: ∞, x → ∞: −∞ &nbsp; c) −3, 0, 4; beide Richtungen: −∞</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Nullstellen durch Herausheben. Für x → ±∞ zählt nur der Term mit der höchsten Hochzahl.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>a) x(x² + x − 6) = x(x + 3)(x − 2). Höchster Term x³: ungerade, positiv → links unten, rechts oben.</li>
-        <li>b) −x(x² + 2x + 3); x² + 2x + 3 hat D = 1 − 3 &lt; 0 → nur 0. Höchster Term −x³ → links oben, rechts unten.</li>
+        <li>a) x(x² + x − 6) = x(x + 3)(x − 2). Höchster Term x³: ungerade, positiv → links unten, rechts oben.<em class="why">Herausheben gibt die Nullstellen. Für ±∞ zählt nur x³: Bei großen negativen x ist es negativ, bei großen positiven positiv.</em></li>
+        <li>b) −x(x² + 2x + 3); x² + 2x + 3 hat D = 1 − 3 &lt; 0 → nur 0. Höchster Term −x³ → links oben, rechts unten.<em class="why">Die Klammer hat keine Lösung (negative Diskriminante). −x³ geht für große x nach unten, für große negative x nach oben.</em></li>
         <li>c) −x²(x² − x − 12) = −x²(x − 4)(x + 3). Höchster Term −x⁴: gerade, negativ → beide Enden nach unten.<em class="why">Am TI zur Kontrolle: <code>limit(f(x),x,∞)</code>.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) −3, 0, 2; x → −∞: −∞, x → ∞: ∞ &nbsp; b) 0; x → −∞: ∞, x → ∞: −∞ &nbsp; c) −3, 0, 4; beide Richtungen: −∞</p></div></div></div></details>
@@ -1555,8 +1555,8 @@ tangentLine(f(x),x,−1/2)  <span class="r">x/4+1/16</span></pre></div>
     <details class="res"><summary>Ergebnis</summary><div><p>1) 0, 1, 2, 3 oder 4 &nbsp; 2) höchstens n − 1 Extremstellen und höchstens n − 2 Wendestellen</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Grad n → höchstens n Nullstellen, f′ hat Grad n − 1, f″ hat Grad n − 2.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>1) Höchstens 4. Weniger ist möglich: x⁴ + 1 (keine), x⁴ (eine), x⁴ − 1 (zwei), x²(x² − 1) (drei), (x² − 1)(x² − 4) (vier).</li>
-        <li>2) Extremstellen sind Nullstellen von f′. f′ hat Grad n − 1, also höchstens n − 1 Nullstellen. Wendestellen sind Nullstellen von f″ (Grad n − 2) → höchstens n − 2.</li>
+        <li>1) Höchstens 4. Weniger ist möglich: x⁴ + 1 (keine), x⁴ (eine), x⁴ − 1 (zwei), x²(x² − 1) (drei), (x² − 1)(x² − 4) (vier).<em class="why">Höchstens n = 4. Mit den Beispielen sieht man, dass jede kleinere Anzahl auch möglich ist.</em></li>
+        <li>2) Extremstellen sind Nullstellen von f′. f′ hat Grad n − 1, also höchstens n − 1 Nullstellen. Wendestellen sind Nullstellen von f″ (Grad n − 2) → höchstens n − 2.<em class="why">Jedes Ableiten senkt den Grad um 1. Ein Polynom vom Grad n − 1 hat höchstens n − 1 Nullstellen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>1) 0, 1, 2, 3 oder 4 &nbsp; 2) höchstens n − 1 Extremstellen und höchstens n − 2 Wendestellen</p></div></div></div></details>
   </article>
@@ -1582,8 +1582,8 @@ solve(… and … and … and …,{a,b,c,d})</pre>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Jede Info wird zu einer Gleichung. Ein Tiefpunkt gibt zwei Gleichungen (Punkt und f′ = 0).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>Bedingungen übersetzen: T(3 | 1) → f(3) = 1 und f′(3) = 0. P(0 | 1) → f(0) = 1. Steigung in P → f′(0) = 3.<em class="why">Ein Tiefpunkt gibt immer zwei Gleichungen: Punkt + waagrechte Tangente.</em></li>
-        <li>Ausgeschrieben: 27a + 9b + 3c + d = 1; 27a + 6b + c = 0; d = 1; c = 3.</li>
-        <li><code>solve(f(3)=1 and f1(3)=0 and f(0)=1 and f1(0)=3,{a,b,c,d})</code> → a = ⅓, b = −2, c = 3, d = 1.</li>
+        <li>Ausgeschrieben: 27a + 9b + 3c + d = 1; 27a + 6b + c = 0; d = 1; c = 3.<em class="why">Jede Bedingung ausgeschrieben, damit man sieht, welche Gleichung woher kommt.</em></li>
+        <li><code>solve(f(3)=1 and f1(3)=0 and f(0)=1 and f1(0)=3,{a,b,c,d})</code> → a = ⅓, b = −2, c = 3, d = 1.<em class="why">Der TI löst das System mit vier Gleichungen und vier Unbekannten.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>f(x) = ⅓x³ − 2x² + 3x + 1</p></div></div></div></details>
   </article>
@@ -1600,7 +1600,7 @@ solve(f(2)=−2 and f1(2)=0 and f1(0)=−3,{a,b,c})     <span class="r">a=3/4 an
 solve(f(1)=2 and f1(1)=0 and f1(4)=−6,{a,b,c})      <span class="r">a=−1 and b=2 and c=1</span>
 solve(f(0)=1 and f(1/3)=2/3 and f1(1/3)=0,{a,b,c})  <span class="r">a=3 and b=−2 and c=1</span></pre></div>
       <ol class="st">
-        <li>Grad 2 → drei Unbekannte → drei Gleichungen.</li>
+        <li>Grad 2 → drei Unbekannte → drei Gleichungen.<em class="why">Für jede Unbekannte braucht man eine Gleichung. Darum muss die Angabe genau drei Informationen liefern.</em></li>
         <li>Kontrolle 3.51: f′(x) = −2x + 2 → f′(1) = 0 ✓, f′(4) = −6 ✓, f(1) = 2 ✓.<em class="why">Eine Probe dauert 30 Sekunden und fängt Tippfehler.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.50: f(x) = ¾x² − 3x + 1 &nbsp; 3.51: f(x) = −x² + 2x + 1 &nbsp; 3.52: f(x) = 3x² − 2x + 1</p></div></div></div></details>
@@ -1612,9 +1612,9 @@ solve(f(0)=1 and f(1/3)=2/3 and f1(1/3)=0,{a,b,c})  <span class="r">a=3 and b=�
     <details class="res"><summary>Ergebnis</summary><div><p>a = 5, b = 9 → f(x) = 5x² + 9x + 1</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Die Tangente gibt zwei Dinge: den Punkt (f(−1) = −3) und die Steigung (f′(−1) = −1).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Tangente nach y umformen: y = −x − 4 → Steigung −1.</li>
-        <li>I: f(−1) = −3 → a − b + 1 = −3. II: f′(−1) = −1 → −2a + b = −1.</li>
-        <li>I + II: −a + 1 = −4 → a = 5 → b = 9.</li>
+        <li>Tangente nach y umformen: y = −x − 4 → Steigung −1.<em class="why">Aus x + y + 4 = 0 wird y = −x − 4. Die Zahl vor x ist die Steigung.</em></li>
+        <li>I: f(−1) = −3 → a − b + 1 = −3. II: f′(−1) = −1 → −2a + b = −1.<em class="why">Der Punkt liegt auf der Parabel (erste Gleichung) und dort hat sie die Steigung der Tangente (zweite Gleichung).</em></li>
+        <li>I + II: −a + 1 = −4 → a = 5 → b = 9.<em class="why">Addiert man beide Gleichungen, fällt b weg. Dann a einsetzen, um b zu bekommen.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a = 5, b = 9 → f(x) = 5x² + 9x + 1</p></div></div></div></details>
   </article>
@@ -1627,7 +1627,7 @@ solve(f(0)=1 and f(1/3)=2/3 and f1(1/3)=0,{a,b,c})  <span class="r">a=3 and b=�
 <div class="lw-ti"><span class="lw-tag">Am TI-Nspire eingeben</span><pre class="cas">solve(f(0)=2 and f1(0)=0 and f(4)=−30 and f1(4)=0,{a,b,c,d})   <span class="r">a=1, b=−6, c=0, d=2</span>
 solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a=1, b=−3, c=0, d=3</span></pre></div>
       <ol class="st">
-        <li>3.54: Wendestelle liegt bei Grad 3 genau in der Mitte der Extremstellen: (0 + 4)/2 = 2. f(2) = 8 − 24 + 2 = −14.</li>
+        <li>3.54: Wendestelle liegt bei Grad 3 genau in der Mitte der Extremstellen: (0 + 4)/2 = 2. f(2) = 8 − 24 + 2 = −14.<em class="why">Bei Grad 3 liegt die Wendestelle immer genau zwischen den Extremstellen. Den y-Wert liefert f.</em></li>
         <li>3.55: f′ = 3x² − 6x = 0 → x = 0 (H) oder x = 2. f(2) = 8 − 12 + 3 = −1 → T(2 | −1).<em class="why">Wendepunkt: Punkt (f(1) = 1) <b>und</b> f″(1) = 0. Nicht f′!</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.54: f(x) = x³ − 6x² + 2, W(2 | −14) &nbsp; 3.55: f(x) = x³ − 3x² + 3, T(2 | −1)</p></div></div></div></details>
@@ -1639,9 +1639,9 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p>3.56: f(x) = −26x³ + 27x², Extremstellen 0 und <span class="mw"><span class="fr"><span>9</span><span>13</span></span></span> ≈ 0,69 &nbsp; 3.57: f(x) = 2x³ − x</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>„Berührt die x-Achse im Ursprung“ heißt: f(0) = 0 und waagrecht, also f′(0) = 0.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>„Berührt im Ursprung die x-Achse“ → f(0) = 0 <b>und</b> f′(0) = 0 (der Graph geht durch 0 und hat dort eine waagrechte Tangente).</li>
-        <li>3.56: dazu f(1) = 1, f′(1) = −24 → a = −26, b = 27, c = 0, d = 0. f′ = −78x² + 54x = 6x(9 − 13x) → 0 und 9/13.</li>
-        <li>3.57: f(1) = 1, f(0) = 0, f″(0) = 0, f′(0) = −1 → a = 2, b = 0, c = −1, d = 0.</li>
+        <li>„Berührt im Ursprung die x-Achse“ → f(0) = 0 <b>und</b> f′(0) = 0 (der Graph geht durch 0 und hat dort eine waagrechte Tangente).<em class="why">„Berühren“ heißt: Der Graph trifft die Achse und ist dort waagrecht, er schneidet sie nicht.</em></li>
+        <li>3.56: dazu f(1) = 1, f′(1) = −24 → a = −26, b = 27, c = 0, d = 0. f′ = −78x² + 54x = 6x(9 − 13x) → 0 und 9/13.<em class="why">Die anderen zwei Bedingungen ergänzen. Mit dem fertigen f sucht man die Extremstellen über f′ = 0.</em></li>
+        <li>3.57: f(1) = 1, f(0) = 0, f″(0) = 0, f′(0) = −1 → a = 2, b = 0, c = −1, d = 0.<em class="why">Der Wendepunkt gibt f(0) = 0 und f″(0) = 0. Die Steigung der Wendetangente gibt f′(0) = −1.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.56: f(x) = −26x³ + 27x², Extremstellen 0 und <span class="mw"><span class="fr"><span>9</span><span>13</span></span></span> ≈ 0,69 &nbsp; 3.57: f(x) = 2x³ − x</p></div></div></div></details>
   </article>
@@ -1653,8 +1653,8 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Ein Winkel wird über k = tan(α) zur Steigung: tan(135°) = −1.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>Winkel → Steigung: k = tan(135°) = −1 → f′(0) = −1.<em class="why">TI im Grad-Modus: <code>tan(135)</code> → −1.</em></li>
-        <li>f(0) = 0, f(1) = 5, f′(1) = 14.</li>
-        <li><code>solve(f(0)=0 and f1(0)=−1 and f(1)=5 and f1(1)=14,{a,b,c,d})</code> → a = 3, b = 3, c = −1, d = 0.</li>
+        <li>f(0) = 0, f(1) = 5, f′(1) = 14.<em class="why">Die anderen drei Bedingungen: Punkt O, Punkt (1 | 5) und die Steigung dort.</em></li>
+        <li><code>solve(f(0)=0 and f1(0)=−1 and f(1)=5 and f1(1)=14,{a,b,c,d})</code> → a = 3, b = 3, c = −1, d = 0.<em class="why">Vier Gleichungen, vier Unbekannte. Der TI löst das System.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>f(x) = 3x³ + 3x² − x</p></div></div></div></details>
   </article>
@@ -1665,7 +1665,7 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p>3.59: f(x) = ¼x³ − <span class="mw"><span class="fr"><span>9</span><span>4</span></span></span>x² + <span class="mw"><span class="fr"><span>15</span><span>4</span></span></span>x − <span class="mw"><span class="fr"><span>7</span><span>4</span></span></span> &nbsp; 3.60: f(x) = x³ − 2x² + x − 2</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>„Berührt die x-Achse bei 1“ gibt f(1) = 0 und f′(1) = 0. Der Wendepunkt gibt f(3) = −4 und f″(3) = 0.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>3.59: f(1) = 0, f′(1) = 0, f(3) = −4, f″(3) = 0.</li>
+        <li>3.59: f(1) = 0, f′(1) = 0, f(3) = −4, f″(3) = 0.<em class="why">Berühren bei 1 gibt zwei Gleichungen (Punkt und waagrecht), der Wendepunkt zwei (Punkt und f″ = 0).</em></li>
         <li>3.60: f(1) = −2, f′(1) = 0, f(2) = 0, f(0) = −2.<em class="why">„Schneidet die 2. Achse in (0 | −2)“ heißt einfach f(0) = −2, also d = −2.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.59: f(x) = ¼x³ − <span class="mw"><span class="fr"><span>9</span><span>4</span></span></span>x² + <span class="mw"><span class="fr"><span>15</span><span>4</span></span></span>x − <span class="mw"><span class="fr"><span>7</span><span>4</span></span></span> &nbsp; 3.60: f(x) = x³ − 2x² + x − 2</p></div></div></div></details>
@@ -1677,8 +1677,8 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p>3.61: f(x) = 12x³ − 9x &nbsp; 3.62: f(x) = x³ − 3x² − 24x − 20</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Zwei Extrempunkte → je zwei Gleichungen (Punkt und f′ = 0) → vier Gleichungen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>3.61: zwei Extrempunkte → vier Gleichungen: f(½) = −3, f′(½) = 0, f(−½) = 3, f′(−½) = 0.</li>
-        <li>3.62: f′(4) = 0; f′(−3) = 21; „parallel zur 1. Achse“ heißt waagrecht → f′(−2) = 0; und f(−2) = 8.</li>
+        <li>3.61: zwei Extrempunkte → vier Gleichungen: f(½) = −3, f′(½) = 0, f(−½) = 3, f′(−½) = 0.<em class="why">Jeder Extrempunkt liefert zwei Gleichungen. Zwei Extrempunkte ergeben vier.</em></li>
+        <li>3.62: f′(4) = 0; f′(−3) = 21; „parallel zur 1. Achse“ heißt waagrecht → f′(−2) = 0; und f(−2) = 8.<em class="why">Jede Info einzeln übersetzen. „Parallel zur x-Achse“ ist dasselbe wie waagrecht.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.61: f(x) = 12x³ − 9x &nbsp; 3.62: f(x) = x³ − 3x² − 24x − 20</p></div></div></div></details>
   </article>
@@ -1690,7 +1690,7 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Extremstellen ohne y-Wert geben nur f′ = 0. Der Punkt auf der y-Achse gibt f(0) = 8, die Steigung gibt f′(0) = −9.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
         <li>3.63: f′(3) = 0, f′(−1) = 0, f(0) = 8, f′(0) = −9.<em class="why">Bei Extrem<b>stellen</b> (ohne y-Wert) gibt es nur f′ = 0.</em></li>
-        <li>3.64: f(−1) = 4, f″(−1) = 0, f(1) = 0, f(0) = −7.</li>
+        <li>3.64: f(−1) = 4, f″(−1) = 0, f(1) = 0, f(0) = −7.<em class="why">Wendepunkt gibt zwei Gleichungen, die beiden Achsenschnittpunkte je eine.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>3.63: f(x) = x³ − 3x² − 9x + 8 &nbsp; 3.64: f(x) = 3x³ + 9x² − 5x − 7</p></div></div></div></details>
   </article>
@@ -1701,8 +1701,8 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p>f(x) = 2x³ − 12x² + 18x − 4</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Nullstelle → f(2) = 0. Extremstellen → f′(1) = 0 und f′(3) = 0. Steigung → f′(2) = −6.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>f(2) = 0, f′(1) = 0, f′(3) = 0, f′(2) = −6.</li>
-        <li>Probe: f′ = 6x² − 24x + 18 = 6(x − 1)(x − 3) ✓; f′(2) = 24 − 48 + 18 = −6 ✓.</li>
+        <li>f(2) = 0, f′(1) = 0, f′(3) = 0, f′(2) = −6.<em class="why">Nullstelle → f = 0. Extremstellen → f′ = 0. Steigung → f′ = −6. Das sind vier Gleichungen.</em></li>
+        <li>Probe: f′ = 6x² − 24x + 18 = 6(x − 1)(x − 3) ✓; f′(2) = 24 − 48 + 18 = −6 ✓.<em class="why">Probe: Die gefundene Ableitung muss bei 1 und 3 null sein und bei 2 den Wert −6 haben.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>f(x) = 2x³ − 12x² + 18x − 4</p></div></div></div></details>
   </article>
@@ -1713,10 +1713,10 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p>a) f(x) = ½x³ − 3x² + 4,5x &nbsp; b) f(x) = −x³ + 2x² &nbsp; c) f(x) = ½x³ − 1,5x + 1</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Aus dem Graphen Punkte und Extrempunkte ablesen und wie gewohnt in Gleichungen übersetzen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Aus dem Graphen liest du Punkte und Extrempunkte ab, dann wie immer übersetzen.</li>
-        <li>a) f(0) = 0, f(1) = 2, f′(1) = 0, f(3) = 0 (f′(3) = 0 gilt dann automatisch).</li>
+        <li>Aus dem Graphen liest du Punkte und Extrempunkte ab, dann wie immer übersetzen.<em class="why">Man liest am Graphen ab, was man sieht (Punkte, Hoch- und Tiefpunkte), und macht Gleichungen daraus.</em></li>
+        <li>a) f(0) = 0, f(1) = 2, f′(1) = 0, f(3) = 0 (f′(3) = 0 gilt dann automatisch).<em class="why">Vier Informationen reichen für vier Unbekannte. Die zweite Bedingung am Tiefpunkt ist dann automatisch erfüllt.</em></li>
         <li>b) f(0) = 0, f′(0) = 0, f(2) = 0, f(1) = 1 → a = −1, b = 2. Kontrolle: f′ = −3x² + 4x = 0 → x = 4/3 ✓.<em class="why">Brauchst du mehr Gleichungen als Unbekannte, nimm die, die du am sichersten ablesen kannst.</em></li>
-        <li>c) f(−1) = 2, f′(−1) = 0, f(1) = 0, f′(1) = 0.</li>
+        <li>c) f(−1) = 2, f′(−1) = 0, f(1) = 0, f′(1) = 0.<em class="why">Zwei Extrempunkte geben je zwei Gleichungen, also vier.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>a) f(x) = ½x³ − 3x² + 4,5x &nbsp; b) f(x) = −x³ + 2x² &nbsp; c) f(x) = ½x³ − 1,5x + 1</p></div></div></div></details>
   </article>
@@ -1739,8 +1739,8 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     </div></details>
     <details class="way"><summary>Lernhilfe</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Definitionen musst du fast wörtlich können. Achte besonders auf die Bedingungen (aₙ ≠ 0, a ≠ b, z → x).</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Bei Definitionen zählen die <b>Voraussetzungen</b>: aₙ ≠ 0, a ≠ b, z → x. Genau die werden gerne abgefragt.</li>
-        <li>Merke die Paare: Differenzenquotient ↔ mittlere Änderungsrate ↔ Sekante; Differentialquotient ↔ momentane Änderungsrate ↔ Tangente.</li>
+        <li>Bei Definitionen zählen die <b>Voraussetzungen</b>: aₙ ≠ 0, a ≠ b, z → x. Genau die werden gerne abgefragt.<em class="why">Lehrer achten bei Definitionen auf die Bedingungen. Wer sie weglässt, verliert Punkte.</em></li>
+        <li>Merke die Paare: Differenzenquotient ↔ mittlere Änderungsrate ↔ Sekante; Differentialquotient ↔ momentane Änderungsrate ↔ Tangente.<em class="why">So kannst du die Begriffe nie mehr verwechseln: Differenzen gehört zu Sekante und mittel, Differential zu Tangente und momentan.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span>
       <p>a) f(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₁x + a₀ mit n ∈ ℕ, aᵢ ∈ ℝ und <b>aₙ ≠ 0</b>.</p>
@@ -1763,7 +1763,7 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     </div></details>
     <details class="way"><summary>Lernhilfe</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Zu jeder Definition ein Bild im Kopf haben: Treppe nach oben, Gipfel, Lenkradwechsel, flache Stufe.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Bild zu jeder Definition im Kopf: Monotonie = Treppe nach oben; Wendestelle = Lenkrad wechselt; Terrasse = kurzes flaches Stück, dann geht es gleich weiter.</li>
+        <li>Bild zu jeder Definition im Kopf: Monotonie = Treppe nach oben; Wendestelle = Lenkrad wechselt; Terrasse = kurzes flaches Stück, dann geht es gleich weiter.<em class="why">Ein Bild im Kopf hilft, die Definition richtig hinzuschreiben, auch wenn man den Wortlaut kurz vergisst.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span>
       <p>a) Für alle x₁, x₂ ∈ M gilt: x₁ &lt; x₂ ⇒ f(x₁) &lt; f(x₂).</p>
@@ -1781,9 +1781,9 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p class="fb"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span> = <span class="fr"><span>kb + d − (ka + d)</span><span>b − a</span></span> = <span class="fr"><span>kb − ka</span><span>b − a</span></span> = <span class="fr"><span>k(b − a)</span><span>b − a</span></span> = k ∎</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Definition hinschreiben, f(b) und f(a) einsetzen, k herausheben und (b − a) kürzen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Definition hinschreiben, f(b) = kb + d und f(a) = ka + d einsetzen.</li>
-        <li>Klammer um f(a) auflösen: d − d = 0.</li>
-        <li>k herausheben und (b − a) kürzen (erlaubt, weil a ≠ b).</li>
+        <li>Definition hinschreiben, f(b) = kb + d und f(a) = ka + d einsetzen.<em class="why">Ein Beweis beginnt mit der Definition. Dann setzt man die konkrete Funktion ein.</em></li>
+        <li>Klammer um f(a) auflösen: d − d = 0.<em class="why">Das Minus vor der Klammer dreht alle Vorzeichen. Darum heben sich +d und −d auf.</em></li>
+        <li>k herausheben und (b − a) kürzen (erlaubt, weil a ≠ b).<em class="why">k steckt in beiden Termen. Nach dem Herausheben kürzt sich (b − a), weil a ≠ b ist.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p class="fb"><span class="fr"><span>f(b) − f(a)</span><span>b − a</span></span> = <span class="fr"><span>kb + d − (ka + d)</span><span>b − a</span></span> = <span class="fr"><span>kb − ka</span><span>b − a</span></span> = <span class="fr"><span>k(b − a)</span><span>b − a</span></span> = k ∎</p></div></div></div></details>
   </article>
@@ -1798,7 +1798,7 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     </div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Immer dasselbe Limes-Rezept: einsetzen, (z − x) herausheben, kürzen, z = x setzen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Immer gleich: Definition → einsetzen → (z − x) herausheben → kürzen → z = x setzen.</li>
+        <li>Immer gleich: Definition → einsetzen → (z − x) herausheben → kürzen → z = x setzen.<em class="why">Alle drei Beweise laufen nach demselben Muster. Lerne das Muster, dann kannst du alle.</em></li>
         <li>Bei c) ist der Trick die 3. binomische Formel z² − x² = (z − x)(z + x).<em class="why">Ohne diesen Schritt kann man nicht kürzen, und für „z = x einsetzen“ stünde 0/0 da.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span>
@@ -1817,8 +1817,8 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     </div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Horner beweist man durch Ausmultiplizieren. Mit Horner kann man dann z³ − x³ zerlegen und kürzen.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Rechte Seite ausmultiplizieren: jeder Term der ersten Klammer mal jeder Term der zweiten.</li>
-        <li>Die Mitte hebt sich paarweise weg (+a²b − a²b, +ab² − ab²).</li>
+        <li>Rechte Seite ausmultiplizieren: jeder Term der ersten Klammer mal jeder Term der zweiten.<em class="why">So beweist man eine Formel: die rechte Seite ausrechnen und zeigen, dass die linke herauskommt.</em></li>
+        <li>Die Mitte hebt sich paarweise weg (+a²b − a²b, +ab² − ab²).<em class="why">Jeder mittlere Term kommt einmal mit Plus und einmal mit Minus vor. Übrig bleiben nur a³ und −b³.</em></li>
         <li>Potenzregel: Horner mit a = z, b = x, kürzen, z = x einsetzen: x² + x² + x² = 3x².<em class="why">Allgemein: n Summanden, jeder wird xⁿ⁻¹ → n·xⁿ⁻¹.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span>
@@ -1833,8 +1833,8 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     <details class="res"><summary>Ergebnis</summary><div><p>Jede Lösung xᵢ spaltet einen Linearfaktor (x − xᵢ) ab, der Grad sinkt jedes Mal um 1. Höchstens n Linearfaktoren sind möglich: f(x) = aₙ(x − x₁)…(x − xₙ). Eine weitere Lösung müsste nach dem Produkt-Null-Satz einen dieser Faktoren null machen, also schon eine der xᵢ sein.</p></div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Jede Lösung spaltet einen Faktor ab, und jedes Mal sinkt der Grad um 1. Mehr als n Mal geht das nicht.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Satz: Ist x₀ Lösung von f(x) = 0, dann f(x) = (x − x₀)·g(x) mit Grad g = n − 1.</li>
-        <li>Wiederholt anwenden → nach k Lösungen bleibt ein Polynom vom Grad n − k übrig. Mehr als n geht nicht, weil der Grad nicht negativ werden kann.</li>
+        <li>Satz: Ist x₀ Lösung von f(x) = 0, dann f(x) = (x − x₀)·g(x) mit Grad g = n − 1.<em class="why">Das ist der Satz vom Linearfaktor: Jede Lösung lässt sich als Faktor abspalten.</em></li>
+        <li>Wiederholt anwenden → nach k Lösungen bleibt ein Polynom vom Grad n − k übrig. Mehr als n geht nicht, weil der Grad nicht negativ werden kann.<em class="why">Jede Lösung kostet einen Grad. Weil man mit Grad n startet, kann man höchstens n Lösungen abspalten.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span><p>Jede Lösung xᵢ spaltet einen Linearfaktor (x − xᵢ) ab, der Grad sinkt jedes Mal um 1. Höchstens n Linearfaktoren sind möglich: f(x) = aₙ(x − x₁)…(x − xₙ). Eine weitere Lösung müsste nach dem Produkt-Null-Satz einen dieser Faktoren null machen, also schon eine der xᵢ sein.</p></div></div></div></details>
   </article>
@@ -1848,9 +1848,9 @@ solve(f(0)=3 and f1(0)=0 and f(1)=1 and f2(1)=0,{a,b,c,d})     <span class="r">a
     </div></details>
     <details class="way"><summary>Lösungsweg Schritt für Schritt</summary><div><div class="lw"><div class="lw-idea"><span class="lw-tag">Die Idee</span><p>Trick: Die Sätze, die du für f kennst, auf f′ anwenden.</p></div><span class="lw-tag lw-head">Schritt für Schritt</span>
       <ol class="st">
-        <li>Trick bei beiden: Die Sätze, die du für f kennst, auf <b>f′</b> anwenden.</li>
-        <li>a) Monotoniesatz für f′: Ableitung von f′ positiv → f′ steigt.</li>
-        <li>b) f″-Test für f′: Ableitung von f′ ist 0, zweite Ableitung von f′ ist ≠ 0 → Extremstelle von f′. Dort ist f am steilsten, und das Krümmungsverhalten wechselt.</li>
+        <li>Trick bei beiden: Die Sätze, die du für f kennst, auf <b>f′</b> anwenden.<em class="why">f′ ist selbst eine Funktion. Was für f gilt, gilt auch für f′, nur eine Ableitung „höher“.</em></li>
+        <li>a) Monotoniesatz für f′: Ableitung von f′ positiv → f′ steigt.<em class="why">Ist die Ableitung einer Funktion positiv, steigt die Funktion. Hier ist f′ die Funktion und f″ ihre Ableitung.</em></li>
+        <li>b) f″-Test für f′: Ableitung von f′ ist 0, zweite Ableitung von f′ ist ≠ 0 → Extremstelle von f′. Dort ist f am steilsten, und das Krümmungsverhalten wechselt.<em class="why">Eine Wendestelle von f ist eine Extremstelle von f′. Mit dem f″-Test, angewendet auf f′, beweist man das.</em></li>
       </ol>
     <div class="lw-res"><span class="lw-tag">Ergebnis</span>
       <p>a) f″(x) = (f′)′(x) &gt; 0 ⇒ (Monotoniesatz für f′) f′ ist in I streng monoton steigend ⇒ (Definition) f ist in I linksgekrümmt. ∎</p>
