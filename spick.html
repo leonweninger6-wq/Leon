@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathe-SA Spickzettel</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--ink:#1d1d1f;--muted:#666;--line:#e3e1da;--acc:#1f5fbf;--acc-soft:#e8effa;--warn:#b3261e;--warn-soft:#fdecea;--ok:#1e7a3e;--ok-soft:#e6f4ea;--code:#f0efe9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--card:#1e1e22;--ink:#ececf0;--muted:#a0a0a8;--line:#33333a;--acc:#7aa7f0;--acc-soft:#1d2a40;--warn:#f08a80;--warn-soft:#3a1f1d;--ok:#6fcf8f;--ok-soft:#183024;--code:#2a2a30}}
+:root[data-theme="dark"]{--bg:#141416;--card:#1e1e22;--ink:#ececf0;--muted:#a0a0a8;--line:#33333a;--acc:#7aa7f0;--acc-soft:#1d2a40;--warn:#f08a80;--warn-soft:#3a1f1d;--ok:#6fcf8f;--ok-soft:#183024;--code:#2a2a30}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px 16px 40px}
+h1{font-size:1.45rem;margin:4px 0 2px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
+h2{font-size:1.05rem;margin:0 0 8px;display:flex;gap:8px;align-items:center}
+h2 .n{background:var(--acc);color:var(--card);border-radius:50%;width:1.6em;height:1.6em;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex:none}
+ul{margin:0;padding-left:1.2em}li{margin:3px 0}
+.ti{background:var(--code);border-radius:8px;padding:7px 10px;margin:8px 0 2px;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;overflow-x:auto}
+.ti b{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block}
+.merk{background:var(--ok-soft);border-left:4px solid var(--ok);border-radius:6px;padding:7px 10px;margin:8px 0 0;font-size:.95rem}
+.merk::before{content:"Merke: ";font-weight:700;color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+td,th{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+.warn{background:var(--warn-soft);border-color:var(--warn)}
+.warn h2{color:var(--warn)}
+.go{text-align:center;font-weight:700;font-size:1.1rem;margin-top:18px}
+code{background:var(--code);border-radius:4px;padding:0 4px;font-size:.92em}
+</style></head><body><main>
+<h1>Mathe-SA: Alles auf einen Blick</h1>
+<p class="sub">5 Minuten lesen · 7. Klasse · Differentialrechnung + Gleichungen</p>
+
+<section><h2><span class="n">1</span>Gleichungen lösen</h2>
+<ul>
+<li><b>Kein Term ohne x → herausheben:</b> x³ − 4x = 0 → x·(x² − 4) = 0 → x = 0, ±2</li>
+<li><b>Nur x⁴ und x² → Substitution:</b> u = x², quadratische Gleichung lösen, dann x = ±√u (u negativ → keine Lösung)</li>
+<li><b>Sonst → Lösung raten</b> (±1, ±2, …), dann Horner/Polynomdivision</li>
+<li>Grad n → <b>höchstens n</b> Lösungen</li>
+</ul>
+<div class="ti"><b>TI-Nspire</b>solve(x^3-4x=0,x)<br>factor(x^3-4x)</div>
+<div class="merk">Nie durch x dividieren, sonst verlierst du x = 0. Bei Substitution: u-Werte sind <b>nicht</b> die Lösung!</div>
+</section>
+
+<section><h2><span class="n">2</span>Änderungsraten</h2>
+<table>
+<tr><th>Mittlere Änderungsrate</th><th>Momentane Änderungsrate</th></tr>
+<tr><td>Differenzenquotient<br>(f(b) − f(a)) / (b − a)<br>= Steigung der <b>Sekante</b></td><td>Differentialquotient<br>f′(x) = lim<sub>z→x</sub> (f(z) − f(x))/(z − x)<br>= Steigung der <b>Tangente</b></td></tr>
+<tr><td>„im Mittel“, „durchschnittlich“, „im Intervall“</td><td>„zum Zeitpunkt“, „momentan“, „an der Stelle“</td></tr>
+</table>
+<ul><li>Einheit: <b>y-Einheit pro x-Einheit</b> (z. B. m/s)</li>
+<li>Physik: s′ = v (Geschwindigkeit), s″ = v′ = a (Beschleunigung)</li></ul>
+<div class="ti"><b>TI-Nspire</b>Define f(x)=…<br>(f(4)-f(1))/(4-1)</div>
+</section>
+
+<section><h2><span class="n">3</span>Ableiten</h2>
+<ul>
+<li>(xⁿ)′ = n·xⁿ⁻¹ → Hochzahl nach vorne, dann um 1 kleiner</li>
+<li>Konstante → 0 &nbsp;·&nbsp; Faktor bleibt stehen &nbsp;·&nbsp; Summe: einzeln ableiten</li>
+<li>Bsp.: f(x) = 3x⁴ − 2x + 7 → f′(x) = 12x³ − 2 → f″(x) = 36x²</li>
+</ul>
+<div class="ti"><b>TI-Nspire</b>d/dx(f(x))   (Vorlage-Taste)<br>derivative(f(x),x,2)   → 2. Ableitung</div>
+</section>
+
+<section><h2><span class="n">4</span>Tangente &amp; Steigungswinkel</h2>
+<ul>
+<li>Punkt P(p | f(p)) → Steigung <b>k = f′(p)</b> → y = kx + d, d durch Einsetzen von P</li>
+<li><b>f′(p) = tan(α)</b> → α = tan⁻¹(k); Ergebnis negativ → +180°</li>
+</ul>
+<div class="ti"><b>TI-Nspire</b>tangentLine(f(x),x,3)<br>tan⁻¹(k)   (Grad-Modus! Einstellungen → Winkel: Grad)</div>
+</section>
+
+<section><h2><span class="n">5</span>Kurvendiskussion</h2>
+<table>
+<tr><th>Gesucht</th><th>Bedingung</th></tr>
+<tr><td>Nullstellen</td><td>f(x) = 0</td></tr>
+<tr><td>Extremstellen</td><td>f′(x) = 0</td></tr>
+<tr><td>Hochpunkt / Tiefpunkt</td><td>f″ &lt; 0 (∩) / f″ &gt; 0 (∪)</td></tr>
+<tr><td>Wendestelle</td><td>f″(x) = 0</td></tr>
+<tr><td>Sattelpunkt</td><td>f′ = 0 <b>und</b> f″ = 0</td></tr>
+<tr><td>steigend / fallend</td><td>f′ &gt; 0 / f′ &lt; 0</td></tr>
+<tr><td>links- / rechtsgekrümmt</td><td>f″ &gt; 0 (∪) / f″ &lt; 0 (∩)</td></tr>
+</table>
+<ul>
+<li>y-Wert immer in <b>f</b> einsetzen, nicht in f′!</li>
+<li>Wendestelle = Stelle der <b>größten/kleinsten Steigung</b>. Grad 3: genau in der Mitte zwischen H und T</li>
+<li>Nur gerade Hochzahlen → symmetrisch zur y-Achse; nur ungerade → zum Ursprung</li>
+</ul>
+<div class="ti"><b>TI-Nspire</b>solve(d/dx(f(x))=0,x)<br>derivative(f(x),x,2)|x=2   → Vorzeichen prüfen<br>f(2)   → y-Wert</div>
+</section>
+
+<section><h2><span class="n">6</span>Umkehraufgaben (Funktion aufstellen)</h2>
+<ul>
+<li>Grad 3: f(x) = ax³ + bx² + cx + d → <b>4 Unbekannte = 4 Bedingungen</b></li>
+</ul>
+<table>
+<tr><th>Text</th><th>Gleichung</th></tr>
+<tr><td>geht durch (1 | 4)</td><td>f(1) = 4</td></tr>
+<tr><td>Extremum / waagrechte Tangente bei x = 1</td><td>f′(1) = 0</td></tr>
+<tr><td>Wendepunkt bei x = 2</td><td>f″(2) = 0</td></tr>
+<tr><td>Steigung 3 bei x = 0</td><td>f′(0) = 3</td></tr>
+<tr><td>Ursprung</td><td>f(0) = 0</td></tr>
+<tr><td>symmetrisch zur y-Achse</td><td>nur ax⁴ + bx² + c</td></tr>
+</table>
+<div class="merk">„Hochpunkt (1 | 4)“ gibt <b>zwei</b> Gleichungen: f(1) = 4 und f′(1) = 0.</div>
+<div class="ti"><b>TI-Nspire</b>Define f(x)=a*x^3+b*x^2+c*x+d<br>solve({f(1)=4, d/dx(f(x))|x=1=0, …},{a,b,c,d})</div>
+</section>
+
+<section class="warn"><h2>⚠ Typische Fehler</h2>
+<ul>
+<li>Bei Substitution nur u-Werte hinschreiben → immer noch x = ±√u</li>
+<li>Punkte ohne y-Wert → immer <b>H(2 | 5)</b> mit beiden Koordinaten</li>
+<li>TI im Bogenmaß statt Grad → falscher Winkel</li>
+<li>„Ohne Technologie“ → Rechenweg aufschreiben!</li>
+<li>Am Ende: Probe + Antwortsatz mit Einheit</li>
+</ul></section>
+
+<p class="go">Tief durchatmen. Du kannst das! 🍀</p>
+</main></body></html>
