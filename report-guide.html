@@ -4,8 +4,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* One long study page in the same look as the English trainer: sticky section bar, one reading column.
-   Blue = learn, green = correct/better, red = your mistakes, amber = must-know phrases. Report text is set in a serif like the exam paper. */
+/* 30-minute version: one column, five numbered steps to learn in order, timings in the bar.
+   Blue = fill in, amber/yellow = learn by heart, red = your mistakes, green = better version. */
 :root{
   --bg:#f6f8fb; --panel:#ffffff; --ink:#172033; --muted:#566278; --line:#dbe2ec; --soft:#eef2f8;
   --blue:#1f4fd6; --blue-soft:#e8eefd; --green:#13793a; --green-soft:#e3f3e8; --red:#c42f29; --red-soft:#fceae9;
@@ -25,378 +25,161 @@
   --amber:#f2bb5c; --amber-soft:#3a2b10; --paper:#171f2d; --mark:#5b4b0e; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth; scroll-padding-top:70px}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:17px; line-height:1.6; margin:0}
 body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:30; background:var(--panel)}
 button{font:inherit; color:inherit}
 :focus-visible{outline:2.5px solid var(--blue); outline-offset:2px}
 h1,h2,h3{font-family:var(--f-display); line-height:1.2; text-wrap:balance; margin:0}
-h1{font-size:clamp(1.6rem,4.5vw,2.2rem)} h2{font-size:1.45rem} h3{font-size:1.08rem}
+h1{font-size:clamp(1.5rem,4.5vw,2rem)} h2{font-size:1.3rem} h3{font-size:1.02rem}
 p{margin:0}
-.wrap{max-width:900px; margin:0 auto; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:820px; margin:0 auto; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px))}
 .top{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:var(--panel); border-bottom:1px solid var(--line)}
-.top .wrap{display:flex; align-items:center; gap:12px; padding-block:8px}
+.top .wrap{display:flex; align-items:center; gap:10px; padding-block:8px}
 .nav{display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1; min-width:0}
 .nav::-webkit-scrollbar{display:none}
-.nav a{flex:none; text-decoration:none; color:var(--muted); font-weight:700; font-size:.88rem; padding:6px 10px; border-radius:8px}
+.nav a{flex:none; text-decoration:none; color:var(--muted); font-weight:700; font-size:.86rem; padding:6px 9px; border-radius:8px}
+.nav a span{font-family:var(--f-mono); font-weight:400; font-size:.76rem}
 .nav a:hover{background:var(--soft); color:var(--ink)}
-.btn{border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:6px 12px; cursor:pointer; font-weight:700; font-size:.88rem; white-space:nowrap}
+.btn{border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:6px 12px; cursor:pointer; font-weight:700; font-size:.86rem; white-space:nowrap}
 .btn[aria-pressed="true"]{background:var(--amber); border-color:var(--amber); color:var(--panel)}
-main{padding-block:28px 120px; display:grid; gap:44px}
-section{display:grid; gap:16px; min-width:0}
-.eyebrow{font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:700}
-.lead{color:var(--muted); max-width:42rem}
-.card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; display:grid; gap:10px; min-width:0}
-.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:12px}
-ul{margin:0; padding-left:1.15em; display:grid; gap:5px}
+main{padding-block:24px 110px; display:grid; gap:36px}
+section{display:grid; gap:12px; min-width:0}
+.step{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+.step .n{font-family:var(--f-mono); font-size:.8rem; color:var(--muted)}
+.lead{color:var(--muted)}
+.card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; display:grid; gap:8px; min-width:0}
+ul{margin:0; padding-left:1.15em; display:grid; gap:4px}
 .small{font-size:.88rem} .muted{color:var(--muted)}
-.pill{display:inline-block; border-radius:999px; padding:1px 9px; font-size:.76rem; font-weight:700; background:var(--soft); color:var(--muted)}
-.pill.red{background:var(--red-soft); color:var(--red)} .pill.green{background:var(--green-soft); color:var(--green)} .pill.amber{background:var(--amber-soft); color:var(--amber)} .pill.blue{background:var(--blue-soft); color:var(--blue)}
-
-/* skeleton */
-.skel{display:grid; gap:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel)}
-.skel .row{display:grid; grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 4.6rem; gap:14px; padding:12px 16px; border-top:1px solid var(--line); align-items:start}
-.skel .row:first-child{border-top:0}
-.skel .name{font-family:var(--f-display); font-weight:700}
-.skel .w{font-family:var(--f-mono); font-size:.82rem; color:var(--muted); text-align:right; font-variant-numeric:tabular-nums}
-.skel .row.head{background:var(--soft)}
-@media (max-width:560px){.skel .row{grid-template-columns:1fr auto} .skel .row > div:nth-child(2){grid-column:1/-1; order:3}}
-
-/* template / report paper */
-.paper{background:var(--paper); border:1px solid var(--line); border-radius:4px; padding:22px clamp(16px,4vw,32px); font-family:var(--f-paper); font-size:1.04rem; line-height:1.75; display:grid; gap:12px; min-width:0}
-.paper .hd{font-family:var(--f-mono); font-size:.88rem; line-height:1.7}
-.paper h4{margin:6px 0 0; font-family:var(--f-paper); font-weight:600; font-size:1.05rem; text-decoration:underline; text-underline-offset:3px}
-.slot{font-family:var(--f-body); font-size:.86em; color:var(--blue); background:var(--blue-soft); border-radius:4px; padding:0 5px; white-space:normal}
-.k{background:var(--mark); border-radius:3px; padding:0 2px; box-decoration-break:clone; -webkit-box-decoration-break:clone}
-body.quiz .k{color:transparent; background:var(--soft); outline:1px dashed var(--muted); cursor:pointer; user-select:none}
-body.quiz .k.shown{color:inherit; background:var(--green-soft); outline:0}
-.note{font-family:var(--f-body); font-size:.82rem; color:var(--muted); border-left:3px solid var(--line); padding-left:10px}
-
-/* mistakes */
-.mist{display:grid; gap:8px; border-left:4px solid var(--red); background:var(--panel); border-radius:0 12px 12px 0; padding:14px 16px; border-top:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line)}
-.mist .t{font-family:var(--f-display); font-weight:700}
-.bad{color:var(--red); text-decoration:line-through; text-decoration-thickness:1px; font-family:var(--f-paper)}
-.good{color:var(--green); font-family:var(--f-paper)}
-.teacher{font-family:var(--f-paper); font-style:italic; color:var(--red); font-size:.95rem}
-.ba{display:grid; grid-template-columns:auto minmax(0,1fr); gap:4px 10px; align-items:baseline}
-.ba > span:nth-child(odd){font-size:.74rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em}
-
 table{border-collapse:collapse; width:100%; font-size:.93rem}
 th,td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top}
 th{background:var(--soft)}
 .tbox{overflow-x:auto}
-td.num{font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap; width:5.5rem}
-.must{font-weight:700}
-.must::before{content:"★ "; color:var(--amber)}
-
-details{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px}
-details summary{cursor:pointer; font-weight:700}
-details[open] summary{margin-bottom:8px}
-details .ans{color:var(--green)}
-.check label{display:flex; gap:10px; align-items:flex-start; padding:6px 0; border-top:1px solid var(--line); cursor:pointer}
-.check label:first-child{border-top:0}
+td.w{font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right}
+.paper{background:var(--paper); border:1px solid var(--line); border-radius:4px; padding:20px clamp(16px,4vw,30px); font-family:var(--f-paper); font-size:1.03rem; line-height:1.75; display:grid; gap:10px; min-width:0}
+.paper .hd{font-family:var(--f-mono); font-size:.86rem; line-height:1.7}
+.paper h4{margin:6px 0 0; font-family:var(--f-paper); font-weight:600; font-size:1.02rem; text-decoration:underline; text-underline-offset:3px}
+.slot{font-family:var(--f-body); font-size:.86em; color:var(--blue); background:var(--blue-soft); border-radius:4px; padding:0 5px}
+.k{background:var(--mark); border-radius:3px; padding:0 2px; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+body.quiz .k{color:transparent; background:var(--soft); outline:1px dashed var(--muted); cursor:pointer; user-select:none}
+body.quiz .k.shown{color:inherit; background:var(--green-soft); outline:0}
+.rule{display:grid; gap:4px; padding:12px 14px; border:1px solid var(--line); border-left:4px solid var(--red); border-radius:0 10px 10px 0; background:var(--panel)}
+.rule b.t{font-family:var(--f-display)}
+.bad{color:var(--red); text-decoration:line-through; text-decoration-thickness:1px; font-family:var(--f-paper)}
+.good{color:var(--green); font-family:var(--f-paper)}
+.check label{display:flex; gap:10px; align-items:flex-start; padding:5px 0; border-top:1px solid var(--line); cursor:pointer}
+.check label:first-of-type{border-top:0}
 .check input{margin-top:5px; width:18px; height:18px; flex:none; accent-color:var(--green)}
-.timeline{display:grid; gap:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel)}
-.timeline div{display:grid; grid-template-columns:6.5rem minmax(0,1fr); gap:12px; padding:10px 16px; border-top:1px solid var(--line)}
-.timeline div:first-child{border-top:0}
-.timeline b{font-family:var(--f-mono); font-weight:500; font-variant-numeric:tabular-nums}
 a{color:var(--blue)}
 </style>
 
 <header class="top">
   <div class="wrap">
-    <nav class="nav" aria-label="Sections">
-      <a href="#skeleton">Structure</a><a href="#template">Template</a><a href="#mistakes">Your mistakes</a><a href="#phrases">Phrases</a><a href="#numbers">Numbers</a><a href="#trends">Trends</a><a href="#formal">Formal words</a><a href="#model">Model</a><a href="#tomorrow">Tomorrow</a><a href="#recall">Self-test</a>
+    <nav class="nav" aria-label="Steps">
+      <a href="#s1">1 Structure <span>3′</span></a><a href="#s2">2 Template <span>10′</span></a><a href="#s3">3 Mistakes <span>5′</span></a><a href="#s4">4 Numbers <span>4′</span></a><a href="#s5">5 Model <span>5′</span></a><a href="#s6">Check <span>3′</span></a>
     </nav>
-    <button class="btn" id="quizBtn" aria-pressed="false" title="Hide the highlighted phrases so you can test yourself">Hide phrases</button>
+    <button class="btn" id="quizBtn" aria-pressed="false">Hide phrases</button>
   </div>
 </header>
 
 <main class="wrap">
 <section>
-  <span class="eyebrow">Writing · report · test tomorrow</span>
-  <h1>Your report guide: what to write, what to remember, what not to do again</h1>
-  <p class="lead">Built from your class sheets (Tasks 1–9), the printed shopping centre report, the trend vocabulary sheet and your organic food report with your teacher’s corrections (8/11). Learn the <b>Template</b> and the <b>★ phrases</b> by heart. Then press <b>Hide phrases</b> (top right): the yellow parts go blank, and you tap each one to check yourself.</p>
+  <h1>The report in 30 minutes</h1>
+  <p class="lead">Go through the steps in order (the minutes are in the bar at the top). Learn the <b>yellow</b> phrases. Then press <b>Hide phrases</b>, say each blank out loud and tap it to check.</p>
 </section>
 
-<!-- ===== 1 STRUCTURE ===== -->
-<section id="skeleton">
-  <span class="eyebrow">1 · The structure</span>
-  <h2>Six parts, about 200 words</h2>
-  <p class="lead">This is the layout of the class model (Max Mustermann) and the shopping centre report. Use exactly these five headings: they are safe, the teacher expects them, and you can’t copy the task with them.</p>
-  <div class="skel">
-    <div class="row head"><div class="name">Part</div><div class="small muted"><b>What goes in it</b></div><div class="w">words</div></div>
-    <div class="row"><div class="name">Header</div><div>To: · From: · Date: · Subject: <span class="muted small">(one line each, no “Dear”, no greeting, no signature)</span></div><div class="w">–</div></div>
-    <div class="row"><div class="name">Introduction</div><div>2 sentences: <b>aim</b> (present results <b>+</b> analyse <b>+</b> recommend) and <b>source</b> of the data (who, how many people).</div><div class="w">35–45</div></div>
-    <div class="row"><div class="name">Results</div><div>The numbers: biggest first, then the rest, the smallest last. Every number gets a phrase (just under a third…) and sentences are joined with linking words.</div><div class="w">60–70</div></div>
-    <div class="row"><div class="name">Analysis</div><div>2–3 <b>possible</b> reasons for the results. Use may, could, likely, suggests.</div><div class="w">35–45</div></div>
-    <div class="row"><div class="name">Recommendations</div><div>2–3 concrete measures, <b>impersonal</b> (no I / we), each with a short reason.</div><div class="w">35–45</div></div>
-    <div class="row"><div class="name">Conclusion</div><div>1–2 sentences: main finding + main recommendation. Nothing new.</div><div class="w">20–30</div></div>
-  </div>
-  <p class="small muted">Target: <b>180–220 words</b>. If the task bullets are different (e.g. “compare with…”), put the comparison into <b>Results</b> and keep the five headings anyway.</p>
+<section id="s1">
+  <div class="step"><span class="n">1 · 3 min</span><h2>Structure: 250 words (225–275)</h2></div>
+  <div class="tbox"><table>
+    <tr><th>Heading</th><th>What goes in it</th><th style="text-align:right">words</th></tr>
+    <tr><td><b>Header</b></td><td>To: · From: · Date: · Subject: (not counted, no “Dear”)</td><td class="w">–</td></tr>
+    <tr><td><b>Introduction</b></td><td>Aim = present + <b>analyse</b> + <b>recommend</b>, then the source</td><td class="w">40</td></tr>
+    <tr><td><b>Results</b></td><td>4–5 figures, biggest first, each with a phrase and a linking word</td><td class="w">75</td></tr>
+    <tr><td><b>Analysis</b></td><td>2–3 <i>possible</i> reasons (may, likely, suggests)</td><td class="w">50</td></tr>
+    <tr><td><b>Recommendations</b></td><td>3 measures, impersonal, each with a reason</td><td class="w">55</td></tr>
+    <tr><td><b>Conclusion</b></td><td>Main finding + main recommendation. Nothing new.</td><td class="w">30</td></tr>
+  </table></div>
+  <p class="small muted">Always use exactly these five headings. Then you can’t be accused of prompt lifting in a heading.</p>
 </section>
 
-<!-- ===== 2 TEMPLATE ===== -->
-<section id="template">
-  <span class="eyebrow">2 · The template to learn by heart</span>
-  <h2>Fill in the blue boxes and you have a report</h2>
-  <p class="lead">Every yellow phrase comes from your class sheet (Task 9). Memorise this one version, so tomorrow you only have to think about the content.</p>
+<section id="s2">
+  <div class="step"><span class="n">2 · 10 min</span><h2>The template: learn the yellow, fill in the blue</h2></div>
   <div class="paper">
-    <div class="hd">To: <span class="slot">the person from the task, e.g. The Principal / The Centre Manager</span><br>From: <span class="slot">Leon</span><br>Date: <span class="slot">13 November 2026</span><br>Subject: <span class="slot">Report on … (your own words)</span></div>
+    <div class="hd">To: <span class="slot">person from the task</span><br>From: <span class="slot">Leon</span><br>Date: <span class="slot">13 November 2026</span><br>Subject: <span class="slot">Report on … (own words)</span></div>
     <h4>Introduction</h4>
-    <p><span class="k">The aim of this report is to present</span> the results of <span class="slot">a survey on …</span>, <span class="k">to analyse</span> <span class="slot">why …</span> <span class="k">and to make recommendations on how</span> <span class="slot">the school / company could …</span>. <span class="k">The report is based on</span> <span class="slot">a survey conducted among 1,100 young people aged 14–21 / a chart published by …</span>.</p>
+    <p><span class="k">The aim of this report is to present</span> the results of <span class="slot">a survey on …</span>, <span class="k">to analyse</span> <span class="slot">them</span> <span class="k">and to make recommendations on how</span> <span class="slot">to …</span>. <span class="k">The report is based on</span> <span class="slot">a survey conducted among 1,100 people aged 14–21</span>.</p>
     <h4>Results</h4>
-    <p><span class="k">According to the survey,</span> <span class="slot">the biggest item</span> <span class="k">is the most popular option</span>, chosen by <span class="slot">just under a third</span> of respondents (<span class="slot">31%</span>). <span class="k">This is followed by</span> <span class="slot">item 2</span> (<span class="slot">x%</span>) and <span class="slot">item 3</span> (<span class="slot">x%</span>). <span class="k">A significant number of</span> respondents <span class="slot">…</span>, <span class="k">while</span> <span class="slot">around one in ten …</span>. <span class="k">In contrast,</span> <span class="k">only a small minority</span> <span class="slot">… (x%)</span>.</p>
+    <p><span class="k">According to the survey,</span> <span class="slot">X</span> is <span class="k">by far the most popular option</span>, chosen by <span class="slot">almost all respondents (96%)</span>. <span class="k">This is closely followed by</span> <span class="slot">Y (85%)</span>. <span class="k">A large proportion of</span> respondents <span class="slot">… (70%)</span>, <span class="k">while</span> <span class="slot">around two thirds …</span>. <span class="k">In contrast,</span> <span class="k">only a small minority</span> <span class="slot">… (5%)</span>.</p>
     <h4>Analysis</h4>
     <p><span class="k">Several factors may explain these results.</span> <span class="k">One possible reason for this is that</span> <span class="slot">…</span>. <span class="k">Another important factor is</span> <span class="slot">…</span>. <span class="k">This suggests that</span> <span class="slot">…</span>.</p>
     <h4>Recommendations</h4>
-    <p><span class="k">In order to</span> <span class="slot">improve the situation / attract more …</span>, <span class="k">it would be advisable to</span> <span class="slot">…</span>, as <span class="slot">reason</span>. <span class="k">Furthermore,</span> <span class="k">the school / company should consider</span> <span class="slot">…-ing</span>. <span class="k">Another possible measure would be to</span> <span class="slot">…</span>.</p>
+    <p><span class="k">In order to</span> <span class="slot">attract more … / improve …</span>, <span class="k">it would be advisable to</span> <span class="slot">…</span>, as <span class="slot">reason</span>. <span class="k">Furthermore,</span> the <span class="slot">school / company</span> <span class="k">should consider</span> <span class="slot">…-ing</span>. <span class="k">Another possible measure would be to</span> <span class="slot">…</span>.</p>
     <h4>Conclusion</h4>
-    <p><span class="k">In conclusion,</span> <span class="slot">main finding</span>. <span class="k">However,</span> with <span class="slot">main recommendation</span>, the <span class="slot">school / company</span> <span class="k">could</span> <span class="slot">result</span>.</p>
+    <p><span class="k">In conclusion,</span> <span class="slot">main finding</span>. <span class="k">However,</span> with <span class="slot">main recommendation</span>, the <span class="slot">company</span> <span class="k">could attract a significant number of</span> <span class="slot">new customers</span>.</p>
   </div>
-  <p class="note">The Introduction template already covers all three things your teacher said were missing (aim + analysis + recommendations) and the source.</p>
+  <div class="card"><h3>Spare phrases, so you don’t repeat yourself</h3>
+    <ul class="small">
+      <li><b>Data:</b> The results show that … · The data indicates that … · The chart illustrates <b>that</b> …</li>
+      <li><b>Linking:</b> Moreover, · In addition, · However, · Nevertheless, · whereas · By comparison, · As a result,</li>
+      <li><b>Analysis:</b> This may be due to … · It is likely that …</li>
+      <li><b>Recommend:</b> It would be beneficial to … · One possible solution would be to …</li>
+      <li><b>Trend (only if the chart shows years):</b> rose sharply / fell slightly / remained stable / reached a peak of · a sharp rise · a slight decline</li>
+    </ul></div>
 </section>
 
-<!-- ===== 3 MISTAKES ===== -->
-<section id="mistakes">
-  <span class="eyebrow">3 · Your organic food report (8/11)</span>
-  <h2>Every mistake, and the rule that stops it happening again</h2>
-  <p class="lead">Your teacher wrote <i>“Overall, well-structured!”</i>, <i>“Good use of linking words!”</i> and <i>“Overall, good use of language!”</i>. The structure is fine. These are the points that cost marks.</p>
-
-  <div class="mist"><div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill red">Teacher</span><span class="t">1 · Introduction: analysis and recommendations missing</span></div>
-    <p class="teacher">“Analysis &amp; Recommendations missing”</p>
-    <div class="ba"><span>You</span><span class="bad">The aim of this report is to summarize data on organic food consumption. The report is based on a pie chart from the UK Food Agency.</span>
-    <span>Better</span><span class="good">The aim of this report is to present data on organic food consumption by age, to analyse why young people buy comparatively little organic food and to make recommendations on how to attract younger customers. It is based on a pie chart published by the UK Food Agency.</span></div>
-    <p class="small"><b>Rule:</b> the first sentence names <b>all three jobs</b>: present + analyse + recommend. Then the source.</p></div>
-
-  <div class="mist"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill red">Teacher</span><span class="t">2 · Prompt lifting</span></div>
-    <p class="teacher">“Prompt lifting! Don’t use the wording from the instructions!”</p>
-    <div class="ba"><span>You</span><span class="bad">Eating Habits of People my Age</span><span>Better</span><span class="good">Analysis</span></div>
-    <p class="small"><b>Rule:</b> never copy a chunk of 3+ words from the task. Use the five standard headings. When you mention a task point in a sentence, say it in your own words: <i>people your age</i> → <i>young consumers / teenagers / 14- to 18-year-olds</i>; <i>attract young customers</i> → <i>appeal to a younger audience</i>.</p></div>
-
-  <div class="mist"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill red">Teacher</span><span class="t">3 · Personal pronouns</span></div>
-    <p class="teacher">“Try to avoid personal pronouns!” (circled: I)</p>
-    <div class="ba"><span>You</span><span class="bad">In order to attract more young customers, I would recommend offering student discounts.</span>
-    <span>Better</span><span class="good">In order to attract more young customers, it would be advisable to offer student discounts.</span>
-    <span>or</span><span class="good">… the company should consider offering student discounts.</span></div>
-    <p class="small"><b>Rule:</b> no <i>I, me, my, we, our, you</i> anywhere in the text (only after “From:”). Use <i>it would be advisable / beneficial to</i>, <i>the company should consider + -ing</i>, or the passive <i>Discounts should be offered</i>.</p></div>
-
-  <div class="mist"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill red">Teacher</span><span class="t">4 · Results: more linking words</span></div>
-    <p class="teacher">“More linking words could be included at this stage.” (circled: and)</p>
-    <div class="ba"><span>You</span><span class="bad">In contrast, people under 29 account for only 15% of consumption and the youngest group (9–18) consumes just 5%.</span>
-    <span>Better</span><span class="good">In contrast, consumption drops sharply among younger people: those under 29 account for only 15%, while the youngest group (9–18) consumes just 5%.</span></div>
-    <p class="small"><b>Rule:</b> no two numbers joined only with <i>and</i>. Use <i>followed by · while · whereas · in contrast · by comparison · similarly · on the other hand</i>. Aim for one linking word in every Results sentence.</p></div>
-
-  <div class="mist" style="border-left-color:var(--amber)"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill amber">Also fix</span><span class="t">5 · Small things in your text</span></div>
-    <div class="tbox"><table>
-      <tr><th>You wrote</th><th>Write</th><th>Why</th></tr>
-      <tr><td class="bad">The chart illustrates 39-48 year-olds consume…</td><td class="good">The chart illustrates <b>that</b> 39- to 48-year-olds consume…</td><td>Your teacher added <i>that</i>. Write ages with hyphens.</td></tr>
-      <tr><td class="bad">Organic Food Consumption by Age</td><td class="good">Results</td><td>Your teacher wrote (Results) next to it: use the standard heading.</td></tr>
-      <tr><td class="bad">afforddble · teen agers</td><td class="good">affordable · teenagers</td><td>Spelling of words you will need again.</td></tr>
-      <tr><td class="bad">social media such as on TikTok</td><td class="good">social media platforms such as TikTok</td><td><i>such as</i> + noun, no extra <i>on</i>.</td></tr>
-      <tr><td class="bad">Some simply do not care about it.</td><td class="good">Others may simply show little interest in it.</td><td>More formal; <i>may</i> fits the Analysis.</td></tr>
-      <tr><td class="bad">the company could win many new customers</td><td class="good">the company could attract a significant number of new customers</td><td>Report vocabulary scores points.</td></tr>
-      <tr><td class="bad">Date 1/11/26</td><td class="good">Date: 1 November 2026</td><td>Colon after every header word; write the month out.</td></tr>
-    </table></div></div>
-
-  <div class="mist" style="border-left-color:var(--green)"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="pill green">Keep</span><span class="t">What already worked</span></div>
-    <ul><li>The header and clear underlined headings → “well-structured”.</li><li>Recommendations: <i>In order to … , as … . Furthermore, … since …</i> → “Good use of linking words!”</li><li><i>They are followed by … · In contrast, … · account for only 15%</i>: these are exactly the phrases to keep using.</li><li>The Conclusion: finding + <i>However,</i> + what the company could do.</li></ul></div>
+<section id="s3">
+  <div class="step"><span class="n">3 · 5 min</span><h2>Your mistakes: never again</h2></div>
+  <div class="rule"><b class="t">1 · The intro needs all three jobs</b><span class="bad">The aim of this report is to summarize data on organic food consumption.</span><span class="good">… to present data on …, to analyse why … and to make recommendations on how …</span></div>
+  <div class="rule"><b class="t">2 · No prompt lifting</b><span class="bad">Eating Habits of People my Age</span><span class="good">Analysis</span><span class="small muted">Never copy 3+ words from the task. people your age → young consumers / teenagers</span></div>
+  <div class="rule"><b class="t">3 · No I / we / my / you</b><span class="bad">I would recommend offering student discounts.</span><span class="good">It would be advisable to offer student discounts. / The company should consider offering …</span></div>
+  <div class="rule"><b class="t">4 · Linking words in Results, not just “and”</b><span class="bad">… account for only 15% of consumption and the youngest group consumes just 5%.</span><span class="good">… account for only 15%, while the youngest group consumes just 5%.</span></div>
+  <div class="rule" style="border-left-color:var(--amber)"><b class="t">5 · Small fixes</b><span class="small">illustrates <b>that</b> · <b>affordable</b>, <b>teenagers</b> · such as TikTok (no “on”) · Date: 1 November 2026 · no don’t / it’s · no lots of / kids / get · don’t start a sentence with a number</span></div>
+  <p class="small muted">Keep: your header, clear headings and linking words in the Recommendations. Your teacher praised all three.</p>
 </section>
 
-<!-- ===== 4 PHRASES ===== -->
-<section id="phrases">
-  <span class="eyebrow">4 · Phrase bank (your Task 9 sheet)</span>
-  <h2>The phrases, sorted by section</h2>
-  <p class="lead">★ = learn these first. One or two per section is enough, and use each phrase only once.</p>
-  <div class="grid2">
-    <div class="card"><h3>Introduction</h3><ul>
-      <li class="must"><span class="k">The aim of this report is to</span> present … , to analyse … and to make recommendations on …</li>
-      <li class="must"><span class="k">The report is based on</span> a survey conducted among …</li>
-      <li>The purpose of this report is to … · This report examines …</li>
-      <li>This report presents the results of …</li>
-      <li>This report was written in order to …</li>
-      <li>The results of the survey are presented below.</li></ul></div>
-    <div class="card"><h3>Referring to data</h3><ul>
-      <li class="must"><span class="k">According to the survey,</span> …</li>
-      <li class="must"><span class="k">The results show that</span> … · The data indicates that …</li>
-      <li>The findings suggest that … · The statistics reveal that …</li>
-      <li>Based on the information collected, …</li>
-      <li>The chart / graph / table illustrates that …</li></ul></div>
-    <div class="card"><h3>Describing statistics</h3><ul>
-      <li class="must"><span class="k">The most popular option is</span> … , <span class="k">followed by</span> …</li>
-      <li class="must"><span class="k">A significant number of</span> respondents … · <span class="k">only a small minority</span> …</li>
-      <li>A majority of / A large proportion of students …</li>
-      <li>Just under a third … · Just over half … · Around a quarter … · About one in ten …</li>
-      <li>In contrast, … · By comparison, … · Similarly, … · On the other hand, …</li></ul></div>
-    <div class="card"><h3>Analysis: explaining reasons</h3><ul>
-      <li class="must"><span class="k">Several factors may explain these results.</span></li>
-      <li class="must"><span class="k">One possible reason for this is that</span> …</li>
-      <li>This may be due to … · This could be because …</li>
-      <li>Another important factor is … · This indicates that …</li>
-      <li>This suggests that … · It is likely that …</li></ul></div>
-    <div class="card"><h3>Recommendations</h3><ul>
-      <li class="must"><span class="k">In order to improve the situation,</span> …</li>
-      <li class="must"><span class="k">It would be advisable to</span> … · <span class="k">It would be beneficial to</span> …</li>
-      <li>One possible solution would be to …</li>
-      <li>The school / organisation should consider + <b>-ing</b> …</li>
-      <li>Perhaps it would be useful to …</li>
-      <li>Another possible measure would be to …</li>
-      <li class="muted small">On the sheet but avoid: <s>I would (strongly) recommend …</s> (personal pronoun!)</li></ul></div>
-    <div class="card"><h3>Linking &amp; conclusion</h3><ul>
-      <li class="must">Adding: <span class="k">Furthermore,</span> · In addition, · Moreover,</li>
-      <li class="must">Contrast: <span class="k">However,</span> · Nevertheless, · while · whereas</li>
-      <li>Result: As a result, · Therefore, · For this reason,</li>
-      <li class="must">Conclusion: <span class="k">In conclusion,</span> · To sum up, · Overall, · In summary,</li>
-      <li>Based on the results, … · It can therefore be concluded that … · The report suggests that …</li></ul></div>
-  </div>
-  <div class="card"><h3>Reporting what people said (Task 6)</h3>
-    <p>Use a reporting verb: <i>said, stated, reported, indicated, claimed</i>. After a <b>past</b> verb, shift the tense back:</p>
-    <ul><li>29% said, “I want to be an athlete.” → 29% <b>stated that they wanted</b> to become professional athletes.</li>
-    <li>15% said, “I would like to work with animals.” → 15% <b>reported that they would like</b> to work with animals.</li>
-    <li>Present tense also works, with no backshift: <i>The survey shows that most teenagers <b>want</b> …</i> Pick one style and keep it.</li></ul></div>
-</section>
-
-<!-- ===== 5 NUMBERS ===== -->
-<section id="numbers">
-  <span class="eyebrow">5 · Numbers into words</span>
-  <h2>Never write a number on its own</h2>
-  <p class="lead">Write the phrase and put the exact figure in brackets: <i>just under a third of respondents (31%)</i>. Don’t start a sentence with a number: the sample report’s “70 percent stated…” is better as “Around 70% of respondents stated…”.</p>
+<section id="s4">
+  <div class="step"><span class="n">4 · 4 min</span><h2>Numbers into words</h2></div>
   <div class="tbox"><table>
-    <tr><th>Figure</th><th>Phrase</th><th>Figure</th><th>Phrase</th></tr>
-    <tr><td class="num">90–100%</td><td>almost all / the vast majority</td><td class="num">30–32%</td><td>just under a third</td></tr>
-    <tr><td class="num">70–80%</td><td>a large majority / around three quarters</td><td class="num">25%</td><td>a quarter</td></tr>
-    <tr><td class="num">66%</td><td>around two thirds</td><td class="num">20%</td><td>a fifth / one in five</td></tr>
-    <tr><td class="num">51–55%</td><td>just over half / a slight majority</td><td class="num">10–12%</td><td>about one in ten / just over one in ten</td></tr>
-    <tr><td class="num">45–49%</td><td>nearly half / just under half</td><td class="num">8–9%</td><td>slightly fewer than one in ten</td></tr>
-    <tr><td class="num">34–36%</td><td>just over a third</td><td class="num">1–5%</td><td>a small minority / hardly any</td></tr>
+    <tr><th>%</th><th>Phrase</th><th>%</th><th>Phrase</th></tr>
+    <tr><td class="w">95</td><td>almost all</td><td class="w">31</td><td>just under a third</td></tr>
+    <tr><td class="w">75</td><td>three quarters / a large majority</td><td class="w">25</td><td>a quarter</td></tr>
+    <tr><td class="w">66</td><td>around two thirds</td><td class="w">20</td><td>a fifth</td></tr>
+    <tr><td class="w">52</td><td>just over half</td><td class="w">10</td><td>one in ten</td></tr>
+    <tr><td class="w">48</td><td>nearly half</td><td class="w">3</td><td>a small minority</td></tr>
   </table></div>
-  <div class="grid2">
-    <div class="card"><h3>Ranking words</h3><ul><li>the most popular / the most common reason</li><li>the second most popular option</li><li>closely followed by … (small gap)</li><li>far behind / by far the most … (big gap)</li><li>the least popular / come last in terms of popularity</li></ul></div>
-    <div class="card"><h3>Prepositions (Task 7)</h3><ul><li>asked <b>about</b> · <b>according to</b> · a third <b>of</b></li><li>a difference <b>between</b> A and B · last <b>in</b> terms of</li><li><b>over</b> half · account <b>for</b> 15% · based <b>on</b></li><li>rise <b>from</b> 20% <b>to</b> 30% · fall <b>by</b> 10%</li><li><b>fewer</b> students (countable) · <b>less</b> money (uncountable)</li></ul></div>
-  </div>
+  <p class="small">Format: <i>just under a third of respondents (31%)</i>. Also: <b>fewer</b> students, <b>less</b> money · account <b>for</b> · a difference <b>between</b> · rise <b>from</b> 20% <b>to</b> 30%.</p>
 </section>
 
-<!-- ===== 6 TRENDS ===== -->
-<section id="trends">
-  <span class="eyebrow">6 · If the chart shows change over time</span>
-  <h2>Trend language (your sheet)</h2>
-  <p class="lead">Only needed for line or bar charts with years. Two patterns cover everything: <b>verb + adverb</b> (<i>rose sharply</i>) and <b>adjective + noun</b> (<i>a sharp rise</i>).</p>
-  <div class="tbox"><table>
-    <tr><th></th><th>Verbs</th><th>Nouns</th></tr>
-    <tr><td><b>Up a little</b></td><td>increase · rise · grow · improve · go up</td><td>an increase · a rise · growth · an improvement · an upturn</td></tr>
-    <tr><td><b>Up a lot</b></td><td>surge · soar · shoot up · rocket · jump · leap</td><td>a surge · a jump · a leap</td></tr>
-    <tr><td><b>Down a little</b></td><td>decrease · fall · drop · decline · go down · slip</td><td>a decrease · a fall · a drop · a decline · a downturn</td></tr>
-    <tr><td><b>Down a lot</b></td><td>plummet · plunge · slump · crash · sink</td><td>a plunge · a slump · a crash</td></tr>
-    <tr><td><b>No change</b></td><td>remain stable · level off · stay at the same level · remain constant · stabilise</td><td>—</td></tr>
-    <tr><td><b>Change of direction</b></td><td>peak · reach a peak · recover · rebound · bottom out · reach a low point</td><td>a peak · a low point</td></tr>
-    <tr><td><b>How much</b></td><td>dramatically · considerably · sharply · significantly · substantially · moderately · slightly · marginally</td><td>a dramatic · considerable · sharp · significant · substantial · moderate · slight · marginal (rise / fall)</td></tr>
-  </table></div>
-  <div class="card"><h3>Example sentences to copy the pattern from</h3><ul>
-    <li>The number of young visitors <b>rose sharply from</b> 400 <b>to</b> 900 between 2020 and 2024.</li>
-    <li>There was <b>a slight decrease in</b> sales in 2023, after which they <b>levelled off</b>.</li>
-    <li>Screen time <b>reached a peak of</b> 6 hours a day in 2021 and has <b>declined moderately</b> since then.</li>
-    <li>Gun sales <b>increased by</b> 15% (= the size of the change) <b>to</b> 2 million (= the end point).</li></ul></div>
-</section>
-
-<!-- ===== 7 FORMAL ===== -->
-<section id="formal">
-  <span class="eyebrow">7 · Formal style</span>
-  <h2>Swap these words</h2>
-  <div class="tbox"><table>
-    <tr><th>Don’t write</th><th>Write</th></tr>
-    <tr><td class="bad">I think / I would recommend</td><td class="good">It would be advisable to … / The school should consider …</td></tr>
-    <tr><td class="bad">lots of / loads of / a lot of</td><td class="good">a large number of · a significant number of · many</td></tr>
-    <tr><td class="bad">kids · guys</td><td class="good">young people · teenagers · students · respondents</td></tr>
-    <tr><td class="bad">get (more customers)</td><td class="good">attract · gain · obtain</td></tr>
-    <tr><td class="bad">really / very big</td><td class="good">considerably · significantly · substantial</td></tr>
-    <tr><td class="bad">things · stuff</td><td class="good">items · products · activities · factors</td></tr>
-    <tr><td class="bad">hang out with friends</td><td class="good">socialise · spend time with friends</td></tr>
-    <tr><td class="bad">cheap · expensive</td><td class="good">affordable · costly / high prices</td></tr>
-    <tr><td class="bad">don’t · can’t · it’s · they’re</td><td class="good">do not · cannot · it is · they are</td></tr>
-    <tr><td class="bad">So, … · And … · But … (sentence start)</td><td class="good">Therefore, … · Furthermore, … · However, …</td></tr>
-    <tr><td class="bad">it is obvious that</td><td class="good">the results suggest that · it is evident that</td></tr>
-  </table></div>
-</section>
-
-<!-- ===== 8 MODEL ===== -->
-<section id="model">
-  <span class="eyebrow">8 · Model report</span>
-  <h2>The shopping centre report: what to copy, what to polish</h2>
-  <div class="grid2">
-    <div class="card"><h3><span class="pill green">Copy this</span> from the printed sample</h3><ul>
-      <li>Header with To / From / Subject / Date.</li>
-      <li>The five headings in the right order.</li>
-      <li>Intro gives the survey size and age group (1,100 people aged 14–21).</li>
-      <li>Results go from the biggest (96%) to the smallest (60%).</li>
-      <li>Analysis gives reasons; Recommendations give concrete ideas (healthier food, cafés, a cinema).</li>
-      <li>Linking words: Moreover, Furthermore, However, while, Even though, In conclusion.</li></ul></div>
-    <div class="card"><h3><span class="pill amber">Polish</span> small things in the sample</h3><ul>
-      <li>“Closely followed by shopping for brands which was selected by 85 percent.” has no verb of its own. Write: <i>This is closely followed by shopping for brands (85%).</i></li>
-      <li>“70 percent stated…” at the start of a sentence → <i>Around 70% of respondents …</i></li>
-      <li>“the findings on a survey” → <i>the findings <b>of</b> a survey</i>; “ways how to attract” → <i>ways <b>to</b> attract</i>.</li>
-      <li>The intro names results + reasons + suggestions. Good, that is the model for your intro.</li></ul></div>
-  </div>
-  <p class="lead">Here is the same task written with everything from this page. About 220 words without the header. Yellow = phrases from your sheet.</p>
+<section id="s5">
+  <div class="step"><span class="n">5 · 5 min</span><h2>Model: about 260 words (shopping centre task)</h2></div>
+  <p class="lead">Read it once, slowly. It is the template filled in.</p>
   <div class="paper">
     <div class="hd">To: The Centre Manager<br>From: Leon<br>Date: 13 November 2026<br>Subject: Making the shopping centre more appealing to young people</div>
     <h4>Introduction</h4>
-    <p><span class="k">The aim of this report is to present</span> the results of a survey on why young people visit the shopping centre, <span class="k">to analyse</span> them <span class="k">and to make recommendations on how</span> to increase the number of young visitors. <span class="k">The report is based on</span> a survey conducted among 1,100 people aged 14 to 21.</p>
+    <p><span class="k">The aim of this report is to present</span> the results of a survey on why young people visit the shopping centre, <span class="k">to analyse</span> these findings <span class="k">and to make recommendations on how</span> to increase the number of young visitors. <span class="k">The report is based on</span> a survey conducted among 1,100 people aged 14 to 21.</p>
     <h4>Results</h4>
-    <p><span class="k">According to the survey,</span> meeting friends is by far <span class="k">the most common reason</span> (96%). <span class="k">This is closely followed by</span> shopping for brands (85%). A large majority also come to eat out (70%), <span class="k">while</span> around two thirds use the free internet (66%). Free entertainment is <span class="k">the least popular</span> reason (60%).</p>
+    <p><span class="k">According to the survey,</span> meeting friends is <span class="k">by far the most common reason</span>, mentioned by almost all respondents (96%). <span class="k">This is closely followed by</span> shopping for brands (85%). <span class="k">A large proportion of</span> young people also come to eat out (70%), <span class="k">while</span> around two thirds use the free internet (66%). Free entertainment is <span class="k">the least popular</span> reason, <span class="k">although</span> it was still chosen by 60%.</p>
     <h4>Analysis</h4>
-    <p><span class="k">These figures suggest that</span> the centre is mainly a social meeting point rather than just a place to shop. <span class="k">One possible reason for this is that</span> teenagers have few other places to meet at little cost. <span class="k">It is also likely that</span> the affordable fast-food restaurants attract young visitors.</p>
+    <p><span class="k">These figures suggest that</span> the centre is mainly a social meeting point rather than just a place to shop. <span class="k">One possible reason for this is that</span> there are few other places where teenagers can spend time together at little cost. <span class="k">Another important factor is</span> the large number of affordable fast-food restaurants, which are popular with young visitors.</p>
     <h4>Recommendations</h4>
-    <p><span class="k">In order to</span> appeal to a younger audience, <span class="k">it would be advisable to</span> create more comfortable seating areas. <span class="k">Furthermore,</span> the centre <span class="k">should consider</span> adding healthier food options and trendy cafés. <span class="k">Another possible measure would be to</span> organise regular events such as concerts.</p>
+    <p><span class="k">In order to</span> appeal to a younger audience, <span class="k">it would be advisable to</span> create comfortable seating areas, as friends could meet there without having to buy anything. <span class="k">Furthermore,</span> the centre <span class="k">should consider</span> adding healthier food options and trendy cafés. <span class="k">Another possible measure would be to</span> organise regular events such as concerts or gaming tournaments.</p>
     <h4>Conclusion</h4>
-    <p><span class="k">In conclusion,</span> young people visit the centre mainly to socialise. More meeting spaces and a wider range of food and entertainment could therefore attract many new visitors.</p>
-  </div>
-  <p class="note">Your organic food report rewritten with your teacher’s corrections is in the English trainer under Writing → Model reports, together with five practice tasks and the automatic “Check my report”: <a href="https://claude.ai/artifact/VbbfCfyYoKHj5RecjL9Wfm" target="_blank" rel="noopener">open the English trainer</a>.</p>
-</section>
-
-<!-- ===== 9 TOMORROW ===== -->
-<section id="tomorrow">
-  <span class="eyebrow">9 · In the test</span>
-  <h2>How to spend the time</h2>
-  <div class="timeline">
-    <div><b>0–3 min</b><span><b>Read the task twice.</b> Underline: who it is for (→ To:), the source and the number of people, and every bullet point (each one needs its own section).</span></div>
-    <div><b>3–8 min</b><span><b>Plan on the side:</b> the 3 biggest + 1 smallest figure with their phrases · 2 reasons · 2–3 recommendations. Turn task words into your own words now.</span></div>
-    <div><b>8–35 min</b><span><b>Write with the template.</b> Header → Intro (aim + analyse + recommend + source) → Results → Analysis → Recommendations → Conclusion.</span></div>
-    <div><b>35–40 min</b><span><b>Count words</b> (count one line and multiply by the number of lines). <b>Go through the checklist below.</b></span></div>
-  </div>
-  <div class="card check"><h3>Final checklist (tick it off at home with a practice report)</h3>
-    <label for="c1"><input type="checkbox" id="c1"><span>Header: To: · From: · Date: · Subject: (all with colons, subject in my own words)</span></label>
-    <label for="c2"><input type="checkbox" id="c2"><span>Intro: aim + <b>analyse</b> + <b>recommend</b> + source (who, how many)</span></label>
-    <label for="c3"><input type="checkbox" id="c3"><span>Headings: Introduction · Results · Analysis · Recommendations · Conclusion</span></label>
-    <label for="c4"><input type="checkbox" id="c4"><span>No chunk of 3+ words copied from the task (prompt lifting)</span></label>
-    <label for="c5"><input type="checkbox" id="c5"><span>No I / we / my / our / you</span></label>
-    <label for="c6"><input type="checkbox" id="c6"><span>No contractions (don’t, it’s) and no informal words (lots of, kids, get)</span></label>
-    <label for="c7"><input type="checkbox" id="c7"><span>Every number has a phrase; no sentence starts with a number</span></label>
-    <label for="c8"><input type="checkbox" id="c8"><span>Results: a linking word in every sentence, not just “and”</span></label>
-    <label for="c9"><input type="checkbox" id="c9"><span>Analysis uses may / could / likely; Recommendations are impersonal</span></label>
-    <label for="c10"><input type="checkbox" id="c10"><span>Conclusion: no new information</span></label>
-    <label for="c11"><input type="checkbox" id="c11"><span>180–220 words · spelling: affordable, teenagers, recommendations, significant</span></label>
+    <p><span class="k">In conclusion,</span> young people visit the centre mainly to socialise. <span class="k">However,</span> with more meeting spaces and a wider range of food and entertainment, the centre <span class="k">could attract a significant number of</span> new visitors.</p>
   </div>
 </section>
 
-<!-- ===== 10 RECALL ===== -->
-<section id="recall">
-  <span class="eyebrow">10 · Self-test</span>
-  <h2>Answer in your head, then tap to check</h2>
-  <div style="display:grid;gap:8px">
-    <details><summary>What three jobs must the first sentence of the Introduction name?</summary><p class="ans">Present the results · analyse them · make recommendations. Then the source.</p></details>
-    <details><summary>What are the five headings, in order?</summary><p class="ans">Introduction · Results · Analysis · Recommendations · Conclusion</p></details>
-    <details><summary>Rewrite: “I would recommend offering student discounts.”</summary><p class="ans">It would be advisable to offer student discounts. / The company should consider offering student discounts.</p></details>
-    <details><summary>What is “prompt lifting”, and how do you avoid it?</summary><p class="ans">Copying wording from the task. Use the standard headings and paraphrase the task points: “people your age” → “young consumers / teenagers”.</p></details>
-    <details><summary>31%, 52%, 66%, 10%, 3% in words?</summary><p class="ans">just under a third · just over half · around two thirds · one in ten · a small minority</p></details>
-    <details><summary>Join these with a linking word: “Older people buy 30%. Teenagers buy 5%.”</summary><p class="ans">Older people account for 30%, while / whereas teenagers buy just 5%. (or: In contrast, teenagers …)</p></details>
-    <details><summary>Two phrases to start the Analysis?</summary><p class="ans">Several factors may explain these results. · One possible reason for this is that …</p></details>
-    <details><summary>“The number rose a lot.” Make it formal (verb + adverb, then adjective + noun).</summary><p class="ans">The number rose sharply / considerably. · There was a sharp / considerable rise in the number.</p></details>
-    <details><summary>“29% said, ‘I want to be a doctor.’” Report it.</summary><p class="ans">29% stated that they wanted to become doctors.</p></details>
-    <details><summary>Which word is missing? “The chart illustrates ___ 39- to 48-year-olds consume the most.”</summary><p class="ans">that</p></details>
-    <details><summary>fewer or less? “___ students cycle than walk.” · “Young people spend ___ money.”</summary><p class="ans">Fewer students (countable) · less money (uncountable)</p></details>
-    <details><summary>What goes in the Conclusion?</summary><p class="ans">Main finding + main recommendation in 1–2 sentences. Nothing new. Start with “In conclusion,” / “To sum up,” / “Overall,”.</p></details>
+<section id="s6">
+  <div class="step"><span class="n">3 min</span><h2>Final check in the test</h2></div>
+  <div class="card check">
+    <label for="c1"><input type="checkbox" id="c1"><span>Header with colons · five headings</span></label>
+    <label for="c2"><input type="checkbox" id="c2"><span>Intro: present + analyse + recommend + source</span></label>
+    <label for="c3"><input type="checkbox" id="c3"><span>Nothing copied from the task</span></label>
+    <label for="c4"><input type="checkbox" id="c4"><span>No I / we / my / you · no don’t / it’s</span></label>
+    <label for="c5"><input type="checkbox" id="c5"><span>Every number has a phrase · linking word in every Results sentence</span></label>
+    <label for="c6"><input type="checkbox" id="c6"><span>225–275 words (count one line, multiply by the number of lines)</span></label>
   </div>
+  <p class="small muted">Practise once with the automatic “Check my report” in the <a href="https://claude.ai/artifact/VbbfCfyYoKHj5RecjL9Wfm" target="_blank" rel="noopener">English trainer</a> (Writing → Write a report).</p>
 </section>
 </main>
 
@@ -405,8 +188,7 @@ a{color:var(--blue)}
   const btn=document.getElementById("quizBtn");
   btn.addEventListener("click",()=>{const on=document.body.classList.toggle("quiz");btn.setAttribute("aria-pressed",String(on));btn.textContent=on?"Show phrases":"Hide phrases";document.querySelectorAll(".k.shown").forEach(k=>k.classList.remove("shown"))});
   document.addEventListener("click",e=>{const k=e.target.closest(".k");if(k&&document.body.classList.contains("quiz"))k.classList.toggle("shown")});
-  const KEY="report-guide-checks";
-  let saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+  const KEY="report-guide-checks"; let saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
   document.querySelectorAll(".check input").forEach(c=>{c.checked=!!saved[c.id];c.addEventListener("change",()=>{saved[c.id]=c.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}})});
 })();
 </script>

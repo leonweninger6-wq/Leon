@@ -956,7 +956,7 @@ const FEEDBACK = [
  before:"In contrast, people under 29 account for only 15% of consumption and the youngest group (9–18) consumes just 5%.",
  after:"In contrast, consumption drops sharply among younger people: those under 29 account for only 15%, while the youngest group (9–18) consumes just 5%."},
 {t:"Keep what was good", note:"Teacher: “Overall, well-structured!” · “Good use of linking words!” (Recommendations) · “Overall, good use of language!” – keep the header, the headings and the five-part structure exactly like this. Your mark: 8/11.",
- before:"", after:"Header → Introduction → Results → Analysis → Recommendations → Conclusion. 180–220 words."}
+ before:"", after:"Header → Introduction → Results → Analysis → Recommendations → Conclusion. 225–275 words."}
 ];
 
 const MODELS = [
@@ -1189,7 +1189,7 @@ VIEWS.start=root=>{
     <a class="card" href="#listening" style="text-decoration:none;color:inherit"><span class="pill blue">Part 1</span><h3>Listening</h3><p class="small muted">Multiple choice, note completion (max. 4 words), matching speakers. Each recording twice.</p></a>
     <a class="card" href="#reading" style="text-decoration:none;color:inherit"><span class="pill blue">Part 2</span><h3>Reading</h3><p class="small muted">Multiple choice, matching summaries (A–L), sentence completion (max. 4 words), multiple matching (A–F).</p></a>
     <a class="card" href="#language" style="text-decoration:none;color:inherit"><span class="pill blue">Part 3</span><h3>Language in Use</h3><p class="small muted">Banked gap fill (A–R), multiple choice (A–D), open gaps (one word), word formation.</p></a>
-    <a class="card" href="#writing" style="text-decoration:none;color:inherit"><span class="pill red">Part 4 · most time</span><h3>Writing: Report</h3><p class="small muted">180–220 words from a chart. Header, Introduction, Results, Analysis, Recommendations, Conclusion.</p></a>
+    <a class="card" href="#writing" style="text-decoration:none;color:inherit"><span class="pill red">Part 4 · most time</span><h3>Writing: Report</h3><p class="small muted">225–275 words from a chart. Header, Introduction, Results, Analysis, Recommendations, Conclusion.</p></a>
   </div>
   <div class="grid2">
     <div class="card"><h3>Plan until Friday</h3>
@@ -1210,7 +1210,7 @@ VIEWS.start=root=>{
   </div>
   <div class="card"><h3>Test-day tactics</h3><div class="grid2">
    <ul class="clean"><li><b>Listening:</b> use the 45 seconds to underline key words. Answers are paraphrased. Note completion: max. 4 words, spelling counts.</li><li><b>Reading:</b> questions follow the text order (MC, sentence completion). For matching, look for meaning, not the same words.</li></ul>
-   <ul class="clean"><li><b>Language in Use:</b> read the whole text first. Check what kind of word the gap needs (noun? adverb? negative?). Never leave a gap empty.</li><li><b>Report:</b> plan 5–8 min, write ~40 min, check 5 min: no I/we, no contractions, no copied task phrases, every number with a phrase, 180–220 words.</li></ul>
+   <ul class="clean"><li><b>Language in Use:</b> read the whole text first. Check what kind of word the gap needs (noun? adverb? negative?). Never leave a gap empty.</li><li><b>Report:</b> plan 5–8 min, write ~40 min, check 5 min: no I/we, no contractions, no copied task phrases, every number with a phrase, 225–275 words.</li></ul>
   </div></div>`;
   $("#goWeak").onclick=()=>{VS.vset="weak";VS.vmode="gap";saveVS();location.hash="#vocab"};
   $("#goWF").onclick=()=>{VS.liu="wfdrill";saveVS()};
@@ -1449,7 +1449,7 @@ function analyseReport(text,task){
   const out=[]; const words=(text.match(/[A-Za-zÀ-ÿ0-9%’'-]+/g)||[]); const wc=words.length;
   const lines=text.split(/\n/).map(l=>l.trim()).filter(Boolean);
   const push=(cls,msg)=>out.push([cls,msg]);
-  push(wc>=180&&wc<=220?"ok":wc>=165&&wc<=240?"warn":"bad",`Word count: ${wc} (target 180–220).`);
+  push(wc>=225&&wc<=275?"ok":wc>=210&&wc<=290?"warn":"bad",`Word count: ${wc} (target 225–275).`);
   const hdr=["to","from","date","subject"].filter(k=>lines.some(l=>new RegExp("^"+k+"\\s*:","i").test(l)));
   push(hdr.length===4?"ok":"bad",hdr.length===4?"Header complete (To / From / Date / Subject).":`Header incomplete – missing: ${["To","From","Date","Subject"].filter(k=>!hdr.includes(k.toLowerCase())).join(", ")}.`);
   const heads=lines.filter(l=>!/:/.test(l)&&l.split(/\s+/).length<=6&&!/[.!?]$/.test(l));
@@ -1482,7 +1482,7 @@ function analyseReport(text,task){
 }
 VIEWS.writing=root=>{
   const tabs=[["feedback","Your teacher’s feedback"],["format","Format & phrases"],["models","Model reports"],["drills","Drills"],["write","Write a report"]];
-  root.innerHTML=`<div style="display:grid;gap:6px"><span class="eyebrow">Writing · the biggest part of the test</span><h2>The report, the way your class does it</h2><p class="lead">180–220 words, based on a chart. Header, then Introduction · Results · Analysis · Recommendations · Conclusion. Formal, impersonal, linked, and nothing copied from the task.</p></div>
+  root.innerHTML=`<div style="display:grid;gap:6px"><span class="eyebrow">Writing · the biggest part of the test</span><h2>The report, the way your class does it</h2><p class="lead">225–275 words, based on a chart. Header, then Introduction · Results · Analysis · Recommendations · Conclusion. Formal, impersonal, linked, and nothing copied from the task.</p></div>
   <div class="chips">${tabs.map(([id,n])=>`<button class="chip" data-w="${id}" aria-pressed="${VS.wtab===id}">${n}</button>`).join("")}</div><div id="wbody" style="display:grid;gap:14px"></div>`;
   $$(".chip[data-w]",root).forEach(b=>b.onclick=()=>{VS.wtab=b.dataset.w;saveVS();route()});
   const body=$("#wbody");
@@ -1524,7 +1524,7 @@ function wWrite(body){
   const t=REPORT_TASKS.find(x=>x.id===VS.wtask)||REPORT_TASKS[0];
   body.append(h(`<div class="chips">${REPORT_TASKS.map(x=>`<button class="chip" data-k="${x.id}" aria-pressed="${x.id===t.id}">${esc(x.title)}</button>`).join("")}</div>`));
   $$(".chip[data-k]",body).forEach(b=>b.onclick=()=>{VS.wtask=b.dataset.k;saveVS();route()});
-  const paper=h(`<div class="paper">${paperHead("Schreiben",null)}<p>${esc(t.situation)}</p><p class="instr">In your report, you should:</p><ul style="margin:0;display:grid;gap:4px">${t.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><p class="instr">Write approximately 180–220 words. Write it for: ${esc(t.to)}.</p><div class="grid2" style="font-family:var(--f-body)">${t.charts.map((c,i)=>barChart(c,i)).join("")}</div></div>`);
+  const paper=h(`<div class="paper">${paperHead("Schreiben",null)}<p>${esc(t.situation)}</p><p class="instr">In your report, you should:</p><ul style="margin:0;display:grid;gap:4px">${t.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul><p class="instr">Write approximately 250 words (225–275). Write it for: ${esc(t.to)}.</p><div class="grid2" style="font-family:var(--f-body)">${t.charts.map((c,i)=>barChart(c,i)).join("")}</div></div>`);
   body.append(paper);
   const key="draft-"+t.id; const mdl=t.id==="t-organic"?MODELS[0]:t.id==="t-jobs"?MODELS[1]:null;
   const ed=h(`<div class="card"><div class="row"><h3>Your report</h3><span class="spacer"></span><span class="timer" id="tm">45:00</span><select id="tmSel" aria-label="time"><option value="45">45 min</option><option value="60">60 min</option><option value="30">30 min</option></select><button class="btn small" id="tmGo">Start timer</button></div>
@@ -1534,7 +1534,7 @@ function wWrite(body){
     <ul class="clean check" id="res"></ul></div>`);
   body.append(ed);
   const ta=$("#draft",ed); ta.value=store.get(key,"");
-  const wc=()=>{const n=(ta.value.match(/[A-Za-zÀ-ÿ0-9%’'-]+/g)||[]).length;$("#wc",ed).textContent=`${n} words`;$("#wc",ed).style.color=n>=180&&n<=220?"var(--green)":n>220?"var(--red)":""};
+  const wc=()=>{const n=(ta.value.match(/[A-Za-zÀ-ÿ0-9%’'-]+/g)||[]).length;$("#wc",ed).textContent=`${n} words`;$("#wc",ed).style.color=n>=225&&n<=275?"var(--green)":n>275?"var(--red)":""};
   ta.oninput=()=>{store.set(key,ta.value);wc()}; wc();
   $("#hdr",ed).onclick=()=>{const d=new Date();const ds=`${d.getDate()} ${d.toLocaleString("en-GB",{month:"long"})} ${d.getFullYear()}`;ta.value=`To: ${t.to}\nFrom: \nDate: ${ds}\nSubject: \n\nIntroduction\n\n\nResults\n\n\nAnalysis\n\n\nRecommendations\n\n\nConclusion\n`+(ta.value?"\n"+ta.value:"");ta.oninput()};
   $("#chk",ed).onclick=()=>{const r=analyseReport(ta.value,t);$("#res",ed).innerHTML=r.map(([c,m])=>`<li class="${c}">${esc(m)}</li>`).join("")+`<li class="muted">Still check yourself: every bullet point answered? Tenses and 3rd person -s? Spelling of key words?</li>`};
